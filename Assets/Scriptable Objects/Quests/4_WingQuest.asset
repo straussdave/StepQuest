@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8166da5713496f040a199691aece54c3, type: 3}
+  m_Name: 4_WingQuest
+  m_EditorClassIdentifier: Assembly-CSharp::Quest
+  id: 4
+  partName: Wing 1
+  partTexture: {fileID: 8400000, guid: 1e18918731847004b882340f3cc49ae1, type: 2}
+  steps: 3000
