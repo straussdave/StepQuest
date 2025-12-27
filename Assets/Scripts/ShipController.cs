@@ -3,19 +3,34 @@ using UnityEngine;
 
 public class ShipController : MonoBehaviour
 {
-    [System.Serializable]
+    [Serializable]
     public class ShipPart
     {
-        public string partId;        // Matches your quest ID or internal part ID
-        public GameObject prefab;    // The prefab from your asset pack
-        [HideInInspector] public GameObject instance;  // runtime instance
+        public string partId;
+        public GameObject prefab;
+
+        [HideInInspector] public GameObject instance;
+
+        // Cached for swapping back and forth
+        [HideInInspector] public Renderer[] renderers;
+        [HideInInspector] public Material[][] originalSharedMaterials;
+        [HideInInspector] public Collider[] colliders;
+
+        // Optional: if you add an outline component (see below)
+        [HideInInspector] public Behaviour outlineBehaviour;
     }
 
+    [Header("Parts")]
     public ShipPart[] parts;
+
+    [Header("Locked Visuals")]
+    public Material lockedGhostMaterial;
+
+    [Tooltip("If true, locked parts are still visible but non-interactable.")]
+    public bool showLockedParts = true;
 
     void Start()
     {
-        // Instantiate all parts but keep them disabled
         foreach (var p in parts)
         {
             if (p.prefab == null)
@@ -24,20 +39,30 @@ public class ShipController : MonoBehaviour
                 continue;
             }
 
-            // instantiate
             p.instance = Instantiate(p.prefab, transform);
-            p.instance.SetActive(false);
+            p.instance.SetActive(true);
+
+            p.renderers = p.instance.GetComponentsInChildren<Renderer>(true);
+            p.colliders = p.instance.GetComponentsInChildren<Collider>(true);
+
+            // Cache original shared materials per renderer
+            p.originalSharedMaterials = new Material[p.renderers.Length][];
+            for (int i = 0; i < p.renderers.Length; i++)
+                p.originalSharedMaterials[i] = p.renderers[i].sharedMaterials;
+
+            // Optional: if you use an outline script/component, cache it here
+            // (example component name: "Outline" or "QuickOutline")
+            p.outlineBehaviour = p.instance.GetComponentInChildren<Behaviour>(true); // replace with specific type if you know it
         }
 
-        // Load already unlocked parts
         ReloadParts();
-
         QuestManager.Instance.OnPartUnlocked += OnPartUnlocked;
     }
 
     void OnDestroy()
     {
-        QuestManager.Instance.OnPartUnlocked -= OnPartUnlocked;
+        if (QuestManager.Instance != null)
+            QuestManager.Instance.OnPartUnlocked -= OnPartUnlocked;
     }
 
     public void ReloadParts()
@@ -45,9 +70,8 @@ public class ShipController : MonoBehaviour
         foreach (var p in parts)
         {
             bool unlocked = QuestManager.Instance.IsPartUnlocked(p.partId);
-            Console.WriteLine($"Part '{p.partId}' unlocked: {unlocked}");
-            if (p.instance != null)
-                p.instance.SetActive(unlocked);
+            Debug.Log($"Part '{p.partId}' unlocked: {unlocked}");
+            ApplyPartState(p, unlocked);
         }
     }
 
@@ -57,9 +81,65 @@ public class ShipController : MonoBehaviour
         {
             if (p.partId == id && p.instance != null)
             {
-                p.instance.SetActive(true);
+                ApplyPartState(p, unlocked: true);
                 // Optional: play reveal animation here
             }
         }
+    }
+
+    void ApplyPartState(ShipPart p, bool unlocked)
+    {
+        if (p.instance == null) return;
+
+        // If you truly want hidden locked parts sometimes:
+        if (!showLockedParts && !unlocked)
+        {
+            p.instance.SetActive(false);
+            return;
+        }
+
+        p.instance.SetActive(true);
+
+        // Disable interaction when locked
+        if (p.colliders != null)
+        {
+            foreach (var c in p.colliders)
+                if (c != null) c.enabled = unlocked;
+        }
+
+        // Swap visuals
+        if (p.renderers != null)
+        {
+            for (int i = 0; i < p.renderers.Length; i++)
+            {
+                var r = p.renderers[i];
+                if (r == null) continue;
+
+                if (unlocked)
+                {
+                    r.sharedMaterials = p.originalSharedMaterials[i];
+                }
+                else
+                {
+                    if (lockedGhostMaterial == null)
+                    {
+                        Debug.LogWarning("lockedGhostMaterial is not assigned.");
+                        continue;
+                    }
+
+                    // Keep same material slot count
+                    var mats = r.sharedMaterials;
+                    var ghostMats = new Material[mats.Length];
+                    for (int m = 0; m < ghostMats.Length; m++)
+                        ghostMats[m] = lockedGhostMaterial;
+
+                    r.sharedMaterials = ghostMats;
+                }
+            }
+        }
+
+        // Optional outline toggle (see below)
+        if (p.outlineBehaviour != null)
+            p.outlineBehaviour.enabled = !unlocked;
     }
 }

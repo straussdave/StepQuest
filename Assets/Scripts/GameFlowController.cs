@@ -14,6 +14,7 @@ public class GameFlowController : MonoBehaviour
     [Header("Game UI")]
     public GameObject questChoiceRow;
     public GameObject progressBarRoot;
+    public ShipRotateInput shipRotateInput;
 
     enum DialoguePhase { None, Intro, Completed }
     DialoguePhase phase = DialoguePhase.None;
@@ -78,14 +79,17 @@ public class GameFlowController : MonoBehaviour
         collectionScreenPanel.SetActive(true);
         gamePanel.SetActive(false);
 
-        // Reload ship parts when entering
         shipController.ReloadParts();
+
+        if (shipRotateInput != null) shipRotateInput.enabled = true;
     }
 
     public void OnCloseCollectionScreen()
     {
         collectionScreenPanel.SetActive(false);
         gamePanel.SetActive(true);
+
+        if (shipRotateInput != null) shipRotateInput.enabled = false;
     }
 
 
