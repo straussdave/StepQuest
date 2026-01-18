@@ -710,6 +710,7 @@ GameObject:
   m_Component:
   - component: {fileID: 255749994}
   - component: {fileID: 255749995}
+  - component: {fileID: 255749996}
   m_Layer: 0
   m_Name: ShipRoot
   m_TagString: Untagged
@@ -755,24 +756,66 @@ MonoBehaviour:
   - partId: 2
     prefab: {fileID: 1512254205}
     instance: {fileID: 0}
+    renderers: []
+    colliders: []
+    outlineBehaviour: {fileID: 0}
   - partId: 4
     prefab: {fileID: 922514164}
     instance: {fileID: 0}
+    renderers: []
+    colliders: []
+    outlineBehaviour: {fileID: 0}
   - partId: 5
     prefab: {fileID: 413493227}
     instance: {fileID: 0}
+    renderers: []
+    colliders: []
+    outlineBehaviour: {fileID: 0}
   - partId: 6
     prefab: {fileID: 1826444826}
     instance: {fileID: 0}
+    renderers: []
+    colliders: []
+    outlineBehaviour: {fileID: 0}
   - partId: 7
     prefab: {fileID: 429831611}
     instance: {fileID: 0}
+    renderers: []
+    colliders: []
+    outlineBehaviour: {fileID: 0}
   - partId: 3
     prefab: {fileID: 1341927786}
     instance: {fileID: 0}
+    renderers: []
+    colliders: []
+    outlineBehaviour: {fileID: 0}
   - partId: 8
     prefab: {fileID: 587919562}
     instance: {fileID: 0}
+    renderers: []
+    colliders: []
+    outlineBehaviour: {fileID: 0}
+  lockedGhostMaterial: {fileID: 2100000, guid: 244cba0290dd0f447b709c5e442753dc, type: 2}
+  showLockedParts: 1
+--- !u!114 &255749996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 255749993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86b498166a838f448ae704f735fcc5cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  target: {fileID: 255749994}
+  yawSpeed: 0.25
+  pitchSpeed: 0.18
+  invertPitch: 0
+  minPitch: -35
+  maxPitch: 35
+  smoothing: 12
 --- !u!1 &274730525
 GameObject:
   m_ObjectHideFlags: 0
@@ -1989,6 +2032,7 @@ MonoBehaviour:
   shipController: {fileID: 255749995}
   questChoiceRow: {fileID: 1026306618}
   progressBarRoot: {fileID: 1805041744}
+  shipRotateInput: {fileID: 255749996}
 --- !u!4 &976036232
 Transform:
   m_ObjectHideFlags: 0

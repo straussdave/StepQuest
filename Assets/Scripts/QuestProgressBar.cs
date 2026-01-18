@@ -16,7 +16,8 @@ public class QuestProgressBar : MonoBehaviour
             return; 
         }
 
-        UpdateUI(qm.CurrentSteps, qm.CurrentTargetSteps);
+        var target = (qm.CurrentQuest != null) ? qm.CurrentQuest.Steps : 0;
+        UpdateUI(qm.CurrentSteps, target);
         qm.OnProgressChanged += UpdateUI;
     }
 

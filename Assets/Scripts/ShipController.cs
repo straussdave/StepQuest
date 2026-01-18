@@ -56,7 +56,9 @@ public class ShipController : MonoBehaviour
         }
 
         ReloadParts();
-        QuestManager.Instance.OnPartUnlocked += OnPartUnlocked;
+        var qm = QuestManager.Instance;
+        if (qm != null)
+            qm.OnPartUnlocked += OnPartUnlocked;
     }
 
     void OnDestroy()
@@ -69,7 +71,10 @@ public class ShipController : MonoBehaviour
     {
         foreach (var p in parts)
         {
-            bool unlocked = QuestManager.Instance.IsPartUnlocked(p.partId);
+            var qm = QuestManager.Instance;
+            if (qm == null) return;
+
+            bool unlocked = qm.IsPartUnlocked(p.partId);
             Debug.Log($"Part '{p.partId}' unlocked: {unlocked}");
             ApplyPartState(p, unlocked);
         }

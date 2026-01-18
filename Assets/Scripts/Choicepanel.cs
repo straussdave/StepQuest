@@ -82,25 +82,16 @@ public class Choicepanel : MonoBehaviour
         if (selectionMade) return;
         if (slotIndex < 0 || slotIndex >= slots.Length) return;
 
-        var slot = slots[slotIndex];
-        var q = slot.quest;
+        var q = slots[slotIndex].quest;
         if (q == null || QuestManager.Instance == null) return;
 
         selectionMade = true;
 
-        // Tell QuestManager which quest was chosen
-        QuestManager.Instance.SelectQuest(
-            q.Id,
-            q.PartName,
-            "",
-            q.Steps
-        );
+        QuestManager.Instance.SelectQuest(q);
 
-        // Show progress bar
         if (progressBarRoot != null)
             progressBarRoot.SetActive(true);
 
-        // Disable selected button and remove the other choice
         for (int i = 0; i < slots.Length; i++)
         {
             if (!slots[i].root) continue;
@@ -112,10 +103,9 @@ public class Choicepanel : MonoBehaviour
             }
             else
             {
-                // either Destroy or SetActive(false)
-                Destroy(slots[i].root);
-                // slots[i].root.SetActive(false);  // <- alternative
+                slots[i].root.SetActive(false);
             }
         }
     }
+
 }

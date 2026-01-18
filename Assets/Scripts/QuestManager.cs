@@ -1,29 +1,25 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class QuestManager : MonoBehaviour
 {
     public static QuestManager Instance { get; private set; }
 
-    public string CurrentQuestId { get; private set; }
-    public string CurrentQuestName { get; private set; }
-    public string CurrentQuestRequirements { get; private set; }
-
+    public Quest CurrentQuest { get; private set; }
     public int CurrentSteps { get; private set; }
-    public int CurrentTargetSteps { get; private set; }
 
-    // UI can subscribe to this
-    public event Action<int, int> OnProgressChanged;  // (current, target)
+    // Events expected by your existing scripts
 
-    const string KeyQuestId = "QM_CurrentQuestId";
-    const string KeyQuestName = "QM_CurrentQuestName";
-    const string KeyReq = "QM_CurrentQuestReq";
-    const string KeySteps = "QM_CurrentSteps";
-    const string KeyTarget = "QM_TargetSteps";
+    public event Action<Quest> OnQuestSelected;
+    public event Action<int, int> OnProgressChanged; // current, target
+    public event Action OnQuestCompleted;
+    public event Action<string> OnPartUnlocked;      // partId
 
-    public event System.Action OnQuestCompleted;
+    // Unlock tracking (by partId = quest.Id)
+    private readonly HashSet<string> unlockedParts = new HashSet<string>();
 
-    public event Action<string> OnPartUnlocked;
+    private bool questCompleted;
 
     void Awake()
     {
@@ -35,79 +31,50 @@ public class QuestManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
-        LoadProgress();
     }
 
-    // now includes targetSteps
-    public void SelectQuest(string questId, string questName, string requirements, int targetSteps)
+    public void SelectQuest(Quest quest)
     {
-        CurrentQuestId = questId;
-        CurrentQuestName = questName;
-        CurrentQuestRequirements = requirements;
-        CurrentTargetSteps = targetSteps;
+        if (quest == null) return;
+
+        questCompleted = false;
+
+        CurrentQuest = quest;
         CurrentSteps = 0;
 
-        SaveProgress();
-        OnProgressChanged?.Invoke(CurrentSteps, CurrentTargetSteps);
-        Debug.Log($"Selected quest: {questName} ({questId}) targetSteps={targetSteps}");
+        OnQuestSelected?.Invoke(CurrentQuest);
+        OnProgressChanged?.Invoke(CurrentSteps, quest.Steps);
     }
 
     public void AddSteps(int delta)
     {
-        if (delta <= 0) return;
+        if (CurrentQuest == null) return;
+        if (questCompleted) return;
 
-        int before = CurrentSteps;
+        CurrentSteps = Mathf.Clamp(CurrentSteps + delta, 0, CurrentQuest.Steps);
+        OnProgressChanged?.Invoke(CurrentSteps, CurrentQuest.Steps);
 
-        CurrentSteps += delta;
-        if (CurrentSteps > CurrentTargetSteps && CurrentTargetSteps > 0)
-            CurrentSteps = CurrentTargetSteps;
-
-        SaveProgress();
-        OnProgressChanged?.Invoke(CurrentSteps, CurrentTargetSteps);
-
-        // fire completion event only on first time reaching target
-        if (CurrentTargetSteps > 0 &&
-            before < CurrentTargetSteps &&
-            CurrentSteps >= CurrentTargetSteps)
-        {
-            MarkPartUnlocked(CurrentQuestId);
-            OnQuestCompleted?.Invoke();
-            Debug.Log("Quest completed!");
-        }
+        if (CurrentSteps >= CurrentQuest.Steps)
+            CompleteQuest();
     }
 
-
-    void SaveProgress()
+    private void CompleteQuest()
     {
-        PlayerPrefs.SetString(KeyQuestId, CurrentQuestId);
-        PlayerPrefs.SetString(KeyQuestName, CurrentQuestName);
-        PlayerPrefs.SetString(KeyReq, CurrentQuestRequirements);
-        PlayerPrefs.SetInt(KeySteps, CurrentSteps);
-        PlayerPrefs.SetInt(KeyTarget, CurrentTargetSteps);
-        PlayerPrefs.Save();
-    }
+        if (questCompleted) return;
+        if (CurrentQuest == null) return;
 
-    void LoadProgress()
-    {
-        CurrentQuestId = PlayerPrefs.GetString(KeyQuestId, string.Empty);
-        CurrentQuestName = PlayerPrefs.GetString(KeyQuestName, string.Empty);
-        CurrentQuestRequirements =
-            PlayerPrefs.GetString(KeyReq, string.Empty);
-        CurrentSteps = PlayerPrefs.GetInt(KeySteps, 0);
-        CurrentTargetSteps = PlayerPrefs.GetInt(KeyTarget, 0);
-    }
+        var partId = CurrentQuest.Id;
 
-    public void MarkPartUnlocked(string partId)
-    {
-        PlayerPrefs.SetInt("Part_" + partId, 1);
-        PlayerPrefs.Save();
+        if (!string.IsNullOrEmpty(partId) && unlockedParts.Add(partId))
+            OnPartUnlocked?.Invoke(partId);
 
-        OnPartUnlocked?.Invoke(partId);
+        questCompleted = true;
+        OnQuestCompleted?.Invoke();
     }
 
     public bool IsPartUnlocked(string partId)
     {
-        return PlayerPrefs.GetInt("Part_" + partId, 0) == 1;
+        if (string.IsNullOrEmpty(partId)) return false;
+        return unlockedParts.Contains(partId);
     }
-
 }
