@@ -16,3 +16,5 @@ MonoBehaviour:
   partName: Cockpit
   partTexture: {fileID: 8400000, guid: 41f3d96b968e8c946a6ab812deb63f01, type: 2}
   steps: 2500
+  chooseText: Cockpit selected
+  completedText: quest done

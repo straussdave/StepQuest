@@ -1,0 +1,291 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global/global}
+    \entry{10.1145/1321261.1321313}{inproceedings}{}{}
+      \name{author}{3}{}{%
+        {{hash=50a9da5eefdaeb2013b3f3946803c215}{%
+           family={Sinclair},
+           familyi={S\bibinitperiod},
+           given={Jeff},
+           giveni={J\bibinitperiod}}}%
+        {{hash=cc74c3e30b5eec457c511184aa21ab4e}{%
+           family={Hingston},
+           familyi={H\bibinitperiod},
+           given={Philip},
+           giveni={P\bibinitperiod}}}%
+        {{hash=bf9f0680702d3796ca35010ed29aa569}{%
+           family={Masek},
+           familyi={M\bibinitperiod},
+           given={Martin},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Perth, Australia}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computing Machinery}%
+      }
+      \strng{namehash}{e0e2e46f967491ec2a3a25e8142b54e8}
+      \strng{fullhash}{08ef3e6e635168bd8b1b64e4198c390e}
+      \strng{fullhashraw}{08ef3e6e635168bd8b1b64e4198c390e}
+      \strng{bibnamehash}{08ef3e6e635168bd8b1b64e4198c390e}
+      \strng{authorbibnamehash}{08ef3e6e635168bd8b1b64e4198c390e}
+      \strng{authornamehash}{e0e2e46f967491ec2a3a25e8142b54e8}
+      \strng{authorfullhash}{08ef3e6e635168bd8b1b64e4198c390e}
+      \strng{authorfullhashraw}{08ef3e6e635168bd8b1b64e4198c390e}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Exergaming is the use of video games in an exercise activity. In this paper we consider game design for successful exergames. To do this, we review the history of exergaming and the current state of research in this field. We find that there exists some research aimed at evaluating the physical and health characteristics of exergames, but research on how to design exercise games is still in the early stages. From an analysis of this information, and drawing on established principles from sports science for the prescription of exercise programs, we then attempt to identify success factors to guide designers of exergaming systems.}
+      \field{booktitle}{Proceedings of the 5th International Conference on Computer Graphics and Interactive Techniques in Australia and Southeast Asia}
+      \field{isbn}{9781595939128}
+      \field{series}{GRAPHITE '07}
+      \field{title}{Considerations for the design of exergames}
+      \field{year}{2007}
+      \field{pages}{289\bibrangedash 295}
+      \range{pages}{7}
+      \verb{doi}
+      \verb 10.1145/1321261.1321313
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1145/1321261.1321313
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1145/1321261.1321313
+      \endverb
+      \keyw{games,exergaming}
+    \endentry
+    \entry{Kubota2022Pilot}{article}{}{}
+      \name{author}{6}{}{%
+        {{hash=efc54019e9894de71669d88e661dbc9d}{%
+           family={Kubota},
+           familyi={K\bibinitperiod},
+           given={K.},
+           giveni={K\bibinitperiod}}}%
+        {{hash=f8ece0250c054a2365b037943e770ae9}{%
+           family={Säteri},
+           familyi={S\bibinitperiod},
+           given={Elina},
+           giveni={E\bibinitperiod}}}%
+        {{hash=f247ef05c1195ee53a3d83d1e304c61c}{%
+           family={Joelsson},
+           familyi={J\bibinitperiod},
+           given={Tapani\bibnamedelima N.},
+           giveni={T\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+        {{hash=b64324f3e10d8196663b41b7933ebb8e}{%
+           family={Mäkilä},
+           familyi={M\bibinitperiod},
+           given={Tuomas},
+           giveni={T\bibinitperiod}}}%
+        {{hash=17f75e955614336ea631c75d21f98833}{%
+           family={Salanterä},
+           familyi={S\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+        {{hash=26bc3f7154336b8d00c76d97c96b879b}{%
+           family={Pakarinen},
+           familyi={P\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{1c42d08de9b975523efa94068aa6718c}
+      \strng{fullhash}{514bbcbda115ac023f86130b0f6867aa}
+      \strng{fullhashraw}{514bbcbda115ac023f86130b0f6867aa}
+      \strng{bibnamehash}{514bbcbda115ac023f86130b0f6867aa}
+      \strng{authorbibnamehash}{514bbcbda115ac023f86130b0f6867aa}
+      \strng{authornamehash}{1c42d08de9b975523efa94068aa6718c}
+      \strng{authorfullhash}{514bbcbda115ac023f86130b0f6867aa}
+      \strng{authorfullhashraw}{514bbcbda115ac023f86130b0f6867aa}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Int. J. Serious Games}
+      \field{title}{Pilot Study and Gamification Analysis of a Theory-based Exergame}
+      \field{volume}{9}
+      \field{year}{2022}
+      \field{pages}{63\bibrangedash 79}
+      \range{pages}{17}
+      \verb{doi}
+      \verb 10.17083/ijsg.v9i3.506
+      \endverb
+    \endentry
+    \entry{world2019global}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=8179b1fdebe9235e54501d2878c47e1b}{%
+           family={Organization},
+           familyi={O\bibinitperiod},
+           given={World\bibnamedelima Health},
+           giveni={W\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {World Health Organization}%
+      }
+      \strng{namehash}{8179b1fdebe9235e54501d2878c47e1b}
+      \strng{fullhash}{8179b1fdebe9235e54501d2878c47e1b}
+      \strng{fullhashraw}{8179b1fdebe9235e54501d2878c47e1b}
+      \strng{bibnamehash}{8179b1fdebe9235e54501d2878c47e1b}
+      \strng{authorbibnamehash}{8179b1fdebe9235e54501d2878c47e1b}
+      \strng{authornamehash}{8179b1fdebe9235e54501d2878c47e1b}
+      \strng{authorfullhash}{8179b1fdebe9235e54501d2878c47e1b}
+      \strng{authorfullhashraw}{8179b1fdebe9235e54501d2878c47e1b}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Global action plan on physical activity 2018-2030: more active people for a healthier world}
+      \field{year}{2019}
+    \endentry
+    \entry{Weber2022Reflection}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=bfb3cc16bd731cdd236a048a8fc23b39}{%
+           family={Weber},
+           familyi={W\bibinitperiod},
+           given={Philip},
+           giveni={P\bibinitperiod}}}%
+        {{hash=303caced09c5c5fc81d8b58c8f47e5eb}{%
+           family={Grönewald},
+           familyi={G\bibinitperiod},
+           given={Laura},
+           giveni={L\bibinitperiod}}}%
+        {{hash=e2d1e0dea4ec2689968281047badb2d2}{%
+           family={Ludwig},
+           familyi={L\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod}}}%
+      }
+      \strng{namehash}{5997946a88b701bd8abde245e10c12b0}
+      \strng{fullhash}{c8765db8233552979821558d07443f5c}
+      \strng{fullhashraw}{c8765db8233552979821558d07443f5c}
+      \strng{bibnamehash}{c8765db8233552979821558d07443f5c}
+      \strng{authorbibnamehash}{c8765db8233552979821558d07443f5c}
+      \strng{authornamehash}{5997946a88b701bd8abde245e10c12b0}
+      \strng{authorfullhash}{c8765db8233552979821558d07443f5c}
+      \strng{authorfullhashraw}{c8765db8233552979821558d07443f5c}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Reflection on the Octalysis framework as a design and evaluation tool}
+      \field{year}{2022}
+      \field{pages}{75\bibrangedash 84}
+      \range{pages}{10}
+    \endentry
+    \entry{octalysis}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=910f3b76aa4aa7a4e48e910838260fe6}{%
+           family={Chou},
+           familyi={C\bibinitperiod},
+           given={Yu-kai},
+           giveni={Y\bibinithyphendelim k\bibinitperiod}}}%
+      }
+      \strng{namehash}{910f3b76aa4aa7a4e48e910838260fe6}
+      \strng{fullhash}{910f3b76aa4aa7a4e48e910838260fe6}
+      \strng{fullhashraw}{910f3b76aa4aa7a4e48e910838260fe6}
+      \strng{bibnamehash}{910f3b76aa4aa7a4e48e910838260fe6}
+      \strng{authorbibnamehash}{910f3b76aa4aa7a4e48e910838260fe6}
+      \strng{authornamehash}{910f3b76aa4aa7a4e48e910838260fe6}
+      \strng{authorfullhash}{910f3b76aa4aa7a4e48e910838260fe6}
+      \strng{authorfullhashraw}{910f3b76aa4aa7a4e48e910838260fe6}
+      \field{extraname}{1}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{https://yukaichou.com/gamification-examples/octalysis-gamification-framework/}
+      \field{note}{Accessed: 31.01.2026}
+      \field{title}{The Octalysis Framework for Gamification \& Behavioral Design}
+      \field{year}{2026}
+    \endentry
+    \entry{key}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=6b9a3659329ca993fe9cab8977705444}{%
+           family={Chou},
+           familyi={C\bibinitperiod},
+           given={Yu-Kai},
+           giveni={Y\bibinithyphendelim K\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Octalysis Media}%
+      }
+      \strng{namehash}{6b9a3659329ca993fe9cab8977705444}
+      \strng{fullhash}{6b9a3659329ca993fe9cab8977705444}
+      \strng{fullhashraw}{6b9a3659329ca993fe9cab8977705444}
+      \strng{bibnamehash}{6b9a3659329ca993fe9cab8977705444}
+      \strng{authorbibnamehash}{6b9a3659329ca993fe9cab8977705444}
+      \strng{authornamehash}{6b9a3659329ca993fe9cab8977705444}
+      \strng{authorfullhash}{6b9a3659329ca993fe9cab8977705444}
+      \strng{authorfullhashraw}{6b9a3659329ca993fe9cab8977705444}
+      \field{extraname}{2}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Actionable Gamification: Beyond Points, Badges, and Leaderboards}
+      \field{year}{2015}
+    \endentry
+    \entry{bcw2011}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=64ee05d60f413a4b7b295229bfddd5dc}{%
+           family={Michie},
+           familyi={M\bibinitperiod},
+           given={Susan},
+           giveni={S\bibinitperiod}}}%
+        {{hash=f43473f0a291823ba4bb560c2fa58c40}{%
+           family={Stralen},
+           familyi={S\bibinitperiod},
+           given={Maartje\bibnamedelima M.},
+           giveni={M\bibinitperiod\bibinitdelim M\bibinitperiod},
+           prefix={van},
+           prefixi={v\bibinitperiod}}}%
+        {{hash=9d2787872d7eadcedce1aeb8e7af9eb0}{%
+           family={West},
+           familyi={W\bibinitperiod},
+           given={Robert},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{09cf760d52d9253bbd23cc70212e9408}
+      \strng{fullhash}{aafe6bbd084097b93694b3800ace0176}
+      \strng{fullhashraw}{aafe6bbd084097b93694b3800ace0176}
+      \strng{bibnamehash}{aafe6bbd084097b93694b3800ace0176}
+      \strng{authorbibnamehash}{aafe6bbd084097b93694b3800ace0176}
+      \strng{authornamehash}{09cf760d52d9253bbd23cc70212e9408}
+      \strng{authorfullhash}{aafe6bbd084097b93694b3800ace0176}
+      \strng{authorfullhashraw}{aafe6bbd084097b93694b3800ace0176}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Implementation Science}
+      \field{title}{The Behaviour Change Wheel: A New Method for Characterising and Designing Behaviour Change Interventions}
+      \field{volume}{6}
+      \field{year}{2011}
+      \field{pages}{42}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1186/1748-5908-6-42
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

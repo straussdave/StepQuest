@@ -18,7 +18,7 @@ public class GameFlowController : MonoBehaviour
     public ShipRotateInput shipRotateInput;
     public GameObject chosenQuestPanel;
 
-    enum DialoguePhase { None, Intro, Completed }
+    enum DialoguePhase { None, Intro, Completed, Quest }
     DialoguePhase phase = DialoguePhase.None;
 
     void Start()
@@ -27,12 +27,13 @@ public class GameFlowController : MonoBehaviour
         robotDialoguePanel.SetActive(false);
         gamePanel.SetActive(false);
         chosenQuestPanel.SetActive(false);
+        questChoiceRow.SetActive(false);
 
         var qm = QuestManager.Instance;
         if (qm != null)
         {
-            qm.OnQuestCompleted += OnQuestCompleted;
-            qm.OnQuestSelected += OnQuestSelected;
+            qm.OnQuestCompleted +=HandleQuestCompleted;
+            qm.OnQuestSelected += HandleQuestSelected;
         }
             
 
@@ -45,8 +46,8 @@ public class GameFlowController : MonoBehaviour
         var qm = QuestManager.Instance;
         if (qm != null)
         {
-            qm.OnQuestCompleted -= OnQuestCompleted;
-            qm.OnQuestSelected -= OnQuestSelected;
+            qm.OnQuestCompleted -= HandleQuestCompleted;
+            qm.OnQuestSelected -= HandleQuestSelected;
         }
 
     }
@@ -55,12 +56,12 @@ public class GameFlowController : MonoBehaviour
     {
         splashPanel.SetActive(false);
         gamePanel.SetActive(false);
-        questChoiceRow.SetActive(false);
+        SetQuestChoiceRow(false, "PlayClicked -> hide choices");
 
         phase = DialoguePhase.Intro;
         robotDialoguePanel.SetActive(true);
 
-        string msg = "Hello pilot! I'm Robo-Jet.\n\nWhat part would you like to retrieve today?";
+        string msg = "Good morning pilot. \n\nAfter repairing the scanning module I can now locate parts that are further away. Which of these parts would you like to retrieve today?";
         if (typewriter != null) typewriter.Play(msg);
         else robotDialogueText.text = msg;
 
@@ -80,7 +81,7 @@ public class GameFlowController : MonoBehaviour
             case DialoguePhase.Intro:
                 robotDialoguePanel.SetActive(false);
                 gamePanel.SetActive(true);
-                questChoiceRow.SetActive(true);
+                SetQuestChoiceRow(true, "DialogueContinue Intro -> show choices");
                 phase = DialoguePhase.None;
                 break;
             case DialoguePhase.Completed:
@@ -88,25 +89,13 @@ public class GameFlowController : MonoBehaviour
                 gamePanel.SetActive(true);
                 phase = DialoguePhase.None;
                 break;
+            case DialoguePhase.Quest:
+                robotDialoguePanel.SetActive(false);
+                SetQuestChoiceRow(false, "DialogueContinue Quest -> hide choices");
+                gamePanel.SetActive(true);
+                phase = DialoguePhase.None;
+                break;
         }
-    }
-
-    void OnQuestSelected(Quest q)
-    {
-        if (questChoiceRow != null) questChoiceRow.SetActive(false);
-        if (chosenQuestPanel != null) chosenQuestPanel.SetActive(true);
-        if (progressBarRoot != null) progressBarRoot.SetActive(true);
-    }
-
-    void OnQuestCompleted()
-    {
-        phase = DialoguePhase.Completed;
-
-        robotDialoguePanel.SetActive(true);
-
-        string msg = "Nice work! You completed your mission.\n\nGreat job keeping your steps going!";
-        if (typewriter != null) typewriter.Play(msg);
-        else robotDialogueText.text = msg;
     }
 
     public void OnOpenCollectionScreen()
@@ -126,4 +115,47 @@ public class GameFlowController : MonoBehaviour
 
         if (shipRotateInput != null) shipRotateInput.enabled = false;
     }
+
+    void HandleQuestSelected(Quest q)
+    {
+        // show quest-specific "chosen" dialogue
+        phase = DialoguePhase.Quest;
+        robotDialoguePanel.SetActive(true);
+        gamePanel.SetActive(false);
+        SetQuestChoiceRow(false, "QuestSelected -> hide choices");
+
+        string msg = (q != null && !string.IsNullOrWhiteSpace(q.ChooseText))
+            ? q.ChooseText
+            : "Alright. Scanner locked. Keep walking.";
+
+        if (typewriter != null) typewriter.Play(msg);
+        else robotDialogueText.text = msg;
+
+        chosenQuestPanel.SetActive(true);
+    }
+
+    void HandleQuestCompleted(Quest q)
+    {
+        phase = DialoguePhase.Completed;
+        robotDialoguePanel.SetActive(true);
+        gamePanel.SetActive(false);
+
+        string msg = (q != null && !string.IsNullOrWhiteSpace(q.CompletedText))
+            ? q.CompletedText
+            : "Nice work! Mission complete.";
+
+        if (typewriter != null) typewriter.Play(msg);
+        else robotDialogueText.text = msg;
+    }
+
+    void SetQuestChoiceRow(bool active, string reason)
+    {
+        if (questChoiceRow == null) return;
+
+        if (questChoiceRow.activeSelf != active)
+            Debug.Log($"[UI] questChoiceRow -> {active} (reason: {reason})", questChoiceRow);
+
+        questChoiceRow.SetActive(active);
+    }
+
 }

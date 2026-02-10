@@ -1,0 +1,26 @@
+\chapter{Results}
+\section{Status}
+
+At the current stage, the core gameplay loop is playable end-to-end. The player is greeted by an
+in-game companion character (dialogue screen) and proceeds into a daily mission selection flow.
+Missions are presented as ship parts with clearly communicated step goals (e.g., 2500--3000 steps).
+A day counter is shown in the main UI (``Sol 8''), and the build includes entry points for a settings screen
+as well as a collection view.
+
+\begin{itemize}
+  \item \textbf{Dialogue onboarding flow:} A character-driven dialogue screen introduces the interaction and
+  transitions into the daily choice (``What part would you like to retrieve today?'').
+  \item \textbf{Daily mission selection implemented:} The player can choose from multiple available parts
+  (e.g., Wing, Cockpit), each associated with a step target.
+  \item \textbf{Prototype progression structure:} The chosen mission corresponds to a collectible ship part,
+  supporting a clear short-term goal for walking and a longer-term collection objective.
+  \item \textbf{Collection/inspection screen:} A dedicated view exists to inspect the ship/collection state
+  (currently represented visually as a ship preview and a back-navigation flow).
+  \item \textbf{General UX structure in place:} Consistent UI theme, navigation (e.g., back button), and
+  a dedicated \textit{Collection} button from the main screen.
+\end{itemize}
+\textbf{Open work:}
+While the loop is functional, the prototype is not feature-complete. Remaining work includes completing
+content breadth, refining balancing, adding excitement features such as sounds and animations
+and finalizing support features needed for the evaluation phase 
+(e.g., robust data export/logging, and polish for settings and collection feedback).

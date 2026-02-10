@@ -1,0 +1,71 @@
+\chapter{Methodology}
+
+\section{Design Rationale and Framework Selection}
+Before implementation, StepQuest was designed around established principles from exergame research and
+behavior change theory. Exergame design literature emphasizes that successful activity-based games must
+balance exercise-related goals with enjoyable, safe, and sustainable gameplay (e.g., appropriate feedback,
+progression, and minimizing elements that interfere with physical activity) \cite{10.1145/1321261.1321313,Kubota2022Pilot}.
+
+For motivational design, StepQuest uses the Octalysis framework to structure and evaluate game mechanics
+according to different motivational drivers \cite{octalysis,key}. Because Octalysis can be interpretive and may
+introduce subjectivity if used without clear operationalization, the framework is applied primarily as an ideation
+and qualitative evaluation tool rather than as a strict measurement instrument \cite{Weber2022Reflection}.
+
+To complement this, StepQuest also considers the Behaviour Change Wheel (BCW). The BCW links behavior
+change intervention functions (e.g., education, incentivisation, persuasion) to determinants of behavior through
+the COM-B model (capability, opportunity, motivation), supporting a more explicit justification of how selected
+mechanics may influence real-world walking behavior \cite{bcw2011}.
+
+\subsection{Key Pre-development Design Decisions}
+The following design decisions were defined before starting development:
+
+\begin{itemize}
+  \item \textbf{Low-attention walking experience:} No dialogue or reading-heavy interaction during walks, because
+  players are expected to keep attention on the environment while walking. This follows the general exergame
+  design principle that gameplay should not undermine safety or the physical activity experience \cite{10.1145/1321261.1321313}.
+  \item \textbf{Quest-centered content architecture:} Quest-related dialogue options and narrative snippets are stored
+  directly on quest ScriptableObjects to keep content modular and easy to iterate without refactoring the core game logic.
+  \item \textbf{Daily choice structure:} Players select one quest target per day from a small set of options, supporting
+  a clear “daily loop” and reducing complexity in the prototype.
+\end{itemize}
+
+\subsection{Octalysis and BCW Mapping in StepQuest}
+StepQuest applies Octalysis as a structured checklist of motivational drivers \cite{octalysis,key}, and maps selected
+drivers to BCW intervention functions to make the intended behavior-change mechanisms explicit \cite{bcw2011}:
+
+\begin{itemize}
+  \item \textbf{Epic Meaning \& Calling:} Narrative framing (escape the planet by collecting ship parts). \\
+  \textit{BCW link:} Persuasion and Education (positive framing and meaning).
+  \item \textbf{Development \& Accomplishment:} Progress bars, achievements/badges. \\
+  \textit{BCW link:} Incentivisation (rewards) and Reinforcement.
+  \item \textbf{Creativity \& Feedback:} Optional goal choice (e.g., step target or time-based target). \\
+  \textit{BCW link:} Training (supporting capability through self-set goals) and Enablement.
+  \item \textbf{Ownership \& Possession:} Collectible ship parts as a visible collection. \\
+  \textit{BCW link:} Incentivisation (collection as reward) and Enablement (progress visibility).
+  \item \textbf{Social Influence \& Relatedness (optional):} Low-effort social sharing (“brag button”). \\
+  \textit{BCW link:} Modelling (social comparison / exemplars). \\
+  \textit{Note:} May be omitted due to prototype scope constraints.
+  \item \textbf{Scarcity \& Impatience:} One ship part per day (appointment-like dynamics). \\
+  \textit{BCW link:} Incentivisation (time-limited opportunity), but requires fairness/clarity to avoid frustration.
+  \item \textbf{Unpredictability \& Curiosity:} Occasional surprise rewards or short quizzes at the end of a walk. \\
+  \textit{BCW link:} Education (knowledge prompts) and Incentivisation (bonus rewards).
+  \item \textbf{Loss \& Avoidance (used cautiously):} Soft “missed chance” framing rather than punishment. \\
+  \textit{BCW link:} Coercion in a mild form (avoid overuse to prevent negative affect).
+\end{itemize}
+
+\section{Prototype Development}
+The project is developed in Unity targeting Android. Android was chosen as a platform due to its wide
+availability and ease of deployment for testing purposes. The game prototype includes core mechanics such as step
+tracking, questing, and a simple user interface. The development process follows the waterfall model, due to the nature
+of the project as a prototype with a defined scope.
+
+\section{User Testing}
+User testing will be conducted with a small group of participants.
+Participants will be asked to install the APK on their Android devices and use the app over a period of two weeks.
+After the testing period, participants will be surveyed regarding their experience, motivation levels, and feedback on
+the app.
+
+\section{Data Collection}
+After deployment, data on user engagement and step counts will be collected. For this,
+a logging system will be implemented to track relevant metrics. They will be exported after the tester is done playing
+via a debug menu option.

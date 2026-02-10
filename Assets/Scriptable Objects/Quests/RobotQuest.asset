@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Quest
   id: 1
   partName: Robot
-  partTexture: {fileID: 0}
+  partTexture: {fileID: 8400000, guid: d1610bb5a17d2124189a63d18ee92251, type: 2}
   steps: 500
+  chooseText: Robot chosen
+  completedText: quest done

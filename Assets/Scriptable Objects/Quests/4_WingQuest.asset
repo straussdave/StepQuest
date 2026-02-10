@@ -16,3 +16,5 @@ MonoBehaviour:
   partName: Wing 1
   partTexture: {fileID: 8400000, guid: 1e18918731847004b882340f3cc49ae1, type: 2}
   steps: 3000
+  chooseText: Wing chosen
+  completedText: quest done
