@@ -57,6 +57,14 @@ public class QuestStepListener : MonoBehaviour
         {
             SimulateSteps(debugStepAmount);
         }
+        if (kb.backspaceKey.wasPressedThisFrame)
+        {
+            SaveSystem.ResetGame();
+        }
+        if (kb.deleteKey.wasPressedThisFrame)
+        {
+            DateUtil.Clear();
+        }
 #endif
     }
 

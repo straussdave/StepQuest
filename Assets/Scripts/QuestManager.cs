@@ -18,8 +18,6 @@ public class QuestManager : MonoBehaviour
 
     private bool questCompleted;
 
-    const string UNLOCKED_KEY = "UNLOCKED_PART_IDS"; // PlayerPrefs key
-
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -41,6 +39,9 @@ public class QuestManager : MonoBehaviour
         CurrentQuest = quest;
         CurrentSteps = 0;
         questCompleted = false;
+        SaveSystem.DeleteKey(SaveKeys.NEXT_DAY_TEXT_KEY);
+        PlayerPrefs.SetString(SaveKeys.NEXT_DAY_TEXT_KEY, quest.nextDayText);
+        PlayerPrefs.Save();
 
         OnQuestSelected?.Invoke(CurrentQuest);
         OnProgressChanged?.Invoke(CurrentSteps, CurrentQuest.Steps);
@@ -61,6 +62,11 @@ public class QuestManager : MonoBehaviour
 
     private void CompleteQuest()
     {
+        if (DateUtil.HasDoneQuestToday())
+        {
+            return;
+        }
+
         if (questCompleted) return;
         questCompleted = true;
 
@@ -70,7 +76,8 @@ public class QuestManager : MonoBehaviour
             SaveUnlockedParts();
             OnPartUnlocked?.Invoke(partId);
         }
-
+        
+            DateUtil.MarkQuestDoneToday();
         OnQuestCompleted?.Invoke(CurrentQuest);
     }
 
@@ -81,7 +88,7 @@ public class QuestManager : MonoBehaviour
     {
         // store as "id1|id2|id3"
         var s = string.Join("|", unlockedParts);
-        PlayerPrefs.SetString(UNLOCKED_KEY, s);
+        PlayerPrefs.SetString(SaveKeys.UNLOCKED_KEY, s);
         PlayerPrefs.Save();
     }
 
@@ -89,12 +96,17 @@ public class QuestManager : MonoBehaviour
     {
         unlockedParts.Clear();
 
-        var s = PlayerPrefs.GetString(UNLOCKED_KEY, "");
+        var s = PlayerPrefs.GetString(SaveKeys.UNLOCKED_KEY, "");
         if (string.IsNullOrEmpty(s)) return;
 
         var ids = s.Split('|');
         foreach (var id in ids)
             if (!string.IsNullOrEmpty(id))
                 unlockedParts.Add(id);
+    }
+
+    public bool CanCompleteQuestToday()
+    {
+        return !DateUtil.HasDoneQuestToday();
     }
 }

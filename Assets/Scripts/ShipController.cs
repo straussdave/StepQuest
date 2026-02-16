@@ -143,7 +143,6 @@ public class ShipController : MonoBehaviour
             }
         }
 
-        // Optional outline toggle (see below)
         if (p.outlineBehaviour != null)
             p.outlineBehaviour.enabled = !unlocked;
     }

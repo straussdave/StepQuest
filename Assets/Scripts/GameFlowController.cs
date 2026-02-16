@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -18,6 +19,8 @@ public class GameFlowController : MonoBehaviour
     public ShipRotateInput shipRotateInput;
     public GameObject chosenQuestPanel;
 
+    QuestManager _questManager;
+
     enum DialoguePhase { None, Intro, Completed, Quest }
     DialoguePhase phase = DialoguePhase.None;
 
@@ -32,11 +35,9 @@ public class GameFlowController : MonoBehaviour
         var qm = QuestManager.Instance;
         if (qm != null)
         {
-            qm.OnQuestCompleted +=HandleQuestCompleted;
+            qm.OnQuestCompleted += HandleQuestCompleted;
             qm.OnQuestSelected += HandleQuestSelected;
         }
-            
-
 
         if (typewriter == null) typewriter = GetComponent<TMPTypewriter>();
     }
@@ -54,17 +55,45 @@ public class GameFlowController : MonoBehaviour
 
     public void OnPlayClicked()
     {
+        if (_questManager == null)
+        {
+            _questManager = QuestManager.Instance;
+        }
         splashPanel.SetActive(false);
         gamePanel.SetActive(false);
         SetQuestChoiceRow(false, "PlayClicked -> hide choices");
+        if (_questManager.CanCompleteQuestToday())
+        {
 
+            HandleQuestNotDoneToday();
+        }
+        else
+        {
+            HandleQuestAlreadyDoneToday();
+        }
+    }
+
+    private void HandleQuestNotDoneToday()
+    {
         phase = DialoguePhase.Intro;
         robotDialoguePanel.SetActive(true);
+        if (_questManager == null)
+        {
+            _questManager = QuestManager.Instance;
+        }
 
-        string msg = "Good morning pilot. \n\nAfter repairing the scanning module I can now locate parts that are further away. Which of these parts would you like to retrieve today?";
-        if (typewriter != null) typewriter.Play(msg);
-        else robotDialogueText.text = msg;
+        string msg = PlayerPrefs.GetString(SaveKeys.NEXT_DAY_TEXT_KEY, "*BOOOM CRASH*..... silence..... but you hear a beep from far away buried under the sand, fortunately the triple redundant airbags did their job.. you might just be able to recover your repair droid and make it out alive..."); ;
 
+        WriteMessage(msg);
+    }
+
+    private void HandleQuestAlreadyDoneToday()
+    {
+
+        phase = DialoguePhase.Completed;
+        robotDialoguePanel.SetActive(true);
+        string msg = "You've already completed today's mission. Come back tomorrow for a new one!";
+        WriteMessage(msg);
     }
 
     public void OnDialogueContinue()
@@ -128,8 +157,7 @@ public class GameFlowController : MonoBehaviour
             ? q.ChooseText
             : "Alright. Scanner locked. Keep walking.";
 
-        if (typewriter != null) typewriter.Play(msg);
-        else robotDialogueText.text = msg;
+        WriteMessage(msg);
 
         chosenQuestPanel.SetActive(true);
     }
@@ -144,8 +172,7 @@ public class GameFlowController : MonoBehaviour
             ? q.CompletedText
             : "Nice work! Mission complete.";
 
-        if (typewriter != null) typewriter.Play(msg);
-        else robotDialogueText.text = msg;
+        WriteMessage(msg);
     }
 
     void SetQuestChoiceRow(bool active, string reason)
@@ -156,6 +183,18 @@ public class GameFlowController : MonoBehaviour
             Debug.Log($"[UI] questChoiceRow -> {active} (reason: {reason})", questChoiceRow);
 
         questChoiceRow.SetActive(active);
+    }
+
+    void WriteMessage(string msg)
+    {
+        if (typewriter != null)
+        {
+            typewriter.Play(msg);
+        }
+        else
+        {
+            robotDialogueText.text = msg;
+        }
     }
 
 }

@@ -12,6 +12,7 @@ public class Quest : ScriptableObject
     [Header("Dialogue")]
     [TextArea(2, 6)][SerializeField] private string chooseText;
     [TextArea(2, 6)][SerializeField] private string completedText;
+    [TextArea(2, 6)][SerializeField] public string nextDayText;
 
     public string Id => id;
     public string PartName => partName;
