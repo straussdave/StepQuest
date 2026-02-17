@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8166da5713496f040a199691aece54c3, type: 3}
+  m_Name: 11_PowerRegulatorQuest
+  m_EditorClassIdentifier: Assembly-CSharp::Quest
+  id: 11
+  partName: Power Regulator Unit
+  partTexture: {fileID: 0}
+  steps: 4000
+  chooseText: "Smart call. The ship\u2019s power is unstable\u2014this regulator
+    will stop the flickering systems and prevent shutdowns."
+  completedText: "Regulator installed! Power output is steady again. No more random
+    resets. That\u2019s a big win."
+  nextDayText: Pilot, consistency beats intensity. One solid walk today is enough
+    to keep momentum.

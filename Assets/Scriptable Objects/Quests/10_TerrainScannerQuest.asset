@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8166da5713496f040a199691aece54c3, type: 3}
+  m_Name: 10_TerrainScannerQuest
+  m_EditorClassIdentifier: Assembly-CSharp::Quest
+  id: 10
+  partName: Terrain Scanning Module
+  partTexture: {fileID: 0}
+  steps: 3000
+  chooseText: Good choice. A terrain scanner will map the area and flag safe routes.
+    Less guessing, more progress.
+  completedText: Scanner recovered! After installing it I will be able to map this
+    place out, making future walks more efficient hopefully.
+  nextDayText: Since we installed the terrain scanner I can now optimize your routes,
+    this should make future walks more efficient.

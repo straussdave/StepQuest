@@ -16,5 +16,9 @@ MonoBehaviour:
   partName: Cockpit
   partTexture: {fileID: 8400000, guid: 41f3d96b968e8c946a6ab812deb63f01, type: 2}
   steps: 2500
-  chooseText: Cockpit selected
-  completedText: quest done
+  chooseText: "Cockpit selected. Once we have it, you\u2019ll finally have proper
+    controls - and a view that isn\u2019t my status screen."
+  completedText: Cockpit recovered! Controls are responding again. You just turned
+    a wreck into something flyable.
+  nextDayText: "Pilot, today\u2019s goal is simple: move. Steps first, excuses later."
+  showPortrait: 1

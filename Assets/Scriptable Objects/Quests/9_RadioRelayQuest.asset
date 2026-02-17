@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8166da5713496f040a199691aece54c3, type: 3}
+  m_Name: 9_RadioRelayQuest
+  m_EditorClassIdentifier: Assembly-CSharp::Quest
+  id: 9
+  partName: Radio Relay Module
+  partTexture: {fileID: 0}
+  steps: 2500
+  chooseText: "Nice pick. With a radio relay, we can finally hear what\u2019s out
+    there\u2014and let others hear us too. Let\u2019s bring it online."
+  completedText: "Radio relay secured! I\u2019m already catching faint chatter\u2026
+    nothing clear yet, but it means we\u2019re not alone. Great work."
+  nextDayText: "New day, pilot. Even a short walk keeps the mission moving. Let\u2019s
+    collect some steps."

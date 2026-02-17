@@ -89,10 +89,9 @@ public class GameFlowController : MonoBehaviour
 
     private void HandleQuestAlreadyDoneToday()
     {
-
         phase = DialoguePhase.Completed;
         robotDialoguePanel.SetActive(true);
-        string msg = "You've already completed today's mission. Come back tomorrow for a new one!";
+        string msg = "You've already completed today's mission. Go get some rest while I work on tomorrows route.";
         WriteMessage(msg);
     }
 

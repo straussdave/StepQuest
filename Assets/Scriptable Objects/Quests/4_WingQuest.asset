@@ -16,5 +16,9 @@ MonoBehaviour:
   partName: Wing 1
   partTexture: {fileID: 8400000, guid: 1e18918731847004b882340f3cc49ae1, type: 2}
   steps: 3000
-  chooseText: Wing chosen
-  completedText: quest done
+  chooseText: "Port wing selected. Aerodynamics matter\u2014even on emergency landings.
+    Let\u2019s retrieve it."
+  completedText: "Port wing recovered! Structure integrity improved. The ship is
+    starting to look less\u2026 tragic."
+  nextDayText: "Short walk or long walk\u2014both count. Just start."
+  showPortrait: 1

@@ -16,5 +16,9 @@ MonoBehaviour:
   partName: Wing 2
   partTexture: {fileID: 8400000, guid: 2b17ea6e8d4995f4db7035c65deb26c3, type: 2}
   steps: 6000
-  chooseText: Wing 4 chosen
-  completedText: quest done
+  chooseText: "Another stabilizer module\u2014perfect. The ship needs fine control,
+    not just big parts."
+  completedText: "Stabilizer recovered! Control surfaces will respond faster now.
+    That\u2019s real progress."
+  nextDayText: 'Mission rule: one walk a day keeps the crash site away.'
+  showPortrait: 1

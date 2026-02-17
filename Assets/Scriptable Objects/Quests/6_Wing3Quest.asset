@@ -16,5 +16,9 @@ MonoBehaviour:
   partName: Wing 3
   partTexture: {fileID: 8400000, guid: 1e18918731847004b882340f3cc49ae1, type: 2}
   steps: 6000
-  chooseText: Wing 3 chosen
-  completedText: quest done
+  chooseText: "Stabilizer module picked. It\u2019s not flashy, but it keeps us from
+    wobbling like a shopping cart."
+  completedText: "Stabilizer installed! Flight control simulations just went from
+    \u2018nope\u2019 to \u2018maybe.\u2019 Nice work."
+  nextDayText: 'Systems check: green. Mood check: improve it with a walk.'
+  showPortrait: 1

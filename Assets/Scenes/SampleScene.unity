@@ -4257,6 +4257,7 @@ GameObject:
   - component: {fileID: 1612953333}
   - component: {fileID: 1612953332}
   - component: {fileID: 1612953334}
+  - component: {fileID: 1612953335}
   m_Layer: 5
   m_Name: DialogueBox
   m_TagString: Untagged
@@ -4340,6 +4341,21 @@ MonoBehaviour:
   text: {fileID: 174864335}
   charsPerSecond: 45
   useUnscaledTime: 1
+--- !u!114 &1612953335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612953330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 578ca86e91494b64da6ef7ece269da12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  speakerNameRoot: {fileID: 1220382748}
+  speakerNameText: {fileID: 1220382750}
+  portraitRoot: {fileID: 630549989}
 --- !u!1001 &1637220182
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5458,6 +5474,42 @@ PrefabInstance:
       propertyPath: progressBarRoot
       value: 
       objectReference: {fileID: 1805041744}
+    - target: {fileID: 5504731693892583883, guid: 0c648e765f249d6498899b5ddd1c9cb9, type: 3}
+      propertyPath: quests.Array.size
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5504731693892583883, guid: 0c648e765f249d6498899b5ddd1c9cb9, type: 3}
+      propertyPath: 'quests.Array.data[5]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 4cdbf2cdb64cbfa4b9c6f27ce036ab92, type: 2}
+    - target: {fileID: 5504731693892583883, guid: 0c648e765f249d6498899b5ddd1c9cb9, type: 3}
+      propertyPath: 'quests.Array.data[6]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 52d8ec66fe032d14690bc06f4fee9bfc, type: 2}
+    - target: {fileID: 5504731693892583883, guid: 0c648e765f249d6498899b5ddd1c9cb9, type: 3}
+      propertyPath: 'quests.Array.data[7]'
+      value: 
+      objectReference: {fileID: 11400000, guid: bf92ecd112caa42408795505359d1c75, type: 2}
+    - target: {fileID: 5504731693892583883, guid: 0c648e765f249d6498899b5ddd1c9cb9, type: 3}
+      propertyPath: 'quests.Array.data[8]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 94e9dc6dbc949274480323e980f62ecb, type: 2}
+    - target: {fileID: 5504731693892583883, guid: 0c648e765f249d6498899b5ddd1c9cb9, type: 3}
+      propertyPath: 'quests.Array.data[9]'
+      value: 
+      objectReference: {fileID: 11400000, guid: a99b5af1277df774bae53252f5452ddb, type: 2}
+    - target: {fileID: 5504731693892583883, guid: 0c648e765f249d6498899b5ddd1c9cb9, type: 3}
+      propertyPath: 'quests.Array.data[10]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 89e1289f810811748b656bdde8a14ced, type: 2}
+    - target: {fileID: 5504731693892583883, guid: 0c648e765f249d6498899b5ddd1c9cb9, type: 3}
+      propertyPath: 'quests.Array.data[11]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 0a7772df7af61d246a01344f49bac633, type: 2}
+    - target: {fileID: 5504731693892583883, guid: 0c648e765f249d6498899b5ddd1c9cb9, type: 3}
+      propertyPath: 'quests.Array.data[12]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 0a7772df7af61d246a01344f49bac633, type: 2}
     - target: {fileID: 5504731693892583883, guid: 0c648e765f249d6498899b5ddd1c9cb9, type: 3}
       propertyPath: slots.Array.data[0].root
       value: 

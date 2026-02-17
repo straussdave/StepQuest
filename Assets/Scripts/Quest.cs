@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Quest", menuName = "StepQuest/Quest")]
@@ -13,6 +14,7 @@ public class Quest : ScriptableObject
     [TextArea(2, 6)][SerializeField] private string chooseText;
     [TextArea(2, 6)][SerializeField] private string completedText;
     [TextArea(2, 6)][SerializeField] public string nextDayText;
+    [SerializeField] public bool showPortrait = true;
 
     public string Id => id;
     public string PartName => partName;
