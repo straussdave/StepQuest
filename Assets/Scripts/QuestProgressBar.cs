@@ -16,8 +16,8 @@ public class QuestProgressBar : MonoBehaviour
             return; 
         }
 
-        var target = (qm.CurrentQuest != null) ? qm.CurrentQuest.Steps : 0;
-        UpdateUI(qm.CurrentSteps, target);
+        var target = (qm.GetCurrentQuest() != null) ? qm.GetCurrentQuest().Steps : 0;
+        UpdateUI(qm.GetCurrentSteps(), target);
         qm.OnProgressChanged += UpdateUI;
     }
 
@@ -29,7 +29,7 @@ public class QuestProgressBar : MonoBehaviour
         }
     }
 
-    void UpdateUI(int current, int target)
+    public void UpdateUI(int current, int target)
     {
         float t = (target > 0) ? ((float)current / target) : 0f;
         t = Mathf.Clamp01(t);

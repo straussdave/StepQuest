@@ -20,7 +20,7 @@ public class DateUtil
         PlayerPrefs.Save();
     }
 
-    // Optional: for debug/testing
+    // for debug/testing
     public static void Clear()
     {
         PlayerPrefs.DeleteKey(LastQuestDayKey);

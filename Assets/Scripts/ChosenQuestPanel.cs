@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,9 +9,12 @@ public class ChosenQuestPanel : MonoBehaviour
     [SerializeField] TMP_Text stepsText;
     [SerializeField] TMP_Text progressText;
     [SerializeField] RawImage iconImage;
-    [SerializeField] Slider progressSlider; // optional
     [SerializeField] GameObject noQuestState; // optional
     [SerializeField] GameObject questState;   // optional
+    [SerializeField] GameObject progress;
+    [SerializeField] QuestDB quests;
+
+    QuestProgressBar _progress;
 
     void OnEnable()
     {
@@ -20,9 +24,9 @@ public class ChosenQuestPanel : MonoBehaviour
         QuestManager.Instance.OnProgressChanged += RefreshProgress;
 
         // If a quest is already selected, render immediately
-        Refresh(QuestManager.Instance.CurrentQuest);
-        if (QuestManager.Instance.CurrentQuest != null)
-            RefreshProgress(QuestManager.Instance.CurrentSteps, QuestManager.Instance.CurrentQuest.Steps);
+        Refresh(QuestManager.Instance.GetCurrentQuest());
+        if (QuestManager.Instance.GetCurrentQuest() != null)
+            RefreshProgress(QuestManager.Instance.GetCurrentSteps(), QuestManager.Instance.GetCurrentQuest().Steps);
     }
 
     void OnDisable()
@@ -31,6 +35,15 @@ public class ChosenQuestPanel : MonoBehaviour
 
         QuestManager.Instance.OnQuestSelected -= Refresh;
         QuestManager.Instance.OnProgressChanged -= RefreshProgress;
+    }
+
+    public void RefreshData(string questId)
+    {
+        Debug.Log($"ChosenQuestPanel.RefreshData: questId={questId}");
+        quests.TryGetById(questId, out Quest quest);
+        Refresh(quest);
+        int steps = QuestManager.Instance.GetCurrentSteps();
+        RefreshProgress(steps, quest != null ? quest.Steps : 0);
     }
 
     void Refresh(Quest q)
@@ -46,11 +59,11 @@ public class ChosenQuestPanel : MonoBehaviour
 
     void RefreshProgress(int current, int target)
     {
-        if (progressText) progressText.text = $"{current} / {target}";
-        if (progressSlider)
+        progress.SetActive(true);
+        if (_progress == null)
         {
-            progressSlider.maxValue = target;
-            progressSlider.value = current;
+            _progress = progress.GetComponent<QuestProgressBar>();
         }
+        _progress.UpdateUI(current, target);
     }
 }

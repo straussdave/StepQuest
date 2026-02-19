@@ -265,6 +265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32c5b1879be143340b8c54da20177fa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  questDb: {fileID: 11400000, guid: c43059faf7d7c9d4ca775b87319ba822, type: 2}
 --- !u!4 &86318176
 Transform:
   m_ObjectHideFlags: 0
@@ -1614,9 +1615,10 @@ MonoBehaviour:
   stepsText: {fileID: 0}
   progressText: {fileID: 1991833416}
   iconImage: {fileID: 347045418}
-  progressSlider: {fileID: 0}
   noQuestState: {fileID: 1026306618}
   questState: {fileID: 550333343}
+  progress: {fileID: 1805041744}
+  quests: {fileID: 11400000, guid: c43059faf7d7c9d4ca775b87319ba822, type: 2}
 --- !u!1 &587919562 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1648359190015720, guid: b18b9904b4ca7754da3bb057d2303945, type: 3}
@@ -4040,7 +4042,7 @@ GameObject:
   - component: {fileID: 1537581646}
   - component: {fileID: 1537581645}
   m_Layer: 5
-  m_Name: DialogueBox
+  m_Name: Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

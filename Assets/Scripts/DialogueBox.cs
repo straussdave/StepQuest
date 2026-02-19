@@ -33,7 +33,7 @@ public class DialogueBox : MonoBehaviour
     public void Refresh()
     {
         var qm = QuestManager.Instance;
-        var quest = qm != null ? qm.CurrentQuest : null;
+        var quest = qm != null ? qm.GetCurrentQuest() : null;
 
         bool show = quest != null && quest.showPortrait;
 

@@ -19,6 +19,7 @@ public class GameFlowController : MonoBehaviour
     public ShipRotateInput shipRotateInput;
     public GameObject chosenQuestPanel;
 
+    ChosenQuestPanel _chosenQuestPanel;
     QuestManager _questManager;
 
     enum DialoguePhase { None, Intro, Completed, Quest }
@@ -33,6 +34,7 @@ public class GameFlowController : MonoBehaviour
         questChoiceRow.SetActive(false);
 
         var qm = QuestManager.Instance;
+        
         if (qm != null)
         {
             qm.OnQuestCompleted += HandleQuestCompleted;
@@ -59,18 +61,28 @@ public class GameFlowController : MonoBehaviour
         {
             _questManager = QuestManager.Instance;
         }
+        var isQuestActive = PlayerPrefs.GetInt(SaveKeys.ACTIVE_QUEST_IS_ACTIVE, 0) == 1;
+        Debug.Log("is a quest currently active? " + (isQuestActive.ToString()));
         splashPanel.SetActive(false);
-        gamePanel.SetActive(false);
-        SetQuestChoiceRow(false, "PlayClicked -> hide choices");
+        if (isQuestActive)
+        {
+            gamePanel.SetActive(true);
+            chosenQuestPanel.SetActive(true);
+            SetQuestChoiceRow(false, "PlayClicked, currently quest is already active -> hide choices");
+            return;
+        }
+
         if (_questManager.CanCompleteQuestToday())
         {
-
             HandleQuestNotDoneToday();
         }
         else
         {
             HandleQuestAlreadyDoneToday();
         }
+
+        gamePanel.SetActive(false);
+        SetQuestChoiceRow(false, "PlayClicked -> hide choices");
     }
 
     private void HandleQuestNotDoneToday()
@@ -109,18 +121,26 @@ public class GameFlowController : MonoBehaviour
             case DialoguePhase.Intro:
                 robotDialoguePanel.SetActive(false);
                 gamePanel.SetActive(true);
+                chosenQuestPanel.SetActive(false);
                 SetQuestChoiceRow(true, "DialogueContinue Intro -> show choices");
                 phase = DialoguePhase.None;
                 break;
             case DialoguePhase.Completed:
                 robotDialoguePanel.SetActive(false);
-                gamePanel.SetActive(true);
+                gamePanel.SetActive(true);    
+                chosenQuestPanel.SetActive(true);
+                if (_chosenQuestPanel == null)
+                {
+                    _chosenQuestPanel = chosenQuestPanel.GetComponent<ChosenQuestPanel>();
+                }
+                _chosenQuestPanel.RefreshData(PlayerPrefs.GetString(SaveKeys.ACTIVE_QUEST_ID));
                 phase = DialoguePhase.None;
                 break;
             case DialoguePhase.Quest:
                 robotDialoguePanel.SetActive(false);
                 SetQuestChoiceRow(false, "DialogueContinue Quest -> hide choices");
                 gamePanel.SetActive(true);
+                chosenQuestPanel.SetActive(true);
                 phase = DialoguePhase.None;
                 break;
         }

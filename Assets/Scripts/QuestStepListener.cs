@@ -116,8 +116,8 @@ public class QuestStepListener : MonoBehaviour
         _questManager = qm;
         _subscribedToQuest = true;
 
-        if (qm.CurrentQuest != null)
-            OnQuestSelected(qm.CurrentQuest);
+        if (qm.GetCurrentQuest() != null)
+            OnQuestSelected(qm.GetCurrentQuest());
     }
 
     void UnsubscribeQuestManager()
