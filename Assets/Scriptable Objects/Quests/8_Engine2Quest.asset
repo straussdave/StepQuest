@@ -16,9 +16,11 @@ MonoBehaviour:
   partName: Engine
   partTexture: {fileID: 8400000, guid: 578fba33dfc7b6f4db3b7a7e83bcb343, type: 2}
   steps: 5000
-  chooseText: "Ignition module selected. Without it, the engine is just decoration.
-    Let\u2019s make it functional."
-  completedText: "Ignition module secured! I can finally run a clean startup sequence.
-    We\u2019re getting close."
+  isStoryQuest: 0
+  storyOrder: 0
+  chooseText: Engine selected. We need both units for balanced thrust and redundancy.
+    This one matters.
+  completedText: "Engine recovered. That\u2019s one more major subsystem secured.
+    We\u2019ll run full checks once we\u2019re assembled enough to power-test safely."
   nextDayText: Today, we move. Even 10 minutes is a win.
   showPortrait: 1

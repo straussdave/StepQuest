@@ -10,15 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8166da5713496f040a199691aece54c3, type: 3}
-  m_Name: 9_RadioRelayQuest
+  m_Name: 9_MissionDataQuest
   m_EditorClassIdentifier: Assembly-CSharp::Quest
   id: 9
-  partName: Radio Relay Module
+  partName: Mission Data Core
   partTexture: {fileID: 0}
   steps: 2500
-  chooseText: "Nice pick. With a radio relay, we can finally hear what\u2019s out
-    there\u2014and let others hear us too. Let\u2019s bring it online."
-  completedText: "Radio relay secured! I\u2019m already catching faint chatter\u2026
-    nothing clear yet, but it means we\u2019re not alone. Great work."
+  isStoryQuest: 1
+  storyOrder: 1
+  chooseText: "Select the mission data core. It contains the flight plan, the objective,
+    and the last verified logs before the crash. Without it, we\u2019re operating
+    on guesses."
+  completedText: "Data core recovered. I\u2019ve restored partial logs: this wasn\u2019t
+    a routine transit. You were sent here to verify an automated signal source and
+    assess if it\u2019s safe to approach."
   nextDayText: "New day, pilot. Even a short walk keeps the mission moving. Let\u2019s
     collect some steps."
+  showPortrait: 1

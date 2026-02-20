@@ -16,9 +16,11 @@ MonoBehaviour:
   partName: Engine
   partTexture: {fileID: 8400000, guid: 578fba33dfc7b6f4db3b7a7e83bcb343, type: 2}
   steps: 5000
-  chooseText: "Engine core. Good. Without it, we\u2019re basically a very expensive
-    tent. Let\u2019s fix that."
-  completedText: "Engine core secured! Power routing looks promising. We\u2019re
-    one major step closer to ignition."
+  isStoryQuest: 0
+  storyOrder: 0
+  chooseText: Engine selected. Propulsion is a hard requirement. We need this unit
+    back at the crash site.
+  completedText: Engine recovered. Visual inspection looks workable. Integration
+    will wait until we have the other systems on hand.
   nextDayText: "Fresh day, fresh steps. Let\u2019s earn some distance."
   showPortrait: 1

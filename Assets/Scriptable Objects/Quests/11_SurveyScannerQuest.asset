@@ -10,15 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8166da5713496f040a199691aece54c3, type: 3}
-  m_Name: 11_PowerRegulatorQuest
+  m_Name: 11_SurveyScannerQuest
   m_EditorClassIdentifier: Assembly-CSharp::Quest
   id: 11
-  partName: Power Regulator Unit
+  partName: Survey Scanner
   partTexture: {fileID: 0}
   steps: 4000
-  chooseText: "Smart call. The ship\u2019s power is unstable\u2014this regulator
-    will stop the flickering systems and prevent shutdowns."
-  completedText: "Regulator installed! Power output is steady again. No more random
-    resets. That\u2019s a big win."
+  isStoryQuest: 1
+  storyOrder: 3
+  chooseText: Select the survey scanner. If the signal source is still active, we
+    need a map of the area and a hazard profile before moving closer.
+  completedText: "Scanner recovered. Terrain and radiation scans are within tolerances.
+    More importantly: there\u2019s a structured site nearby - likely a buried relay
+    station. It\u2019s running on emergency power."
   nextDayText: Pilot, consistency beats intensity. One solid walk today is enough
     to keep momentum.
+  showPortrait: 1

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Quest", menuName = "StepQuest/Quest")]
@@ -9,6 +8,12 @@ public class Quest : ScriptableObject
     [SerializeField] private string partName;
     [SerializeField] private RenderTexture partTexture;
     [SerializeField] private int steps;
+    [SerializeField] private bool isStoryQuest = false;
+
+    [Header("Story Sequence")]
+    [Tooltip("Only used if IsStoryQuest is true. Lower number = earlier quest.")]
+    [Min(0)]
+    [SerializeField] private int storyOrder = 0;
 
     [Header("Dialogue")]
     [TextArea(2, 6)][SerializeField] private string chooseText;
@@ -23,4 +28,7 @@ public class Quest : ScriptableObject
 
     public string ChooseText => chooseText;
     public string CompletedText => completedText;
+
+    public bool IsStoryQuest => isStoryQuest;
+    public int StoryOrder => storyOrder;
 }

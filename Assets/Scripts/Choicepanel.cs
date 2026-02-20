@@ -32,9 +32,9 @@ public class Choicepanel : MonoBehaviour
     public ChoiceSlot[] slots;            // size = 2
 
     [Header("Global UI")]
-    [SerializeField] GameObject progressBarRoot; // "Progress Bar" object under Canvas
+    [SerializeField] private GameObject progressBarRoot; // "Progress Bar" object under Canvas
 
-    bool selectionMade = false;
+    private bool selectionMade = false;
 
     void Start()
     {
@@ -60,20 +60,27 @@ public class Choicepanel : MonoBehaviour
         }
 
         var qm = QuestManager.Instance;
+        if (qm == null)
+        {
+            Debug.LogError($"{name}: QuestManager.Instance is null.");
+            return;
+        }
 
-        // Build pool
-        List<Quest> pool = new List<Quest>();
+        // Build pools (only quests that are NOT unlocked yet)
+        List<Quest> storyPool = new List<Quest>();
+        List<Quest> normalPool = new List<Quest>();
+
         foreach (var q in quests)
         {
             if (q == null) continue;
-            if (!qm.IsPartUnlocked(q.Id))
-                pool.Add(q);
+            if (qm.IsPartUnlocked(q.Id)) continue;
+
+            if (q.IsStoryQuest) storyPool.Add(q);
+            else normalPool.Add(q);
         }
 
-
-        // Rule: If robot is not unlocked -> ONLY offer robot
+        // Rule 1: If robot is not unlocked -> ONLY offer robot (first quest)
         bool robotLocked = robotQuest != null && !qm.IsPartUnlocked(robotQuest.Id);
-
         if (robotLocked)
         {
             AssignSlot(0, robotQuest);
@@ -84,21 +91,56 @@ public class Choicepanel : MonoBehaviour
             return;
         }
 
+        // Ensure robot quest doesn't appear again after it was unlocked
+        if (robotQuest != null)
+        {
+            storyPool.RemoveAll(q => q == robotQuest);
+            normalPool.RemoveAll(q => q == robotQuest);
+        }
+
+        // Default: show both roots (we'll hide as needed below)
         for (int i = 0; i < slots.Length; i++)
             if (slots[i].root) slots[i].root.SetActive(true);
 
-        if (robotQuest != null)
-            pool.RemoveAll(q => q == robotQuest);
+        Quest slot0 = null;
+        Quest slot1 = null;
 
-        // Slot 0
-        Quest q0 = DrawRandom(pool);
-        if (q0 != null) AssignSlot(0, q0);
-        else { if (slots[0].root) slots[0].root.SetActive(false); }
+        if (storyPool.Count > 0)
+        {
+            // Always show the next story quest in sequence
+            slot0 = DrawNextStory(storyPool);
 
-        // Slot 1
-        Quest q1 = DrawRandom(pool);
-        if (q1 != null) AssignSlot(1, q1);
-        else { if (slots[1].root) slots[1].root.SetActive(false); }
+            // If ONLY story quests are available -> show ONE quest only
+            if (normalPool.Count == 0)
+            {
+                slot1 = null;
+            }
+            else
+            {
+                // Otherwise fill slot 1: prefer normal; if none, allow story
+                slot1 = DrawAnyPreferNormal(normalPool, storyPool);
+            }
+        }
+        else
+        {
+            // No story quests available -> pick up to two from normal pool
+            if (normalPool.Count > 0) slot0 = DrawRandom(normalPool);
+            if (normalPool.Count > 0) slot1 = DrawRandom(normalPool);
+        }
+
+        // Assign slot 0
+        if (slot0 != null) AssignSlot(0, slot0);
+        else if (slots[0].root) slots[0].root.SetActive(false);
+
+        // Assign / hide slot 1
+        if (slot1 != null)
+        {
+            AssignSlot(1, slot1);
+        }
+        else
+        {
+            if (slots[1].root) slots[1].root.SetActive(false);
+        }
 
         selectionMade = false;
     }
@@ -110,6 +152,36 @@ public class Choicepanel : MonoBehaviour
         Quest q = pool[index];
         pool.RemoveAt(index);
         return q;
+    }
+
+    Quest DrawNextStory(List<Quest> storyPool)
+    {
+        if (storyPool == null || storyPool.Count == 0) return null;
+
+        Quest best = null;
+        for (int i = 0; i < storyPool.Count; i++)
+        {
+            var q = storyPool[i];
+            if (q == null) continue;
+
+            if (best == null) best = q;
+            else
+            {
+                if (q.StoryOrder < best.StoryOrder) best = q;
+                else if (q.StoryOrder == best.StoryOrder && string.CompareOrdinal(q.Id, best.Id) < 0)
+                    best = q; // deterministic tie-break
+            }
+        }
+
+        if (best != null) storyPool.Remove(best);
+        return best;
+    }
+
+    Quest DrawAnyPreferNormal(List<Quest> normalPool, List<Quest> storyPool)
+    {
+        if (normalPool != null && normalPool.Count > 0) return DrawRandom(normalPool);
+        if (storyPool != null && storyPool.Count > 0) return DrawRandom(storyPool);
+        return null;
     }
 
     void AssignSlot(int i, Quest q)
@@ -160,5 +232,4 @@ public class Choicepanel : MonoBehaviour
             }
         }
     }
-
 }

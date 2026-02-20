@@ -10,16 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8166da5713496f040a199691aece54c3, type: 3}
-  m_Name: RobotQuest
+  m_Name: 0_RobotQuest
   m_EditorClassIdentifier: Assembly-CSharp::Quest
   id: 1
   partName: Robot
   partTexture: {fileID: 8400000, guid: d1610bb5a17d2124189a63d18ee92251, type: 2}
   steps: 500
-  chooseText: Robot chosen
+  isStoryQuest: 1
+  storyOrder: 0
+  chooseText: ...
   completedText: 'Thanks for retrieving me!
 
-    Since i am a bit dusty from the
+    Since I am a bit dusty from the
     crash I will need to do some overnight self-repairs. Get some rest and check
     back on me tomorrow! :3'
   nextDayText: Good morning pilot! What a nice day to explore this beautiful wasteland....

@@ -16,10 +16,12 @@ MonoBehaviour:
   partName: Wing 2
   partTexture: {fileID: 8400000, guid: 2b17ea6e8d4995f4db7035c65deb26c3, type: 2}
   steps: 6000
-  chooseText: "Starboard wing selected. Balance, stability, and fewer \u2018oops\u2019
-    moments. Good call."
-  completedText: Starboard wing secured! With both wings, we can actually talk about
-    controlled flight again.
+  isStoryQuest: 0
+  storyOrder: 0
+  chooseText: Wing segment selected. Recovering this reduces structural risk later
+    - good call.
+  completedText: Wing segment recovered. No critical damage detected. Logged for
+    assembly.
   nextDayText: "Pilot, your future self will thank you for today\u2019s steps. Let\u2019s
     go."
   showPortrait: 1

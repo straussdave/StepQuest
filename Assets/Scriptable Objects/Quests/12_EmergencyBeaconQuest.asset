@@ -16,9 +16,14 @@ MonoBehaviour:
   partName: Emergency Beacon Kit
   partTexture: {fileID: 0}
   steps: 3750
-  chooseText: "Excellent. With an emergency beacon, we can send a clean distress
-    signal\u2014or mark our location for recovery."
-  completedText: "Beacon secured and calibrated! If anyone is listening, they\u2019ll
-    be able to find us. That\u2019s real progress."
+  isStoryQuest: 1
+  storyOrder: 4
+  chooseText: Select the authorization beacon. If that relay station is still alive,
+    it may require a mission signature to release its stored data - or to shut itself
+    down safely.
+  completedText: "Beacon recovered. I can now authenticate locally. The station wasn\u2019t
+    calling for rescue - it was uploading a warning. It detected instability in this
+    region and flagged it as a no-fly corridor."
   nextDayText: "Mission tip: start the walk, and motivation shows up on the way.
     Let\u2019s go."
+  showPortrait: 1
