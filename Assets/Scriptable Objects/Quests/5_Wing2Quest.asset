@@ -22,6 +22,6 @@ MonoBehaviour:
     - good call.
   completedText: Wing segment recovered. No critical damage detected. Logged for
     assembly.
-  nextDayText: "Pilot, your future self will thank you for today\u2019s steps. Let\u2019s
-    go."
+  nextDayText: Muscle stiffness increases with inactivity. A short walk now will
+    help prevent that.
   showPortrait: 1

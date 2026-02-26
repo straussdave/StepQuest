@@ -24,5 +24,6 @@ MonoBehaviour:
     Since I am a bit dusty from the
     crash I will need to do some overnight self-repairs. Get some rest and check
     back on me tomorrow! :3'
-  nextDayText: Good morning pilot! What a nice day to explore this beautiful wasteland....
+  nextDayText: "Vitals stable. You are showing mild post-impact memory gaps. Light
+    movement will support circulation and recovery - let\u2019s start with a walk."
   showPortrait: 1

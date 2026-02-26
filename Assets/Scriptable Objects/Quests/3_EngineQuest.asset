@@ -22,5 +22,6 @@ MonoBehaviour:
     back at the crash site.
   completedText: Engine recovered. Visual inspection looks workable. Integration
     will wait until we have the other systems on hand.
-  nextDayText: "Fresh day, fresh steps. Let\u2019s earn some distance."
+  nextDayText: "Regular movement helps maintain stamina and joint mobility. Today\u2019s
+    walk still counts."
   showPortrait: 1

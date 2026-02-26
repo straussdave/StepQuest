@@ -22,5 +22,6 @@ MonoBehaviour:
     we can even consider lift.
   completedText: Wing segment recovered. Stored and marked. Keep moving - time is
     not on our side.
-  nextDayText: 'Systems check: green. Mood check: improve it with a walk.'
+  nextDayText: "Fresh air and light movement can improve alertness. Conditions are
+    favorable - let\u2019s go."
   showPortrait: 1

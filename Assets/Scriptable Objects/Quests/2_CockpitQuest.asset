@@ -22,5 +22,6 @@ MonoBehaviour:
     and onboard diagnostics.
   completedText: Cockpit recovered. Control interface and instrumentation are back
     online. Still grounded until the remaining systems are installed.
-  nextDayText: "Pilot, today\u2019s goal is simple: move. Steps first, excuses later."
+  nextDayText: Low energy is expected after the crash. Light activity can help restore
+    focus.
   showPortrait: 1

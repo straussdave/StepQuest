@@ -22,5 +22,6 @@ MonoBehaviour:
     intact and correctly aligned.
   completedText: "Wing segment recovered. Condition is acceptable. We\u2019ll verify
     fit during reassembly."
-  nextDayText: Short walk or long walk - both count. Just start.
+  nextDayText: Recovery responds well to routine. One walk today is enough to keep
+    the system on track.
   showPortrait: 1

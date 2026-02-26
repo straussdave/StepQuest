@@ -22,5 +22,6 @@ MonoBehaviour:
     This one matters.
   completedText: "Engine recovered. That\u2019s one more major subsystem secured.
     We\u2019ll run full checks once we\u2019re assembled enough to power-test safely."
-  nextDayText: Today, we move. Even 10 minutes is a win.
+  nextDayText: Even minimal activity has value. A brief walk today will keep progress
+    stable.
   showPortrait: 1

@@ -22,5 +22,5 @@ MonoBehaviour:
     get back safely.
   completedText: Wing segment recovered. Added to inventory. Reassembly is still
     pending until all required parts are in place.
-  nextDayText: 'Mission rule: one walk a day keeps the crash site away.'
+  nextDayText: Energy may feel limited, but moderate movement can improve your mood.
   showPortrait: 1
