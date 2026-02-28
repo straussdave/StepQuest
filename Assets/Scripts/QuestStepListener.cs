@@ -55,14 +55,17 @@ public class QuestStepListener : MonoBehaviour
 
         if (kb.spaceKey.wasPressedThisFrame)
         {
+            Debug.Log($"[UserAction] Debug add-steps key pressed (space): {debugStepAmount}.");
             SimulateSteps(debugStepAmount);
         }
         if (kb.backspaceKey.wasPressedThisFrame)
         {
+            Debug.Log("[UserAction] Debug reset key pressed (backspace).");
             SaveSystem.ResetGame();
         }
         if (kb.deleteKey.wasPressedThisFrame)
         {
+            Debug.Log("[UserAction] Debug clear-day key pressed (delete).");
             DateUtil.Clear();
         }
 #endif
@@ -89,6 +92,7 @@ public class QuestStepListener : MonoBehaviour
         int delta = totalStepsFromSensor - _lastValue;
         _lastValue = totalStepsFromSensor;
 
+        Debug.Log($"[StepTracking] Sensor update: total={totalStepsFromSensor}, delta={delta}, awaitingBaseline={_awaitingBaseline}.");
         if (QuestManager.Instance != null)
             QuestManager.Instance.AddSteps(delta);
     }

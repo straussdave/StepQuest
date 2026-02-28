@@ -7,6 +7,9 @@ public class QuestDB : ScriptableObject
 {
     public List<Quest> quests = new List<Quest>();
 
+    // Expose all quests read-only so QuestManager can check completion
+    public IReadOnlyList<Quest> AllQuests => quests;
+
     private Dictionary<string, Quest> _byId;
 
     void OnEnable()

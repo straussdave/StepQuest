@@ -26,6 +26,9 @@ public class Choicepanel : MonoBehaviour
         public Button button;             // Button component on QuestChoice
 
         [HideInInspector] public Quest quest;
+
+        [Header("Layout")]
+        public RectTransform textContainer;
     }
 
     [Header("Slots (your 2 QuestChoice children)")]
@@ -191,7 +194,30 @@ public class Choicepanel : MonoBehaviour
 
         if (slots[i].topText) slots[i].topText.text = q != null ? q.PartName : "N/A";
         if (slots[i].bottomText) slots[i].bottomText.text = q != null ? $"{q.Steps} Steps" : "";
-        if (slots[i].iconImage) slots[i].iconImage.texture = q != null ? q.PartTexture : null;
+
+        bool isStoryQuest = q != null && q.IsStoryQuest;
+
+        // Icon visibility
+        if (slots[i].iconImage)
+        {
+            slots[i].iconImage.texture = (!isStoryQuest && q != null) ? q.PartTexture : null;
+            slots[i].iconImage.gameObject.SetActive(!isStoryQuest);
+        }
+
+        // Center text vertically for story quests
+        if (slots[i].textContainer != null)
+        {
+            if (isStoryQuest)
+            {
+                slots[i].textContainer.anchorMin = new Vector2(0f, 1f);
+                slots[i].textContainer.anchorMax = new Vector2(1f, 1f);
+
+                slots[i].textContainer.pivot = new Vector2(0.5f, 1f);
+
+                slots[i].textContainer.offsetMin = new Vector2(0f, -97f); // Left=0, bottom derived from top/height
+                slots[i].textContainer.offsetMax = new Vector2(0f, -45f); // Right=0, Top=-45
+            }
+        }
 
         if (slots[i].button)
         {
@@ -204,14 +230,28 @@ public class Choicepanel : MonoBehaviour
 
     public void OnClicked(int slotIndex)
     {
-        if (selectionMade) return;
-        if (slotIndex < 0 || slotIndex >= slots.Length) return;
+        Debug.Log($"[UserAction] Quest choice clicked. slotIndex={slotIndex}, selectionMade={selectionMade}.");
+        if (selectionMade)
+        {
+            Debug.Log("[UserAction] Quest choice ignored because a selection was already made.");
+            return;
+        }
+
+        if (slotIndex < 0 || slotIndex >= slots.Length)
+        {
+            Debug.LogWarning($"[UserAction] Quest choice ignored due to invalid slot index: {slotIndex}.");
+            return;
+        }
 
         var q = slots[slotIndex].quest;
-        if (q == null || QuestManager.Instance == null) return;
+        if (q == null || QuestManager.Instance == null)
+        {
+            Debug.LogWarning("[UserAction] Quest choice ignored because quest or QuestManager was null.");
+            return;
+        }
 
         selectionMade = true;
-
+        Debug.Log($"[UserAction] Quest accepted: {q.Id} ({q.PartName}), targetSteps={q.Steps}.");
         QuestManager.Instance.SelectQuest(q);
 
         if (progressBarRoot != null)

@@ -1,4 +1,3 @@
-// IStepCounter.cs
 namespace StepCounter
 {
     public interface IStepCounter

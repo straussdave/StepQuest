@@ -12,8 +12,10 @@ public class QuestManager : MonoBehaviour
     public event Action<string> OnPartUnlocked;
     public event Action<Quest> OnQuestSelected;
     public event Action<Quest> OnQuestCompleted;
+    public event Action OnAllQuestsCompleted;
 
     private readonly HashSet<string> unlockedParts = new HashSet<string>();
+    private bool allQuestsCompletedFired = false;
 
     void Awake()
     {
@@ -25,22 +27,40 @@ public class QuestManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
-        LoadActiveQuestState();
+
         LoadUnlockedParts();
+        LoadActiveQuestState();
+
+        CheckAllQuestsCompleted();
     }
 
     public void SelectQuest(Quest quest)
     {
-        if (quest == null) return;
+        if (quest == null)
+        {
+            Debug.LogWarning("[UserAction] Tried selecting a null quest.");
+            return;
+        }
+
+        Debug.Log($"[UserAction] Selecting quest: {quest.Id} ({quest.PartName}), targetSteps={quest.Steps}.");
 
         PlayerPrefs.SetInt(SaveKeys.QUEST_DONE_TODAY, 0);
         PlayerPrefs.SetString(SaveKeys.ACTIVE_QUEST_ID, quest.Id);
         PlayerPrefs.SetInt(SaveKeys.ACTIVE_QUEST_STEPS, 0);
         PlayerPrefs.SetInt(SaveKeys.ACTIVE_QUEST_IS_ACTIVE, 1);
+
         SaveSystem.DeleteKey(SaveKeys.NEXT_DAY_TEXT_KEY);
         PlayerPrefs.SetString(SaveKeys.NEXT_DAY_TEXT_KEY, quest.nextDayText);
+
         PlayerPrefs.Save();
+
         Quest currentQuest = GetCurrentQuest();
+        if (currentQuest == null)
+        {
+            Debug.LogError("[Quest] Selected quest could not be reloaded from QuestDB.");
+            return;
+        }
+
         OnQuestSelected?.Invoke(currentQuest);
         OnProgressChanged?.Invoke(0, currentQuest.Steps);
     }
@@ -48,41 +68,67 @@ public class QuestManager : MonoBehaviour
     public void AddSteps(int delta)
     {
         Quest quest = GetCurrentQuest();
-        if (quest == null) return;
-        if (QuestDoneToday()) return;
+        if (quest == null)
+        {
+            Debug.Log("[StepTracking] Ignored step delta because there is no active quest.");
+            return;
+        }
+
+        if (QuestDoneToday())
+        {
+            Debug.Log("[StepTracking] Ignored step delta because quest is already done today.");
+            return;
+        }
 
         int steps = GetCurrentSteps();
         int newSteps = Mathf.Clamp(steps + delta, 0, quest.Steps);
+
         PlayerPrefs.SetInt(SaveKeys.ACTIVE_QUEST_STEPS, newSteps);
         PlayerPrefs.Save();
+
         OnProgressChanged?.Invoke(newSteps, quest.Steps);
+
         if (newSteps >= quest.Steps)
             CompleteQuest();
     }
-
 
     private void CompleteQuest()
     {
         if (DateUtil.HasDoneQuestToday())
         {
+            Debug.Log("[Quest] Completion blocked because DateUtil indicates quest already completed today.");
             return;
         }
 
-        if (QuestDoneToday()) return;
+        if (QuestDoneToday())
+        {
+            Debug.Log("[Quest] Completion blocked because quest is already marked done today.");
+            return;
+        }
+
+        // Capture quest BEFORE changing flags / state
+        Quest completedQuest = GetCurrentQuest();
+        string partId = completedQuest != null ? completedQuest.Id : PlayerPrefs.GetString(SaveKeys.ACTIVE_QUEST_ID);
+
         PlayerPrefs.SetInt(SaveKeys.QUEST_DONE_TODAY, 1);
         PlayerPrefs.SetInt(SaveKeys.ACTIVE_QUEST_IS_ACTIVE, 0);
         PlayerPrefs.Save();
 
-        var partId = PlayerPrefs.GetString(SaveKeys.ACTIVE_QUEST_ID);
         if (!string.IsNullOrEmpty(partId) && unlockedParts.Add(partId))
         {
+            Debug.Log($"[Quest] Unlocked part: {partId}.");
             SaveUnlockedParts();
             OnPartUnlocked?.Invoke(partId);
         }
-        
+
+        Debug.Log($"[Quest] Quest completed: {(completedQuest != null ? completedQuest.Id : partId)}.");
+
         DateUtil.MarkQuestDoneToday();
-        Quest quest = GetCurrentQuest();
-        OnQuestCompleted?.Invoke(quest);
+
+        OnQuestCompleted?.Invoke(completedQuest);
+
+        // Fire end-sequence trigger if everything is now unlocked
+        CheckAllQuestsCompleted();
     }
 
     public bool IsPartUnlocked(string partId)
@@ -105,8 +151,10 @@ public class QuestManager : MonoBehaviour
 
         var ids = s.Split('|');
         foreach (var id in ids)
+        {
             if (!string.IsNullOrEmpty(id))
                 unlockedParts.Add(id);
+        }
     }
 
     public bool CanCompleteQuestToday()
@@ -129,6 +177,11 @@ public class QuestManager : MonoBehaviour
         if (string.IsNullOrEmpty(questId)) return;
 
         Quest quest = GetCurrentQuest();
+        if (quest == null)
+        {
+            Debug.LogWarning($"[Quest] Active quest id '{questId}' could not be found in QuestDB.");
+            return;
+        }
 
         int currentSteps = GetCurrentSteps();
 
@@ -152,8 +205,15 @@ public class QuestManager : MonoBehaviour
 
     public Quest GetCurrentQuest()
     {
+        if (questDb == null)
+        {
+            Debug.LogError("QuestManager: questDb is not assigned.", this);
+            return null;
+        }
+
         var questId = PlayerPrefs.GetString(SaveKeys.ACTIVE_QUEST_ID, "");
         if (string.IsNullOrEmpty(questId)) return null;
+
         questDb.TryGetById(questId, out var quest);
         return quest;
     }
@@ -161,5 +221,37 @@ public class QuestManager : MonoBehaviour
     public int GetCurrentSteps()
     {
         return PlayerPrefs.GetInt(SaveKeys.ACTIVE_QUEST_STEPS, 0);
+    }
+
+    public bool CheckAllQuestsCompleted()
+    {
+        if (allQuestsCompletedFired) return true;
+
+        if (questDb == null)
+        {
+            Debug.LogWarning("[Quest] Cannot check all quests completed because questDb is null.");
+            return false;
+        }
+
+        var allQuests = questDb.AllQuests; // assumes QuestDB exposes this
+        if (allQuests == null || allQuests.Count == 0)
+        {
+            Debug.LogWarning("[Quest] QuestDB has no quests. Skipping all-quests-completed check.");
+            return false;
+        }
+
+        for (int i = 0; i < allQuests.Count; i++)
+        {
+            var q = allQuests[i];
+            if (q == null) continue;
+
+            if (!IsPartUnlocked(q.Id))
+                return false; // still unfinished quests exist
+        }
+
+        allQuestsCompletedFired = true;
+        Debug.Log("[Quest] All quests completed.");
+        OnAllQuestsCompleted?.Invoke();
+        return true;
     }
 }

@@ -55,6 +55,7 @@ public class ShipRotateInput : MonoBehaviour
                 dragging = true;
                 activePointerId = touchId;
                 lastPos = t.position.ReadValue();
+                Debug.Log($"[UserAction] Started rotating ship via touch. touchId={touchId}.");
             }
 
             if (dragging && t.press.isPressed)
@@ -78,6 +79,7 @@ public class ShipRotateInput : MonoBehaviour
             {
                 dragging = false;
                 activePointerId = int.MinValue;
+                Debug.Log($"[UserAction] Stopped rotating ship via touch. yaw={yaw:F1}, pitch={pitch:F1}.");
             }
 
             ApplyRotation();
@@ -93,6 +95,7 @@ public class ShipRotateInput : MonoBehaviour
             dragging = true;
             activePointerId = int.MinValue;
             lastPos = mouse.position.ReadValue();
+            Debug.Log("[UserAction] Started rotating ship via mouse drag.");
         }
         else if (dragging && mouse.leftButton.isPressed)
         {
@@ -103,6 +106,7 @@ public class ShipRotateInput : MonoBehaviour
         else if (mouse.leftButton.wasReleasedThisFrame)
         {
             dragging = false;
+            Debug.Log($"[UserAction] Stopped rotating ship via mouse drag. yaw={yaw:F1}, pitch={pitch:F1}.");
         }
 
         ApplyRotation();
