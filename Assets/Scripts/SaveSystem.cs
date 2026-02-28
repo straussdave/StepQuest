@@ -23,6 +23,8 @@ public class SaveSystem
         DeleteKey(SaveKeys.LAST_UNLOCKED_PART_ID);
         DeleteKey(SaveKeys.PENDING_COLLECTION_HIGHLIGHT);
 
+        DeleteKey(SaveKeys.HAS_ROTATED_SHIP);
+
         PlayerPrefs.Save();
     }
 
@@ -49,4 +51,5 @@ public static class SaveKeys
     public const string LAST_QUEST_DAY_KEY = "LAST_QUEST_DAY_KEY";
     public const string LAST_UNLOCKED_PART_ID = "LAST_UNLOCKED_PART_ID";
     public const string PENDING_COLLECTION_HIGHLIGHT = "PENDING_COLLECTION_HIGHLIGHT";
+    public const string HAS_ROTATED_SHIP = "HAS_ROTATED_SHIP";
 }

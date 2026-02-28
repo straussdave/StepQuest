@@ -1,9 +1,11 @@
+using System;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class ShipRotateInput : MonoBehaviour
 {
+    public static event Action OnFirstShipRotation;
+
     [Header("Target")]
     public Transform target; // ShipRoot
 
@@ -17,6 +19,9 @@ public class ShipRotateInput : MonoBehaviour
     [Header("Optional smoothing")]
     public float smoothing = 12f; // 0 = no smoothing
 
+    [Header("First Rotation Detection")]
+    [SerializeField] private float firstRotationThreshold = 4f; // sqrMagnitude threshold
+
     Vector2 lastPos;
     bool dragging;
     int activePointerId = int.MinValue;
@@ -24,12 +29,17 @@ public class ShipRotateInput : MonoBehaviour
     float yaw;
     float pitch;
 
+    bool firstRotationAlreadyHandled;
+
     void Awake()
     {
         if (target == null) target = transform;
+
         var euler = target.localEulerAngles;
         yaw = euler.y;
         pitch = NormalizeAngle(euler.x);
+
+        firstRotationAlreadyHandled = HasUserRotatedShip();
     }
 
     void OnEnable()
@@ -114,6 +124,8 @@ public class ShipRotateInput : MonoBehaviour
 
     void RotateFromDelta(Vector2 delta)
     {
+        TryMarkFirstRotation(delta);
+
         float dx = delta.x / Screen.width * 1000f;
         float dy = delta.y / Screen.height * 1000f;
 
@@ -121,6 +133,20 @@ public class ShipRotateInput : MonoBehaviour
 
         float pitchDelta = dy * pitchSpeed * (invertPitch ? 1f : -1f);
         pitch = Mathf.Clamp(pitch + pitchDelta, minPitch, maxPitch);
+    }
+
+    void TryMarkFirstRotation(Vector2 delta)
+    {
+        if (firstRotationAlreadyHandled) return;
+        if (delta.sqrMagnitude < firstRotationThreshold) return;
+
+        firstRotationAlreadyHandled = true;
+
+        PlayerPrefs.SetInt(SaveKeys.HAS_ROTATED_SHIP, 1);
+        PlayerPrefs.Save();
+
+        Debug.Log("[UserAction] User rotated ship for the first time.");
+        OnFirstShipRotation?.Invoke();
     }
 
     void ApplyRotation()
@@ -137,5 +163,10 @@ public class ShipRotateInput : MonoBehaviour
         angle %= 360f;
         if (angle > 180f) angle -= 360f;
         return angle;
+    }
+
+    public static bool HasUserRotatedShip()
+    {
+        return PlayerPrefs.GetInt(SaveKeys.HAS_ROTATED_SHIP, 0) == 1;
     }
 }

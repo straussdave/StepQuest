@@ -21,6 +21,10 @@ public class Quest : ScriptableObject
     [TextArea(2, 6)][SerializeField] public string nextDayText;
     [SerializeField] public bool showPortrait = true;
 
+    [Header("Description")]
+    [TextArea(2, 6)]
+    [SerializeField] private string descriptionText;
+
     public string Id => id;
     public string PartName => partName;
     public RenderTexture PartTexture => partTexture;
@@ -28,6 +32,7 @@ public class Quest : ScriptableObject
 
     public string ChooseText => chooseText;
     public string CompletedText => completedText;
+    public string DescriptionText => descriptionText;
 
     public bool IsStoryQuest => isStoryQuest;
     public int StoryOrder => storyOrder;

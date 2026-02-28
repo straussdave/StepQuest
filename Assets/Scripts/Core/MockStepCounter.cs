@@ -36,7 +36,7 @@ public sealed class MockStepCounter : IStepCounter
         if (_timer >= 0.5f)
         {
             _timer = 0f;
-            _steps += Random.Range(500, 1000);
+            _steps += Random.Range(30, 50);
             OnStepsChanged?.Invoke(_steps);
         }
     }

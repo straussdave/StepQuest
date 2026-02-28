@@ -26,7 +26,7 @@ public class GameFlowController : MonoBehaviour
     ChosenQuestPanel _chosenQuestPanel;
     QuestManager _questManager;
 
-    enum DialoguePhase { None, Intro, Completed, Quest, EndSequence }
+    enum DialoguePhase { None, Intro, Completed, Quest, EndSequence0, EndSequence1, EndSequence2, EndSequence3 }
     DialoguePhase phase = DialoguePhase.None;
 
     void Start()
@@ -119,7 +119,11 @@ public class GameFlowController : MonoBehaviour
 
         string msg = PlayerPrefs.GetString(
             SaveKeys.NEXT_DAY_TEXT_KEY,
-            "*BOOOM CRASH*..... silence..... but you hear a beep from far away buried under the sand, fortunately the triple redundant airbags did their job.. you might just be able to recover your repair droid and make it out alive..."
+            "Impact detected. Systems offline. " +
+            "For a moment, there is only silence - then a faint beeping breaks through the debris. " +
+            "The triple-redundant airbags absorbed most of the crash, and you are still alive. " +
+            "Your repair droid may still be intact beneath the sand. Recover it, " +
+            "and you may still have a chance to leave this place."
         );
 
         WriteMessage(msg);
@@ -179,9 +183,23 @@ public class GameFlowController : MonoBehaviour
                 phase = DialoguePhase.None;
                 break;
 
-            case DialoguePhase.EndSequence:
-                ShowEndPanel();
+            case DialoguePhase.EndSequence0:
+                string message2 = "We’re departing with proof, not speculation. " +
+                    "Once we’re in comms range, I’ll transmit the area closure recommendation and the station’s data package. " +
+                    "Then we get you home.";
+                phase = DialoguePhase.EndSequence1;
+                WriteMessage(message2);
+                break;
 
+            case DialoguePhase.EndSequence1:
+                string message3 = "You did what you came here to do - despite the crash. \n\r\n\r" +
+                    "Before we leave, I need you to export the mission logs for analysis.";
+                phase = DialoguePhase.EndSequence2;
+                WriteMessage(message3);
+                break;
+
+            case DialoguePhase.EndSequence2:
+                ShowEndPanel();
                 phase = DialoguePhase.None;
                 break;
         }
@@ -248,7 +266,7 @@ public class GameFlowController : MonoBehaviour
     {
         Debug.Log("[UserAction] All quests completed. Starting end sequence.");
 
-        phase = DialoguePhase.EndSequence;
+        phase = DialoguePhase.EndSequence0;
         splashPanel.SetActive(false);
         gamePanel.SetActive(false);
         SetQuestChoiceRow(false, "AllQuestsCompleted -> hide choices");
@@ -258,9 +276,10 @@ public class GameFlowController : MonoBehaviour
 
         robotDialoguePanel.SetActive(true);
 
-        string msg =
-            "All systems are online. The ship is ready to depart. " +
-            "Before we leave, I need you to export the mission logs for analysis.";
+        string msg = "All critical systems are assembled. " +
+                    "Before we leave: I’ve compiled the relay station’s warning and your recovered logs. " +
+                    "Your mission was to confirm the signal and decide whether this area should remain open. " +
+                    "The station is right: conditions are unstable, and traffic through this region would be reckless.";
 
         WriteMessage(msg);
     }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 12_EmergencyBeaconQuest
   m_EditorClassIdentifier: Assembly-CSharp::Quest
   id: 12
-  partName: Emergency Beacon Kit
+  partName: Authorization Beacon
   partTexture: {fileID: 0}
   steps: 3750
   isStoryQuest: 1
@@ -27,3 +27,4 @@ MonoBehaviour:
   nextDayText: "Mission tip: start the walk, and motivation shows up on the way.
     Let\u2019s go."
   showPortrait: 1
+  descriptionText: 
