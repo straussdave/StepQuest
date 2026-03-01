@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 
@@ -195,6 +194,7 @@ public class GameFlowController : MonoBehaviour
         gamePanel.SetActive(false);
 
         shipController.ReloadParts();
+        shipController.PlayPendingUnlockAnimationIfNeeded();
 
         if (shipRotateInput != null) shipRotateInput.enabled = true;
     }

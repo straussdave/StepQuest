@@ -20,6 +20,9 @@ public class SaveSystem
         DeleteKey(SaveKeys.START_DAY_KEY);
         DeleteKey(SaveKeys.LAST_QUEST_DAY_KEY);
 
+        DeleteKey(SaveKeys.LAST_UNLOCKED_PART_ID);
+        DeleteKey(SaveKeys.PENDING_COLLECTION_HIGHLIGHT);
+
         PlayerPrefs.Save();
     }
 
@@ -42,6 +45,8 @@ public static class SaveKeys
     public const string QUEST_DONE_TODAY = "QUEST_DONE";
     public const string UNLOCKED_KEY = "UNLOCKED_PART_IDS";
     public const string NEXT_DAY_TEXT_KEY = "NEXT_DAY_TEXT";
-    public const string START_DAY_KEY = "START_DAY_KEY";          // int YYYYMMDD
-    public const string LAST_QUEST_DAY_KEY = "LAST_QUEST_DAY_KEY"; // int YYYYMMDD
+    public const string START_DAY_KEY = "START_DAY_KEY";
+    public const string LAST_QUEST_DAY_KEY = "LAST_QUEST_DAY_KEY";
+    public const string LAST_UNLOCKED_PART_ID = "LAST_UNLOCKED_PART_ID";
+    public const string PENDING_COLLECTION_HIGHLIGHT = "PENDING_COLLECTION_HIGHLIGHT";
 }

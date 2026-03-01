@@ -214,8 +214,8 @@ public class Choicepanel : MonoBehaviour
 
                 slots[i].textContainer.pivot = new Vector2(0.5f, 1f);
 
-                slots[i].textContainer.offsetMin = new Vector2(0f, -97f); // Left=0, bottom derived from top/height
-                slots[i].textContainer.offsetMax = new Vector2(0f, -45f); // Right=0, Top=-45
+                slots[i].textContainer.offsetMin = new Vector2(0f, -97f);
+                slots[i].textContainer.offsetMax = new Vector2(0f, -45f);
             }
         }
 

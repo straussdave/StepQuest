@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class ShipController : MonoBehaviour
@@ -11,12 +12,9 @@ public class ShipController : MonoBehaviour
 
         [HideInInspector] public GameObject instance;
 
-        // Cached for swapping back and forth
         [HideInInspector] public Renderer[] renderers;
         [HideInInspector] public Material[][] originalSharedMaterials;
         [HideInInspector] public Collider[] colliders;
-
-        // Optional: if you add an outline component (see below)
         [HideInInspector] public Behaviour outlineBehaviour;
     }
 
@@ -28,6 +26,13 @@ public class ShipController : MonoBehaviour
 
     [Tooltip("If true, locked parts are still visible but non-interactable.")]
     public bool showLockedParts = true;
+
+    [Header("New Part Animation")]
+    public float unlockAnimDuration = 0.45f;
+    public float unlockAnimScaleMultiplier = 1.18f;
+    public int unlockAnimPulseCount = 2;
+
+    private Coroutine currentUnlockAnim;
 
     void Start()
     {
@@ -45,17 +50,15 @@ public class ShipController : MonoBehaviour
             p.renderers = p.instance.GetComponentsInChildren<Renderer>(true);
             p.colliders = p.instance.GetComponentsInChildren<Collider>(true);
 
-            // Cache original shared materials per renderer
             p.originalSharedMaterials = new Material[p.renderers.Length][];
             for (int i = 0; i < p.renderers.Length; i++)
                 p.originalSharedMaterials[i] = p.renderers[i].sharedMaterials;
 
-            // Optional: if you use an outline script/component, cache it here
-            // (example component name: "Outline" or "QuickOutline")
-            p.outlineBehaviour = p.instance.GetComponentInChildren<Behaviour>(true); // replace with specific type if you know it
+            p.outlineBehaviour = p.instance.GetComponentInChildren<Behaviour>(true);
         }
 
         ReloadParts();
+
         var qm = QuestManager.Instance;
         if (qm != null)
             qm.OnPartUnlocked += OnPartUnlocked;
@@ -80,14 +83,88 @@ public class ShipController : MonoBehaviour
         }
     }
 
+    public void PlayPendingUnlockAnimationIfNeeded()
+    {
+        bool pending = PlayerPrefs.GetInt(SaveKeys.PENDING_COLLECTION_HIGHLIGHT, 0) == 1;
+        if (!pending) return;
+
+        string partId = PlayerPrefs.GetString(SaveKeys.LAST_UNLOCKED_PART_ID, "");
+        if (string.IsNullOrEmpty(partId)) return;
+
+        ShipPart target = null;
+        foreach (var p in parts)
+        {
+            if (p != null && p.partId == partId)
+            {
+                target = p;
+                break;
+            }
+        }
+
+        if (target == null || target.instance == null)
+        {
+            Debug.LogWarning($"[Collection] Could not find part '{partId}' for pending highlight.");
+            return;
+        }
+
+        if (currentUnlockAnim != null)
+            StopCoroutine(currentUnlockAnim);
+
+        currentUnlockAnim = StartCoroutine(PlayUnlockPulse(target));
+
+        PlayerPrefs.SetInt(SaveKeys.PENDING_COLLECTION_HIGHLIGHT, 0);
+        PlayerPrefs.Save();
+    }
+
+    private IEnumerator PlayUnlockPulse(ShipPart part)
+    {
+        Transform t = part.instance.transform;
+        Vector3 baseScale = t.localScale;
+        Vector3 peakScale = baseScale * unlockAnimScaleMultiplier;
+
+        for (int pulse = 0; pulse < unlockAnimPulseCount; pulse++)
+        {
+            float half = unlockAnimDuration * 0.5f;
+
+            float time = 0f;
+            while (time < half)
+            {
+                time += Time.deltaTime;
+                float k = Mathf.Clamp01(time / half);
+                k = EaseOutBack(k);
+                t.localScale = Vector3.LerpUnclamped(baseScale, peakScale, k);
+                yield return null;
+            }
+
+            time = 0f;
+            while (time < half)
+            {
+                time += Time.deltaTime;
+                float k = Mathf.Clamp01(time / half);
+                k = Mathf.SmoothStep(0f, 1f, k);
+                t.localScale = Vector3.Lerp(peakScale, baseScale, k);
+                yield return null;
+            }
+        }
+
+        t.localScale = baseScale;
+        currentUnlockAnim = null;
+    }
+
+    private float EaseOutBack(float x)
+    {
+        const float c1 = 1.70158f;
+        const float c3 = c1 + 1f;
+        return 1f + c3 * Mathf.Pow(x - 1f, 3f) + c1 * Mathf.Pow(x - 1f, 2f);
+    }
+
     void OnPartUnlocked(string id)
     {
         foreach (var p in parts)
         {
             if (p.partId == id && p.instance != null)
             {
-                ApplyPartState(p, unlocked: true);
-                // Optional: play reveal animation here
+                ApplyPartState(p, true);
             }
         }
     }
@@ -96,7 +173,6 @@ public class ShipController : MonoBehaviour
     {
         if (p.instance == null) return;
 
-        // If you truly want hidden locked parts sometimes:
         if (!showLockedParts && !unlocked)
         {
             p.instance.SetActive(false);
@@ -105,14 +181,12 @@ public class ShipController : MonoBehaviour
 
         p.instance.SetActive(true);
 
-        // Disable interaction when locked
         if (p.colliders != null)
         {
             foreach (var c in p.colliders)
                 if (c != null) c.enabled = unlocked;
         }
 
-        // Swap visuals
         if (p.renderers != null)
         {
             for (int i = 0; i < p.renderers.Length; i++)
@@ -132,7 +206,6 @@ public class ShipController : MonoBehaviour
                         continue;
                     }
 
-                    // Keep same material slot count
                     var mats = r.sharedMaterials;
                     var ghostMats = new Material[mats.Length];
                     for (int m = 0; m < ghostMats.Length; m++)
@@ -144,6 +217,9 @@ public class ShipController : MonoBehaviour
         }
 
         if (p.outlineBehaviour != null)
+        {
             p.outlineBehaviour.enabled = !unlocked;
+        }
+           
     }
 }

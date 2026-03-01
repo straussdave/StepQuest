@@ -118,6 +118,11 @@ public class QuestManager : MonoBehaviour
         {
             Debug.Log($"[Quest] Unlocked part: {partId}.");
             SaveUnlockedParts();
+
+            PlayerPrefs.SetString(SaveKeys.LAST_UNLOCKED_PART_ID, partId);
+            PlayerPrefs.SetInt(SaveKeys.PENDING_COLLECTION_HIGHLIGHT, 1);
+            PlayerPrefs.Save();
+
             OnPartUnlocked?.Invoke(partId);
         }
 
