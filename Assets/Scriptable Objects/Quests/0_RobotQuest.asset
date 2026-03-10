@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: 0_RobotQuest
   m_EditorClassIdentifier: Assembly-CSharp::Quest
   id: 1
-  partName: Robot
+  partName: Rivet
   partTexture: {fileID: 8400000, guid: d1610bb5a17d2124189a63d18ee92251, type: 2}
   steps: 500
-  isStoryQuest: 1
+  isStoryQuest: 0
   storyOrder: 0
   chooseText: ...
   completedText: 'Thanks for retrieving me!
@@ -27,3 +27,4 @@ MonoBehaviour:
   nextDayText: "Vitals stable. You are showing mild post-impact memory gaps. Light
     movement will support circulation and recovery - let\u2019s start with a walk."
   showPortrait: 1
+  descriptionText: 

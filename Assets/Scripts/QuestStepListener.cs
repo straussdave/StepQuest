@@ -133,7 +133,7 @@ public class QuestStepListener : MonoBehaviour
         _subscribedToQuest = false;
     }
 
-    void SimulateSteps(int amount)
+    public void SimulateSteps(int amount)
     {
         Debug.Log($"[DEBUG] Simulating {amount} steps.");
         if (QuestManager.Instance != null)
