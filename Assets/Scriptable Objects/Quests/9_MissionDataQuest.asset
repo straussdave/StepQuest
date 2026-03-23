@@ -27,3 +27,4 @@ MonoBehaviour:
   nextDayText: Circulation, focus, and stamina all benefit from a steady walk. Begin
     when ready.
   showPortrait: 1
+  descriptionText: test

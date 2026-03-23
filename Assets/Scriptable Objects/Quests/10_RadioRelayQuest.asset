@@ -27,3 +27,4 @@ MonoBehaviour:
   nextDayText: Weather looks cooperative and your legs are fully operational. Time
     to explore.
   showPortrait: 1
+  descriptionText: test

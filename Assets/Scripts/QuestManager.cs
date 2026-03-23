@@ -106,7 +106,6 @@ public class QuestManager : MonoBehaviour
             return;
         }
 
-        // Capture quest BEFORE changing flags / state
         Quest completedQuest = GetCurrentQuest();
         string partId = completedQuest != null ? completedQuest.Id : PlayerPrefs.GetString(SaveKeys.ACTIVE_QUEST_ID);
 
@@ -125,6 +124,9 @@ public class QuestManager : MonoBehaviour
 
             OnPartUnlocked?.Invoke(partId);
         }
+        string completedQuestId = completedQuest.Id;
+
+        SaveSystem.UnlockMinigameForQuest(completedQuestId);
 
         Debug.Log($"[Quest] Quest completed: {(completedQuest != null ? completedQuest.Id : partId)}.");
 
@@ -132,7 +134,6 @@ public class QuestManager : MonoBehaviour
 
         OnQuestCompleted?.Invoke(completedQuest);
 
-        // Fire end-sequence trigger if everything is now unlocked
         CheckAllQuestsCompleted();
     }
 
