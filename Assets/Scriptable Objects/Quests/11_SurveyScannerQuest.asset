@@ -26,4 +26,6 @@ MonoBehaviour:
   nextDayText: Pilot, consistency beats intensity. One solid walk today is enough
     to keep momentum.
   showPortrait: 1
-  descriptionText: test
+  descriptionText: A portable scanning system once used to analyze the surrounding
+    terrain and detect unusual structures or signals. If it still functions, it could
+    reveal that this landing site is more than an accident.

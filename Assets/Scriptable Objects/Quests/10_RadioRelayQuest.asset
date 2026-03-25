@@ -27,4 +27,6 @@ MonoBehaviour:
   nextDayText: Weather looks cooperative and your legs are fully operational. Time
     to explore.
   showPortrait: 1
-  descriptionText: test
+  descriptionText: A long-range communication module built to send and receive signals
+    across vast distances. It is badly damaged, yet it may still contain traces of
+    contact made before everything went wrong.

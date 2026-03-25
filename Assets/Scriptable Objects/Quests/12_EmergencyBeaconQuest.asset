@@ -27,4 +27,6 @@ MonoBehaviour:
   nextDayText: "Mission tip: start the walk, and motivation shows up on the way.
     Let\u2019s go."
   showPortrait: 1
-  descriptionText: test
+  descriptionText: 'A distress transmitter designed to activate when all other systems
+    fail. It remains silent for now, but restoring it may answer the most important
+    question: was anyone ever meant to find this place?'

@@ -6,16 +6,17 @@ public class GameFlowController : MonoBehaviour
     [Header("Panels")]
     public GameObject splashPanel;
     public GameObject robotDialoguePanel;
-    public GameObject collectionScreenPanel;
     public GameObject gamePanel;
     public TMP_Text robotDialogueText;
     public TMPTypewriter typewriter;
-    public ShipController shipController;
+
+    [Header("Layout")]
+    public GameObject header;
+    public GameObject navbar;
 
     [Header("Game UI")]
     public GameObject questChoiceRow;
     public GameObject progressBarRoot;
-    public ShipRotateInput shipRotateInput;
     public GameObject chosenQuestPanel;
 
     [Header("End Sequence")]
@@ -42,7 +43,9 @@ public class GameFlowController : MonoBehaviour
             endSequencePopup.SetActive(false);
         }
 
-            var qm = QuestManager.Instance;
+        UpdateLayoutVisibility();
+
+        var qm = QuestManager.Instance;
 
         if (qm != null)
         {
@@ -73,7 +76,7 @@ public class GameFlowController : MonoBehaviour
             _questManager = QuestManager.Instance;
         }
 
-        if(_questManager.CheckAllQuestsCompleted())
+        if (_questManager.CheckAllQuestsCompleted())
         {
             Debug.Log("[UserAction] All quests already completed. Starting end sequence.");
             HandleAllQuestsCompleted();
@@ -84,12 +87,14 @@ public class GameFlowController : MonoBehaviour
         Debug.Log("is a quest currently active? " + isQuestActive);
 
         splashPanel.SetActive(false);
+        UpdateLayoutVisibility();
 
         if (isQuestActive)
         {
             gamePanel.SetActive(true);
             chosenQuestPanel.SetActive(true);
             SetQuestChoiceRow(false, "PlayClicked, currently quest is already active -> hide choices");
+            UpdateLayoutVisibility();
             return;
         }
 
@@ -104,6 +109,7 @@ public class GameFlowController : MonoBehaviour
 
         gamePanel.SetActive(false);
         SetQuestChoiceRow(false, "PlayClicked -> hide choices");
+        UpdateLayoutVisibility();
     }
 
     private void HandleQuestNotDoneToday()
@@ -111,6 +117,7 @@ public class GameFlowController : MonoBehaviour
         phase = DialoguePhase.Intro;
         robotDialoguePanel.SetActive(true);
         BringToFront(robotDialoguePanel);
+        UpdateLayoutVisibility();
 
         if (_questManager == null)
         {
@@ -134,6 +141,7 @@ public class GameFlowController : MonoBehaviour
         phase = DialoguePhase.Completed;
         robotDialoguePanel.SetActive(true);
         BringToFront(robotDialoguePanel);
+        UpdateLayoutVisibility();
 
         string msg = "You've already completed today's mission. Go get some rest while I work on tomorrows route.";
         WriteMessage(msg);
@@ -143,7 +151,6 @@ public class GameFlowController : MonoBehaviour
     {
         Debug.Log($"[UserAction] Dialogue continue clicked. Current phase: {phase}.");
 
-        // First click: finish typing. Second click: advance/close.
         if (typewriter != null && typewriter.IsTyping)
         {
             Debug.Log("[UserAction] Dialogue typing skipped to full text.");
@@ -203,27 +210,8 @@ public class GameFlowController : MonoBehaviour
                 phase = DialoguePhase.None;
                 break;
         }
-    }
 
-    public void OnOpenCollectionScreen()
-    {
-        Debug.Log("[UserAction] Opened collection screen.");
-        collectionScreenPanel.SetActive(true);
-        gamePanel.SetActive(false);
-
-        shipController.ReloadParts();
-        shipController.PlayPendingUnlockAnimationIfNeeded();
-
-        if (shipRotateInput != null) shipRotateInput.enabled = true;
-    }
-
-    public void OnCloseCollectionScreen()
-    {
-        Debug.Log("[UserAction] Closed collection screen.");
-        collectionScreenPanel.SetActive(false);
-        gamePanel.SetActive(true);
-
-        if (shipRotateInput != null) shipRotateInput.enabled = false;
+        UpdateLayoutVisibility();
     }
 
     void HandleQuestSelected(Quest q)
@@ -243,6 +231,7 @@ public class GameFlowController : MonoBehaviour
         WriteMessage(msg);
 
         chosenQuestPanel.SetActive(true);
+        UpdateLayoutVisibility();
     }
 
     void HandleQuestCompleted(Quest q)
@@ -250,7 +239,6 @@ public class GameFlowController : MonoBehaviour
         Debug.Log($"[UserAction] Quest completed event handled: {(q != null ? q.Id : "null")}.");
 
         phase = DialoguePhase.Completed;
-        collectionScreenPanel.SetActive(false);
         robotDialoguePanel.SetActive(true);
         BringToFront(robotDialoguePanel);
         gamePanel.SetActive(false);
@@ -260,6 +248,7 @@ public class GameFlowController : MonoBehaviour
             : "Nice work! Mission complete.";
 
         WriteMessage(msg);
+        UpdateLayoutVisibility();
     }
 
     void HandleAllQuestsCompleted()
@@ -272,7 +261,6 @@ public class GameFlowController : MonoBehaviour
         SetQuestChoiceRow(false, "AllQuestsCompleted -> hide choices");
 
         if (progressBarRoot != null) progressBarRoot.SetActive(false);
-        if (shipRotateInput != null) shipRotateInput.enabled = false;
 
         robotDialoguePanel.SetActive(true);
 
@@ -282,6 +270,7 @@ public class GameFlowController : MonoBehaviour
                     "The station is right: conditions are unstable, and traffic through this region would be reckless.";
 
         WriteMessage(msg);
+        UpdateLayoutVisibility();
     }
 
     public void OnEndPopupExportLogs()
@@ -305,8 +294,8 @@ public class GameFlowController : MonoBehaviour
         if (endSequencePopup != null)
             endSequencePopup.SetActive(false);
 
-        // Optional: let player still inspect their collection after finishing
         gamePanel.SetActive(true);
+        UpdateLayoutVisibility();
     }
 
     void SetQuestChoiceRow(bool active, string reason)
@@ -337,6 +326,7 @@ public class GameFlowController : MonoBehaviour
         SetQuestChoiceRow(false, "DialogueContinue EndSequence -> hide choices");
         chosenQuestPanel.SetActive(false);
         gamePanel.SetActive(true);
+
         if (endSequencePopup != null)
         {
             endSequencePopup.SetActive(true);
@@ -346,16 +336,27 @@ public class GameFlowController : MonoBehaviour
                 endSequencePopupText.text = "Thank you for playing!\r\n\r\nPlease use this button to send the logfiles via E-Mail.";
             }
         }
+
+        UpdateLayoutVisibility();
+    }
+
+    void UpdateLayoutVisibility()
+    {
+        bool splashVisible = splashPanel != null && splashPanel.activeSelf;
+        bool dialogueVisible = robotDialoguePanel != null && robotDialoguePanel.activeSelf;
+
+        bool showLayout = !splashVisible && !dialogueVisible;
+
+        if (header != null) header.SetActive(showLayout);
+        if (navbar != null) navbar.SetActive(showLayout);
     }
 
     void BringToFront(GameObject panel)
     {
         if (panel == null) return;
 
-        // Same parent canvas: move to top in hierarchy
         panel.transform.SetAsLastSibling();
 
-        // Separate canvas: ensure higher render order
         var canvas = panel.GetComponent<Canvas>();
         if (canvas != null)
         {

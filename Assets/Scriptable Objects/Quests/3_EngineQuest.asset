@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 3_EngineQuest
   m_EditorClassIdentifier: Assembly-CSharp::Quest
   id: 3
-  partName: Engine
+  partName: Thruster
   partTexture: {fileID: 8400000, guid: 578fba33dfc7b6f4db3b7a7e83bcb343, type: 2}
   steps: 5000
   isStoryQuest: 0
@@ -25,3 +25,4 @@ MonoBehaviour:
   nextDayText: "Regular movement helps maintain stamina and joint mobility. Today\u2019s
     walk still counts."
   showPortrait: 1
+  descriptionText: 
