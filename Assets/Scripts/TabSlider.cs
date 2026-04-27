@@ -38,6 +38,8 @@ public class TabSlider : MonoBehaviour
     [SerializeField] private float duration = 0.25f;
     [SerializeField] private AnimationCurve curve = AnimationCurve.EaseInOut(0, 0, 1, 1);
 
+    public float Duration => duration;
+
     private Tab currentTab = Tab.Home;
     private bool isAnimating;
 

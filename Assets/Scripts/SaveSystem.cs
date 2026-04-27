@@ -1,12 +1,12 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SaveSystem
 {
     private const char Separator = ';';
+
+    public static event Action<int> OnMinigameUnlocked;
 
     public static void ResetGame()
     {
@@ -16,25 +16,7 @@ public class SaveSystem
 
     public static void ResetToFreshStart()
     {
-        DeleteKey(SaveKeys.UNLOCKED_KEY);
-        DeleteKey(SaveKeys.ACTIVE_QUEST_ID);
-        DeleteKey(SaveKeys.NEXT_DAY_TEXT_KEY);
-        DeleteKey(SaveKeys.ACTIVE_QUEST_IS_ACTIVE);
-        DeleteKey(SaveKeys.QUEST_DONE_TODAY);
-
-        DeleteKey(SaveKeys.START_DAY_KEY);
-        DeleteKey(SaveKeys.LAST_QUEST_DAY_KEY);
-
-        DeleteKey(SaveKeys.LAST_UNLOCKED_PART_ID);
-        DeleteKey(SaveKeys.PENDING_COLLECTION_HIGHLIGHT);
-
-        DeleteKey(SaveKeys.HAS_ROTATED_SHIP);
-
-        DeleteKey(SaveKeys.MINIGAME_1_UNLOCKED);
-        DeleteKey(SaveKeys.MINIGAME_2_UNLOCKED);
-        DeleteKey(SaveKeys.MINIGAME_3_UNLOCKED);
-        DeleteKey(SaveKeys.MINIGAME_4_UNLOCKED);
-
+        PlayerPrefs.DeleteAll();
         PlayerPrefs.Save();
     }
 
@@ -50,28 +32,41 @@ public class SaveSystem
 
     public static void UnlockMinigameForQuest(string questId)
     {
-        switch (questId)
+        int minigameIndex = QuestMinigameMap.GetMinigameIndexForQuest(questId);
+
+        switch (minigameIndex)
         {
-            case "9":
+            case 0:
                 PlayerPrefs.SetInt(SaveKeys.MINIGAME_1_UNLOCKED, 1);
                 break;
-            case "10":
+            case 1:
                 PlayerPrefs.SetInt(SaveKeys.MINIGAME_2_UNLOCKED, 1);
                 break;
-            case "11":
+            case 2:
                 PlayerPrefs.SetInt(SaveKeys.MINIGAME_3_UNLOCKED, 1);
                 break;
-            case "12":
+            case 3:
                 PlayerPrefs.SetInt(SaveKeys.MINIGAME_4_UNLOCKED, 1);
                 break;
+            default:
+                Debug.LogWarning($"[SaveSystem] No minigame mapped for questId '{questId}'.");
+                return;
         }
 
         PlayerPrefs.Save();
+        OnMinigameUnlocked?.Invoke(minigameIndex);
     }
 
     public static bool IsMinigameUnlocked(int index)
     {
-        return PlayerPrefs.GetInt("MINIGAME_" + index + "_UNLOCKED", 0) == 1;
+        switch (index)
+        {
+            case 0: return PlayerPrefs.GetInt(SaveKeys.MINIGAME_1_UNLOCKED, 0) == 1;
+            case 1: return PlayerPrefs.GetInt(SaveKeys.MINIGAME_2_UNLOCKED, 0) == 1;
+            case 2: return PlayerPrefs.GetInt(SaveKeys.MINIGAME_3_UNLOCKED, 0) == 1;
+            case 3: return PlayerPrefs.GetInt(SaveKeys.MINIGAME_4_UNLOCKED, 0) == 1;
+            default: return false;
+        }
     }
 }
 

@@ -2,7 +2,6 @@ using System.Collections.Generic;
 
 public static class QuestMinigameMap
 {
-
     public static class MinigameIds
     {
         public const string MG1 = "minigame_1";
@@ -26,5 +25,17 @@ public static class QuestMinigameMap
 
         string minigameId;
         return Map.TryGetValue(questId, out minigameId) ? minigameId : null;
+    }
+
+    public static int GetMinigameIndexForQuest(string questId)
+    {
+        switch (questId)
+        {
+            case "9": return 0;
+            case "10": return 1;
+            case "11": return 2;
+            case "12": return 3;
+            default: return -1;
+        }
     }
 }

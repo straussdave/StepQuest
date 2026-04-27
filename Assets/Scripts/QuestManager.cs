@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +14,8 @@ public class QuestManager : MonoBehaviour
     public event Action<Quest> OnQuestSelected;
     public event Action<Quest> OnQuestCompleted;
     public event Action OnAllQuestsCompleted;
+    public static event Action<int> OnMinigameUnlocked;
+    [SerializeField] private TabSlider tabSlider;
 
     private readonly HashSet<string> unlockedParts = new HashSet<string>();
     private bool allQuestsCompletedFired = false;
@@ -106,35 +109,7 @@ public class QuestManager : MonoBehaviour
             return;
         }
 
-        Quest completedQuest = GetCurrentQuest();
-        string partId = completedQuest != null ? completedQuest.Id : PlayerPrefs.GetString(SaveKeys.ACTIVE_QUEST_ID);
-
-        PlayerPrefs.SetInt(SaveKeys.QUEST_DONE_TODAY, 1);
-        PlayerPrefs.SetInt(SaveKeys.ACTIVE_QUEST_IS_ACTIVE, 0);
-        PlayerPrefs.Save();
-
-        if (!string.IsNullOrEmpty(partId) && unlockedParts.Add(partId))
-        {
-            Debug.Log($"[Quest] Unlocked part: {partId}.");
-            SaveUnlockedParts();
-
-            PlayerPrefs.SetString(SaveKeys.LAST_UNLOCKED_PART_ID, partId);
-            PlayerPrefs.SetInt(SaveKeys.PENDING_COLLECTION_HIGHLIGHT, 1);
-            PlayerPrefs.Save();
-
-            OnPartUnlocked?.Invoke(partId);
-        }
-        string completedQuestId = completedQuest.Id;
-
-        SaveSystem.UnlockMinigameForQuest(completedQuestId);
-
-        Debug.Log($"[Quest] Quest completed: {(completedQuest != null ? completedQuest.Id : partId)}.");
-
-        DateUtil.MarkQuestDoneToday();
-
-        OnQuestCompleted?.Invoke(completedQuest);
-
-        CheckAllQuestsCompleted();
+        StartCoroutine(GoHomeAndWaitBeforeCompletingQuest());
     }
 
     public bool IsPartUnlocked(string partId)
@@ -259,5 +234,46 @@ public class QuestManager : MonoBehaviour
         Debug.Log("[Quest] All quests completed.");
         OnAllQuestsCompleted?.Invoke();
         return true;
+    }
+
+    private IEnumerator GoHomeAndWaitBeforeCompletingQuest()
+    {
+        tabSlider.ShowHome();
+        yield return new WaitForSeconds(tabSlider.Duration);
+
+        FinishQuestCompletion();
+    }
+
+    private void FinishQuestCompletion()
+    {
+        Quest completedQuest = GetCurrentQuest();
+        string partId = completedQuest != null ? completedQuest.Id : PlayerPrefs.GetString(SaveKeys.ACTIVE_QUEST_ID);
+
+        PlayerPrefs.SetInt(SaveKeys.QUEST_DONE_TODAY, 1);
+        PlayerPrefs.SetInt(SaveKeys.ACTIVE_QUEST_IS_ACTIVE, 0);
+        PlayerPrefs.Save();
+
+        if (!string.IsNullOrEmpty(partId) && unlockedParts.Add(partId))
+        {
+            Debug.Log($"[Quest] Unlocked part: {partId}.");
+            SaveUnlockedParts();
+
+            PlayerPrefs.SetString(SaveKeys.LAST_UNLOCKED_PART_ID, partId);
+            PlayerPrefs.SetInt(SaveKeys.PENDING_COLLECTION_HIGHLIGHT, 1);
+            PlayerPrefs.Save();
+
+            OnPartUnlocked?.Invoke(partId);
+        }
+        string completedQuestId = completedQuest.Id;
+
+        SaveSystem.UnlockMinigameForQuest(completedQuestId);
+
+        Debug.Log($"[Quest] Quest completed: {(completedQuest != null ? completedQuest.Id : partId)}.");
+
+        DateUtil.MarkQuestDoneToday();
+
+        OnQuestCompleted?.Invoke(completedQuest);
+
+        CheckAllQuestsCompleted();
     }
 }
