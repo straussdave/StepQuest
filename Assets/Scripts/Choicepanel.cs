@@ -11,6 +11,10 @@ public class Choicepanel : MonoBehaviour
     [Header("Quest Pool")]
     public List<Quest> quests;
 
+    [Header("Story Quest Icon Layout")]
+    [SerializeField] private Vector2 storyIconAnchoredPositionOffset = new Vector2(0f, 25f);
+    [SerializeField] private Vector2 storyIconScale = new Vector2(1.3f, 1.3f);
+
     [System.Serializable]
     public class ChoiceSlot
     {
@@ -29,6 +33,15 @@ public class Choicepanel : MonoBehaviour
 
         [Header("Layout")]
         public RectTransform textContainer;
+
+        [HideInInspector] public Vector2 originalAnchorMin;
+        [HideInInspector] public Vector2 originalAnchorMax;
+        [HideInInspector] public Vector2 originalPivot;
+        [HideInInspector] public Vector2 originalOffsetMin;
+        [HideInInspector] public Vector2 originalOffsetMax;
+
+        [HideInInspector] public Vector2 originalIconAnchoredPosition;
+        [HideInInspector] public Vector3 originalIconScale;
     }
 
     [Header("Slots (your 2 QuestChoice children)")]
@@ -45,7 +58,63 @@ public class Choicepanel : MonoBehaviour
         if (progressBarRoot != null)
             progressBarRoot.SetActive(false);
 
+        CacheOriginalLayouts();
         SetupSlots();
+    }
+
+    private void CacheOriginalLayouts()
+    {
+        if (slots == null) return;
+
+        foreach (var slot in slots)
+        {
+            if (slot == null) continue;
+
+            if (slot.textContainer != null)
+            {
+                slot.originalAnchorMin = slot.textContainer.anchorMin;
+                slot.originalAnchorMax = slot.textContainer.anchorMax;
+                slot.originalPivot = slot.textContainer.pivot;
+                slot.originalOffsetMin = slot.textContainer.offsetMin;
+                slot.originalOffsetMax = slot.textContainer.offsetMax;
+            }
+
+            if (slot.iconImage != null)
+            {
+                RectTransform iconRect = slot.iconImage.rectTransform;
+                slot.originalIconAnchoredPosition = iconRect.anchoredPosition;
+                slot.originalIconScale = iconRect.localScale;
+            }
+        }
+    }
+
+    private void ResetSlotLayout(ChoiceSlot slot)
+    {
+        if (slot == null || slot.textContainer == null) return;
+
+        slot.textContainer.anchorMin = slot.originalAnchorMin;
+        slot.textContainer.anchorMax = slot.originalAnchorMax;
+        slot.textContainer.pivot = slot.originalPivot;
+        slot.textContainer.offsetMin = slot.originalOffsetMin;
+        slot.textContainer.offsetMax = slot.originalOffsetMax;
+    }
+
+    private void ResetIconLayout(ChoiceSlot slot)
+    {
+        if (slot == null || slot.iconImage == null) return;
+
+        RectTransform iconRect = slot.iconImage.rectTransform;
+        iconRect.anchoredPosition = slot.originalIconAnchoredPosition;
+        iconRect.localScale = slot.originalIconScale;
+    }
+
+    private void ApplyStoryIconLayout(ChoiceSlot slot)
+    {
+        if (slot == null || slot.iconImage == null) return;
+
+        RectTransform iconRect = slot.iconImage.rectTransform;
+        iconRect.anchoredPosition = slot.originalIconAnchoredPosition + storyIconAnchoredPositionOffset;
+        iconRect.localScale = new Vector3(storyIconScale.x, storyIconScale.y, 1f);
     }
 
     void SetupSlots()
@@ -190,32 +259,59 @@ public class Choicepanel : MonoBehaviour
     void AssignSlot(int i, Quest q)
     {
         if (slots[i].root) slots[i].root.SetActive(true);
-        slots[i].quest = q;
 
-        if (slots[i].topText) slots[i].topText.text = q != null ? q.PartName : "N/A";
-        if (slots[i].bottomText) slots[i].bottomText.text = q != null ? $"{q.Steps} Steps" : "";
+        ResetSlotLayout(slots[i]);
+        ResetIconLayout(slots[i]);
+
+        slots[i].quest = q;
 
         bool isStoryQuest = q != null && q.IsStoryQuest;
 
-        // Icon visibility
-        if (slots[i].iconImage)
+        if (isStoryQuest)
         {
-            slots[i].iconImage.texture = (!isStoryQuest && q != null) ? q.PartTexture : null;
-            slots[i].iconImage.gameObject.SetActive(!isStoryQuest);
-        }
+            // Story quests: show PNG image + bottom text only
+            if (slots[i].textContainer != null)
+                slots[i].textContainer.gameObject.SetActive(true);
 
-        // Center text vertically for story quests
-        if (slots[i].textContainer != null)
-        {
-            if (isStoryQuest)
+            if (slots[i].topText != null)
+                slots[i].topText.gameObject.SetActive(false);
+
+            if (slots[i].bottomText != null)
             {
-                slots[i].textContainer.anchorMin = new Vector2(0f, 1f);
-                slots[i].textContainer.anchorMax = new Vector2(1f, 1f);
+                slots[i].bottomText.gameObject.SetActive(true);
+                slots[i].bottomText.text = q != null ? $"{q.Steps} Steps" : "";
+            }
 
-                slots[i].textContainer.pivot = new Vector2(0.5f, 1f);
+            if (slots[i].iconImage != null)
+            {
+                slots[i].iconImage.texture = q != null ? q.StoryTexture : null;
+                slots[i].iconImage.gameObject.SetActive(q != null && q.StoryTexture != null);
 
-                slots[i].textContainer.offsetMin = new Vector2(0f, -97f);
-                slots[i].textContainer.offsetMax = new Vector2(0f, -45f);
+                ApplyStoryIconLayout(slots[i]);
+            }
+        }
+        else
+        {
+            // Normal ship-part quests: show RenderTexture + top/bottom text
+            if (slots[i].textContainer != null)
+                slots[i].textContainer.gameObject.SetActive(true);
+
+            if (slots[i].topText != null)
+            {
+                slots[i].topText.gameObject.SetActive(true);
+                slots[i].topText.text = q != null ? q.PartName : "N/A";
+            }
+
+            if (slots[i].bottomText != null)
+            {
+                slots[i].bottomText.gameObject.SetActive(true);
+                slots[i].bottomText.text = q != null ? $"{q.Steps} Steps" : "";
+            }
+
+            if (slots[i].iconImage != null)
+            {
+                slots[i].iconImage.texture = q != null ? q.PartTexture : null;
+                slots[i].iconImage.gameObject.SetActive(q != null && q.PartTexture != null);
             }
         }
 

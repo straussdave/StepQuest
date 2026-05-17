@@ -6,7 +6,14 @@ public class Quest : ScriptableObject
     [Header("Quest")]
     [SerializeField] private string id;
     [SerializeField] private string partName;
+
+    [Header("Visuals")]
+    [Tooltip("Used for normal ship-part quests. Usually a RenderTexture from the 3D preview camera.")]
     [SerializeField] private RenderTexture partTexture;
+
+    [Tooltip("Used for story quests. Assign a PNG/Texture2D here.")]
+    [SerializeField] private Texture2D storyTexture;
+
     [SerializeField] private int steps;
     [SerializeField] private bool isStoryQuest = false;
 
@@ -27,7 +34,10 @@ public class Quest : ScriptableObject
 
     public string Id => id;
     public string PartName => partName;
+
     public RenderTexture PartTexture => partTexture;
+    public Texture2D StoryTexture => storyTexture;
+
     public int Steps => steps;
 
     public string ChooseText => chooseText;
