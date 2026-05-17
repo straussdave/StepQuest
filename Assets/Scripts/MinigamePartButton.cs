@@ -1,12 +1,16 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MinigameSceneButton : MonoBehaviour
+public class MinigamePartButton : MonoBehaviour
 {
-    [Header("Scene")]
-    [SerializeField] private string sceneName;
+    [Header("Part Info")]
+    [SerializeField] private string partName;
+    [TextArea(3, 8)]
+    [SerializeField] private string partDescription;
     [SerializeField] private int minigameIndex;
+
+    [Header("Description Panel")]
+    [SerializeField] private PartDescriptionPanel descriptionPanel;
 
     [Header("Visuals")]
     [SerializeField] private Image buttonImage;
@@ -15,7 +19,8 @@ public class MinigameSceneButton : MonoBehaviour
 
     [Header("Behavior")]
     [SerializeField] private Button button;
-    [SerializeField] private bool disableButtonWhenLocked = true;
+    [SerializeField] private bool disableButtonWhenLocked = false;
+    [SerializeField] private string lockedDescription = "This part has not been recovered yet.";
 
     private void Awake()
     {
@@ -28,6 +33,7 @@ public class MinigameSceneButton : MonoBehaviour
         {
             button = GetComponent<Button>();
         }
+
         Refresh();
     }
 
@@ -42,29 +48,23 @@ public class MinigameSceneButton : MonoBehaviour
         SaveSystem.OnMinigameUnlocked -= HandleMinigameUnlocked;
     }
 
-    public void OpenMinigame()
+    public void ShowPartDescription()
     {
+        if (descriptionPanel == null)
+        {
+            Debug.LogError($"[MinigamePartButton] No description panel assigned on {name}.");
+            return;
+        }
+
         bool isUnlocked = SaveSystem.IsMinigameUnlocked(minigameIndex);
+
         if (!isUnlocked)
         {
-            Debug.Log($"[Minigame] Minigame {minigameIndex} is locked.");
+            descriptionPanel.Show(partName, lockedDescription);
             return;
         }
 
-        if (string.IsNullOrWhiteSpace(sceneName))
-        {
-            Debug.LogError($"[Minigame] No scene name assigned on {name}.");
-            return;
-        }
-
-        if (!Application.CanStreamedLevelBeLoaded(sceneName))
-        {
-            Debug.LogError($"[Minigame] Scene '{sceneName}' is not in Build Settings.");
-            return;
-        }
-
-        Debug.Log($"[Minigame] Opening scene: {sceneName}");
-        SceneManager.LoadScene(sceneName);
+        descriptionPanel.Show(partName, partDescription);
     }
 
     public void Refresh()
