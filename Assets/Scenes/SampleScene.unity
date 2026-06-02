@@ -358,7 +358,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Minigames
+  m_text: 'Modules
 
 '
   m_isRightToLeft: 0
@@ -597,7 +597,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1080, y: 1920}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0.5
+  m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -1073,7 +1073,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &207101474
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1083,7 +1083,7 @@ RectTransform:
   m_GameObject: {fileID: 207101473}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1612953331}
@@ -1400,17 +1400,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MinigameSceneButton
   partName: Mission Data Core
   partDescription: "The Mission Data Core was the ship\u2019s central memory unit.
-    It stored mission logs, navigation records, crew data, system reports, and the
-    automated decisions made before the crash. Now that you have recovered it, damaged
-    fragments of the original mission are finally accessible again.\n\nMost of the
-    core\u2019s files are corrupted, but enough remains to confirm that the crash
-    was not just a simple navigation failure. The ship was following a specific mission
-    route before everything went wrong, and several final logs were either damaged
-    during impact or already missing before the crash occurred.\n\nRecovering the
-    Mission Data Core gives you the first real clue about why you came to this planet.
-    The mission was not random, and the planet was not an accidental destination.
-    Somewhere inside the damaged data, there are signs that you were searching for
-    something - or responding to something - before the crash."
+    It stored the original flight plan, navigation records, crew data, system reports,
+    and mission logs from before the crash.\n\nAfter recovery, the core restores
+    enough data to confirm that your arrival here was intentional. This was not a
+    random route, and the crash was not just bad luck. Several mission files are
+    still corrupted or locked, but the readable fragments point to a classified survey
+    operation.\n\nMost importantly, the recovered logs show that the ship detected
+    an unusual signal shortly before descent. The source was somewhere on this planet,
+    and the mission objective appears to have changed after contact with it.\n\nThe
+    core does not explain everything yet, but it gives you the first solid truth:
+    you came here for a reason."
   minigameIndex: 0
   descriptionPanel: {fileID: 1887549286}
   buttonImage: {fileID: 273889302}
@@ -4056,7 +4055,7 @@ GameObject:
   - component: {fileID: 934728185}
   - component: {fileID: 934728184}
   m_Layer: 5
-  m_Name: EmergencyBeaconMinigame
+  m_Name: AuthorizationBeaconMinigame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4187,17 +4186,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 409e9e13abdf896468497f816986f3b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MinigameSceneButton
-  partName: Emergency Beacon
-  partDescription: "The Emergency Beacon was the ship\u2019s last-resort survival
-    transmitter. It was designed to broadcast a distress signal even when all other
-    systems failed. After being recovered, it begins sending a repeating emergency
-    pulse from the crash site.\n\nThe beacon confirms that you are no longer completely
-    untraceable. Its signal is weak, but steady enough to mark the crash location
-    and broadcast survival data into the surrounding region. For the first time since
-    the crash, rescue feels less like hope and more like a possibility.\n\nHowever,
-    activating the beacon also changes the situation. A signal does not choose who
-    hears it. Every pulse announces that you survived the crash - and if something
-    else is listening, it now knows where to look."
+  partName: Authorization Beacon
+  partDescription: "The Authorization Beacon was the ship\u2019s secure identification
+    system. It broadcasts encrypted mission credentials to stations, satellites,
+    drones, and automated facilities that require proof of access.\n\nAfter recovery,
+    the beacon restores your ship\u2019s local authorization signature. This allows
+    the robot to authenticate with nearby systems instead of being treated as an
+    unknown intruder.\n\nThe recovered data explains why this matters: the buried
+    structure below the crash site is not just a ruin. It is an automated station,
+    and it has been rejecting all outside signals since before the crash. Your original
+    distress call likely failed because the station refused to recognize the damaged
+    ship.\n\nWith the beacon active again, locked systems may now respond. Doors,
+    logs, and deeper transmissions could become accessible. For the first time, the
+    path forward is not just survival. It is investigation."
   minigameIndex: 3
   descriptionPanel: {fileID: 1887549286}
   buttonImage: {fileID: 934728182}
@@ -4505,6 +4506,7 @@ MonoBehaviour:
   typewriter: {fileID: 1612953334}
   header: {fileID: 1657971900}
   navbar: {fileID: 2105854198}
+  tabSlider: {fileID: 2105854202}
   questChoiceRow: {fileID: 1266222061}
   progressBarRoot: {fileID: 1805041744}
   chosenQuestPanel: {fileID: 550333343}
@@ -6006,18 +6008,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MinigameSceneButton
   partName: Radio Relay
-  partDescription: "The Radio Relay was the ship\u2019s long-range communication
-    module. It handled incoming transmissions, outgoing reports, and contact with
-    distant support stations. After being recovered, it begins to pick up broken
-    fragments of old signals still moving through the planet\u2019s atmosphere.\n\nThe
-    relay does not restore full communication, but it reveals something important:
-    you were not completely alone before the crash. Faint transmission fragments
-    suggest that messages were sent near the time of impact - some from your ship,
-    and possibly others from an unknown source.\n\nWith the Radio Relay restored,
-    the silence around the crash site feels different. What first seemed like isolation
-    now feels more like interference. The static contains patterns, repeated signal
-    bursts, and traces of communication that should not be there if the planet were
-    truly empty."
+  partDescription: "The Radio Relay Module was the ship\u2019s long-range communication
+    system. It handled distress calls, mission updates, navigation beacons, and contact
+    with orbital or remote survey networks.\n\nOnce recovered, the relay begins scanning
+    the surrounding frequencies again. Full communication is still impossible, but
+    the module detects a repeating signal buried under heavy static. The signal is
+    not strong enough to identify completely, yet it matches the format of an old
+    autonomous survey network.\n\nThat matters because the network should no longer
+    be active. According to the restored mission data, this region was marked abandoned
+    long before your arrival.\n\nThe relay also confirms something important: you
+    are not just hearing random interference. Something nearby is still broadcasting,
+    and the signal appears to be connected to the same source that changed your mission
+    before the crash."
   minigameIndex: 1
   descriptionPanel: {fileID: 1887549286}
   buttonImage: {fileID: 1321508962}
@@ -7004,7 +7006,7 @@ RectTransform:
   m_GameObject: {fileID: 1612953330}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 174864334}
@@ -7015,7 +7017,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 25}
+  m_AnchoredPosition: {x: 0, y: 600}
   m_SizeDelta: {x: 800, y: 800}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1612953332
@@ -7802,23 +7804,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MinigameSceneButton
   partName: Survey Scanner
-  partDescription: 'The Survey Scanner was built to map unknown terrain, analyze
-    minerals, measure atmosphere, and detect unusual energy signatures. After recovery,
-    it gives you a clearer view of the surrounding area and confirms that this planet
-    is more unusual than it first appeared.
+  partDescription: 'The Survey Scanner was built to map unknown terrain and detect
+    hazards before exploration teams moved in. It analyzes mineral density, radiation
+    levels, magnetic anomalies, and buried structures.
 
 
-    Its readings show hidden wreckage
-    locations, unstable terrain, and strange underground structures that do not match
-    natural formations. Some scans also detect energy signatures beneath the surface,
-    pulsing at regular intervals like a system that is still active.
+    After recovery, the
+    scanner confirms that the signal detected by the radio relay is coming from below
+    the surface. The surrounding terrain is mostly stable, but the scans reveal artificial
+    geometry beneath the crash zone: walls, corridors, and power conduits where there
+    should only be rock.
 
 
-    Recovering
-    the Survey Scanner changes the planet from an empty crash site into a place with
-    history. The landscape is not just rock, dust, and survival hazards. There are
-    patterns buried below the surface, and your ship may have crashed closer to something
-    important than you realized.'
+    The structure is old, but it is not dead. Energy still
+    moves through parts of it, and the scanner detects several sealed sections that
+    were intentionally hidden from standard survey equipment.
+
+
+    This changes
+    the situation. You did not just crash near the signal. You crashed almost directly
+    above its source. Whatever brought the ship down may still be active underground.'
   minigameIndex: 2
   descriptionPanel: {fileID: 1887549286}
   buttonImage: {fileID: 1792362882}
@@ -8444,7 +8449,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.07058824, g: 0.0627451, b: 0.08627451, a: 0.9529412}
+  m_Color: {r: 0.07058824, g: 0.0627451, b: 0.08627451, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -9037,7 +9042,7 @@ PrefabInstance:
       objectReference: {fileID: 976036231}
     - target: {fileID: 8718518970990714544, guid: 9a96c432026d22e4b9b408c7b6186237, type: 3}
       propertyPath: m_text
-      value: v0.2.1
+      value: v0.3.1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4247966289218025557, guid: 9a96c432026d22e4b9b408c7b6186237, type: 3}

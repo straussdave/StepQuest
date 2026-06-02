@@ -146,6 +146,7 @@ public class ShipRotateInput : MonoBehaviour
         PlayerPrefs.Save();
 
         Debug.Log("[UserAction] User rotated ship for the first time.");
+        AnalyticsLogger.Instance?.LogShipRotatedFirstTime();
         OnFirstShipRotation?.Invoke();
     }
 

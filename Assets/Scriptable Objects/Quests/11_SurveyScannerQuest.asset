@@ -15,17 +15,17 @@ MonoBehaviour:
   id: 11
   partName: Survey Scanner
   partTexture: {fileID: 0}
+  storyTexture: {fileID: 2800000, guid: 23047e1735cd7f54ab940baa65015a72, type: 3}
   steps: 4000
   isStoryQuest: 1
   storyOrder: 3
-  chooseText: Select the survey scanner. If the signal source is still active, we
-    need a map of the area and a hazard profile before moving closer.
-  completedText: "Scanner recovered. Terrain and radiation scans are within tolerances.
-    More importantly: there\u2019s a structured site nearby - likely a buried relay
-    station. It\u2019s running on emergency power."
+  chooseText: Selected the survey scanner. If the signal source is still active,
+    we need a map of the area and a hazard profile before moving closer.
+  completedText: Survey scanner recovered. Surface readings are stable, but the ground
+    below is not. There is a buried structure ahead, and it is still drawing power.
   nextDayText: Pilot, consistency beats intensity. One solid walk today is enough
     to keep momentum.
   showPortrait: 1
-  descriptionText: A portable scanning system once used to analyze the surrounding
-    terrain and detect unusual structures or signals. If it still functions, it could
-    reveal that this landing site is more than an accident.
+  descriptionText: A portable scanning system designed to analyze terrain, minerals,
+    radiation, and hidden structures. It can help identify what lies beneath the
+    surface.

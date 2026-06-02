@@ -15,18 +15,19 @@ MonoBehaviour:
   id: 9
   partName: Mission Data Core
   partTexture: {fileID: 0}
+  storyTexture: {fileID: 2800000, guid: 5092761fe8776aa4a8e51c6688361959, type: 3}
   steps: 2500
   isStoryQuest: 1
   storyOrder: 1
-  chooseText: "Select the mission data core. It contains the flight plan, the objective,
-    and the last verified logs before the crash. Without it, we\u2019re operating
-    on guesses."
-  completedText: "Data core recovered. I\u2019ve restored partial logs: this wasn\u2019t
-    a routine transit. You were sent here to verify an automated signal source and
-    assess if it\u2019s safe to approach."
+  chooseText: "Selected the mission data core. If its memory survived the crash,
+    we may recover your flight plan, your orders\u2026 and why this ship was here
+    at all."
+  completedText: Data core recovered. I restored partial mission logs, but several
+    entries were deliberately locked before impact. This was not a routine flight.
+    You were sent here.
   nextDayText: Circulation, focus, and stamina all benefit from a steady walk. Begin
     when ready.
   showPortrait: 1
-  descriptionText: "A sealed core unit containing fragments of the ship\u2019s original
-    mission records. Most of its contents are inaccessible, but even its presence
-    suggests this journey had a purpose beyond simple travel."
+  descriptionText: "A sealed memory unit from the ship\u2019s central systems. It
+    contains damaged fragments of navigation data, mission records, and crew logs.
+    Recovering it may reveal what brought you to this planet."

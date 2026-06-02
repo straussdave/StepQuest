@@ -15,18 +15,19 @@ MonoBehaviour:
   id: 10
   partName: Radio Relay Module
   partTexture: {fileID: 0}
+  storyTexture: {fileID: 2800000, guid: 1ff6b25cb5d9258458f573d4aef22fc7, type: 3}
   steps: 3000
   isStoryQuest: 1
   storyOrder: 2
-  chooseText: "Select the radio relay. We need range and signal clarity - either
-    to contact rescue or to confirm what\u2019s generating the signal that brought
-    you here."
-  completedText: Radio relay recovered. I can now isolate a repeating transmission.
-    It matches an old autonomous survey network - one that should have been offline
-    years ago.
+  chooseText: Selected the radio relay. If anything is still transmitting out here,
+    this module should hear it. Maybe we can find help. Or find out who was calling
+    us.
+  completedText: "Radio relay recovered. I detected a repeating transmission beneath
+    the static. It uses an old survey frequency\u2026 one that should have gone silent
+    years ago."
   nextDayText: Weather looks cooperative and your legs are fully operational. Time
     to explore.
   showPortrait: 1
-  descriptionText: A long-range communication module built to send and receive signals
-    across vast distances. It is badly damaged, yet it may still contain traces of
-    contact made before everything went wrong.
+  descriptionText: A long-range communication module used to send and receive signals
+    across vast distances. It is badly damaged, but it may still detect transmissions
+    in the area.

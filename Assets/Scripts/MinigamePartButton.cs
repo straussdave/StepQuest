@@ -58,6 +58,8 @@ public class MinigamePartButton : MonoBehaviour
 
         bool isUnlocked = SaveSystem.IsMinigameUnlocked(minigameIndex);
 
+        AnalyticsLogger.Instance?.LogPartDescriptionOpened(partName, minigameIndex, isUnlocked);
+
         if (!isUnlocked)
         {
             descriptionPanel.Show(partName, lockedDescription);

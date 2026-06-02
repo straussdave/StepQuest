@@ -15,18 +15,17 @@ MonoBehaviour:
   id: 12
   partName: Authorization Beacon
   partTexture: {fileID: 0}
+  storyTexture: {fileID: 2800000, guid: 023102468c5596942b8f36fc27c024e5, type: 3}
   steps: 3750
   isStoryQuest: 1
   storyOrder: 4
-  chooseText: Select the authorization beacon. If that relay station is still alive,
-    it may require a mission signature to release its stored data - or to shut itself
-    down safely.
-  completedText: "Beacon recovered. I can now authenticate locally. The station wasn\u2019t
-    calling for rescue - it was uploading a warning. It detected instability in this
-    region and flagged it as a no-fly corridor."
+  chooseText: Selected the authorization beacon. If that buried station is still
+    alive, we need a valid ship signature before it decides we are intruders.
+  completedText: Authorization beacon recovered. I can now authenticate locally.
+    The station rejected our distress signal before, but it may recognize us now.
   nextDayText: "Mission tip: start the walk, and motivation shows up on the way.
     Let\u2019s go."
   showPortrait: 1
-  descriptionText: 'A distress transmitter designed to activate when all other systems
-    fail. It remains silent for now, but restoring it may answer the most important
-    question: was anyone ever meant to find this place?'
+  descriptionText: A shipboard identification beacon used to prove mission authority
+    to secured systems. Restoring it may allow access to locked transmissions, sealed
+    doors, or automated stations.

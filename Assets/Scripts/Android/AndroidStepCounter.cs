@@ -1,4 +1,3 @@
-// Assets/StepCounter/Android/AndroidStepCounter.cs
 using UnityEngine;
 using UnityEngine.Scripting;
 
@@ -8,6 +7,8 @@ namespace StepCounter.AndroidImpl
     public sealed class AndroidStepCounter : IStepCounter
     {
         public event System.Action<int> OnStepsChanged;
+        public event System.Action<int> OnRawCumulativeStepsChanged;
+
         public bool IsAvailable => _stepCounter != null || _stepDetector != null;
 
         AndroidJavaObject _activity, _sensorManager, _stepCounter, _stepDetector;
@@ -124,6 +125,9 @@ namespace StepCounter.AndroidImpl
         void OnCounterChanged(float cumulative)
         {
             Debug.Log($"[StepCounter] OnCounterChanged raw cumulative={cumulative}");
+
+            int rawCumulativeSteps = Mathf.RoundToInt(cumulative);
+            OnRawCumulativeStepsChanged?.Invoke(rawCumulativeSteps);
 
             if (!_baseline.HasValue)
             {

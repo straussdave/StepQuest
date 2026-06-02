@@ -14,6 +14,9 @@ public class GameFlowController : MonoBehaviour
     public GameObject header;
     public GameObject navbar;
 
+    [Header("Navigation")]
+    [SerializeField] private TabSlider tabSlider;
+
     [Header("Game UI")]
     public GameObject questChoiceRow;
     public GameObject progressBarRoot;
@@ -27,7 +30,7 @@ public class GameFlowController : MonoBehaviour
     ChosenQuestPanel _chosenQuestPanel;
     QuestManager _questManager;
 
-    enum DialoguePhase { None, Intro, Completed, Quest, EndSequence0, EndSequence1, EndSequence2, EndSequence3 }
+    enum DialoguePhase { None, Intro, Completed, Quest, EndSequence0, EndSequence1, EndSequence2, EndSequence3, EndSequence4 }
     DialoguePhase phase = DialoguePhase.None;
 
     void Start()
@@ -149,14 +152,18 @@ public class GameFlowController : MonoBehaviour
 
     public void OnDialogueContinue()
     {
-        Debug.Log($"[UserAction] Dialogue continue clicked. Current phase: {phase}.");
+        string phaseName = phase.ToString();
+        Debug.Log($"[UserAction] Dialogue continue clicked. Current phase: {phaseName}.");
 
         if (typewriter != null && typewriter.IsTyping)
         {
             Debug.Log("[UserAction] Dialogue typing skipped to full text.");
+            AnalyticsLogger.Instance?.LogDialogueSkipped(phaseName);
             typewriter.Skip();
             return;
         }
+
+        AnalyticsLogger.Instance?.LogDialogueContinue(phaseName);
 
         switch (phase)
         {
@@ -191,21 +198,40 @@ public class GameFlowController : MonoBehaviour
                 break;
 
             case DialoguePhase.EndSequence0:
-                string message2 = "We’re departing with proof, not speculation. " +
-                    "Once we’re in comms range, I’ll transmit the area closure recommendation and the station’s data package. " +
-                    "Then we get you home.";
+                string message2 = "Your mission was never simple exploration. " +
+                    "You were sent to confirm what was buried here and decide whether this region could remain open.";
+
                 phase = DialoguePhase.EndSequence1;
                 WriteMessage(message2);
                 break;
 
             case DialoguePhase.EndSequence1:
-                string message3 = "You did what you came here to do - despite the crash. \n\r\n\r" +
-                    "Before we leave, I need you to export the mission logs for analysis.";
+                string message3 = "Now we know the truth: the station is unstable, the signal is still active, " +
+                    "and any ship that follows it may end up like ours. " +
+                    "We should not mark this place as discovered. We should mark it as dangerous.";
+
                 phase = DialoguePhase.EndSequence2;
                 WriteMessage(message3);
                 break;
 
             case DialoguePhase.EndSequence2:
+                string message4 = "We’re departing with proof, not speculation. " +
+                    "Once we’re in comms range, I’ll transmit the area closure recommendation and the station’s data package. " +
+                    "Then we get you home.";
+
+                phase = DialoguePhase.EndSequence3;
+                WriteMessage(message4);
+                break;
+
+            case DialoguePhase.EndSequence3:
+                string message5 = "You did what you came here to do - despite the crash. \n\r\n\r" +
+                    "Before we leave, I need you to export the mission logs for analysis.";
+
+                phase = DialoguePhase.EndSequence4;
+                WriteMessage(message5);
+                break;
+
+            case DialoguePhase.EndSequence4:
                 ShowEndPanel();
                 phase = DialoguePhase.None;
                 break;
@@ -265,9 +291,7 @@ public class GameFlowController : MonoBehaviour
         robotDialoguePanel.SetActive(true);
 
         string msg = "All critical systems are assembled. " +
-                    "Before we leave: I’ve compiled the relay station’s warning and your recovered logs. " +
-                    "Your mission was to confirm the signal and decide whether this area should remain open. " +
-                    "The station is right: conditions are unstable, and traffic through this region would be reckless.";
+    "Before we leave, I have compiled the recovered logs, the relay signal, and the station’s final warning.";
 
         WriteMessage(msg);
         UpdateLayoutVisibility();
@@ -310,6 +334,11 @@ public class GameFlowController : MonoBehaviour
 
     void WriteMessage(string msg)
     {
+        if (tabSlider != null)
+        {
+            tabSlider.ShowHome();
+        }
+
         if (typewriter != null)
         {
             typewriter.Play(msg);

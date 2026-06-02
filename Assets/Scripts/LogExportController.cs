@@ -26,18 +26,18 @@ public class LogExportController : MonoBehaviour
     public void ExportAllLogsToMail(string subject, string body)
     {
 #if UNITY_ANDROID && !UNITY_EDITOR
-        string filePath = RuntimeLogCollector.ExportAllUserLogs();
+    string filePath = AnalyticsLogger.ExportAnalyticsReport();
 
-        if (string.IsNullOrEmpty(filePath))
-        {
-            Debug.LogError("All-log export failed: No log files found.");
-            return;
-        }
+    if (string.IsNullOrEmpty(filePath))
+    {
+        Debug.LogError("Analytics export failed: AnalyticsLogger not initialized or no analytics file.");
+        return;
+    }
 
-        OpenMailIntent(filePath, subject, body);
+    OpenMailIntent(filePath, subject, body);
 #else
-        string path = RuntimeLogCollector.ExportAllUserLogs();
-        Debug.Log("Email export is Android-only. Exported merged log file: " + path);
+        string path = AnalyticsLogger.ExportAnalyticsReport();
+        Debug.Log("Email export is Android-only. Exported analytics report file: " + path);
 #endif
     }
 

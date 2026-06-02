@@ -4,6 +4,7 @@ using StepCounter;
 public sealed class MockStepCounter : IStepCounter
 {
     public event System.Action<int> OnStepsChanged;
+    public event System.Action<int> OnRawCumulativeStepsChanged;
     public bool IsAvailable => true;
 
     int _steps;

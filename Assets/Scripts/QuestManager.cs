@@ -57,6 +57,8 @@ public class QuestManager : MonoBehaviour
 
         PlayerPrefs.Save();
 
+        AnalyticsLogger.Instance?.LogQuestSelected(quest);
+
         Quest currentQuest = GetCurrentQuest();
         if (currentQuest == null)
         {
@@ -85,6 +87,9 @@ public class QuestManager : MonoBehaviour
 
         int steps = GetCurrentSteps();
         int newSteps = Mathf.Clamp(steps + delta, 0, quest.Steps);
+        int appliedDelta = newSteps - steps;
+
+        AnalyticsLogger.Instance?.LogQuestStepDelta(quest, appliedDelta);
 
         PlayerPrefs.SetInt(SaveKeys.ACTIVE_QUEST_STEPS, newSteps);
         PlayerPrefs.Save();
@@ -258,6 +263,8 @@ public class QuestManager : MonoBehaviour
             Debug.Log($"[Quest] Unlocked part: {partId}.");
             SaveUnlockedParts();
 
+            AnalyticsLogger.Instance?.LogPartUnlocked(completedQuest);
+
             PlayerPrefs.SetString(SaveKeys.LAST_UNLOCKED_PART_ID, partId);
             PlayerPrefs.SetInt(SaveKeys.PENDING_COLLECTION_HIGHLIGHT, 1);
             PlayerPrefs.Save();
@@ -271,6 +278,8 @@ public class QuestManager : MonoBehaviour
         Debug.Log($"[Quest] Quest completed: {(completedQuest != null ? completedQuest.Id : partId)}.");
 
         DateUtil.MarkQuestDoneToday();
+
+        AnalyticsLogger.Instance?.LogQuestCompleted(completedQuest);
 
         OnQuestCompleted?.Invoke(completedQuest);
 

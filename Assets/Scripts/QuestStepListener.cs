@@ -22,12 +22,19 @@ public class QuestStepListener : MonoBehaviour
     {
         _counter = StepCounterFactory.Create();
         _counter.OnStepsChanged += OnStepsChanged;
+        _counter.OnRawCumulativeStepsChanged += OnRawCumulativeStepsChanged;
         TrySubscribeQuestManager();
     }
 
     void OnEnable()
     {
         _counter.Start();
+
+        if (_counter != null && !_counter.IsAvailable)
+        {
+            AnalyticsLogger.Instance?.LogStepSensorUnavailable();
+        }
+
         TrySubscribeQuestManager();
     }
 
@@ -40,7 +47,11 @@ public class QuestStepListener : MonoBehaviour
     void OnDestroy()
     {
         if (_counter != null)
+        {
             _counter.OnStepsChanged -= OnStepsChanged;
+            _counter.OnRawCumulativeStepsChanged -= OnRawCumulativeStepsChanged;
+        }
+
         UnsubscribeQuestManager();
     }
 
@@ -95,6 +106,11 @@ public class QuestStepListener : MonoBehaviour
         Debug.Log($"[StepTracking] Sensor update: total={totalStepsFromSensor}, delta={delta}, awaitingBaseline={_awaitingBaseline}.");
         if (QuestManager.Instance != null)
             QuestManager.Instance.AddSteps(delta);
+    }
+
+    void OnRawCumulativeStepsChanged(int rawCumulativeSteps)
+    {
+        AnalyticsLogger.Instance?.LogStepCounterSnapshot(rawCumulativeSteps);
     }
 
     void OnQuestSelected(Quest quest)
