@@ -30,7 +30,7 @@ public static class DateUtil
 
     public static void EnsureStartDayExists(DateTime? now = null)
     {
-        if (!PlayerPrefs.HasKey(SaveKeys.START_DAY_KEY))
+        if (!PlayerPrefs.HasKey(SaveKeys.START_DAY_KEY) || PlayerPrefs.GetInt(SaveKeys.START_DAY_KEY, 0) <= 0)
         {
             PlayerPrefs.SetInt(SaveKeys.START_DAY_KEY, TodayKey(now));
             PlayerPrefs.Save();
@@ -39,7 +39,7 @@ public static class DateUtil
 
     public static bool HasStartDay()
     {
-        return PlayerPrefs.HasKey(SaveKeys.START_DAY_KEY);
+        return PlayerPrefs.HasKey(SaveKeys.START_DAY_KEY) && PlayerPrefs.GetInt(SaveKeys.START_DAY_KEY, 0) > 0;
     }
 
     public static int GetStartDayKey()
@@ -72,9 +72,9 @@ public static class DateUtil
 
     public static void Clear()
     {
-        SaveSystem.DeleteKey(SaveKeys.LAST_QUEST_DAY_KEY);
-        SaveSystem.DeleteKey(SaveKeys.START_DAY_KEY);
-        SaveSystem.DeleteKey(SaveKeys.QUEST_DONE_TODAY);
+        PlayerPrefs.SetInt(SaveKeys.LAST_QUEST_DAY_KEY, 0);
+        PlayerPrefs.SetInt(SaveKeys.START_DAY_KEY, 0);
+        PlayerPrefs.SetInt(SaveKeys.QUEST_DONE_TODAY, 0);
         PlayerPrefs.Save();
     }
 }

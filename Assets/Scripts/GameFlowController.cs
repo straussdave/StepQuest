@@ -58,6 +58,8 @@ public class GameFlowController : MonoBehaviour
         }
 
         if (typewriter == null) typewriter = GetComponent<TMPTypewriter>();
+
+        ShowPendingQuestCompletionIfNeeded();
     }
 
     void OnDestroy()
@@ -260,11 +262,24 @@ public class GameFlowController : MonoBehaviour
         UpdateLayoutVisibility();
     }
 
+    void ShowPendingQuestCompletionIfNeeded()
+    {
+        if (PlayerPrefs.GetInt(SaveKeys.PENDING_QUEST_COMPLETION_DIALOGUE, 0) != 1)
+            return;
+
+        var qm = QuestManager.Instance;
+        Quest completedQuest = qm != null ? qm.GetCurrentQuest() : null;
+        HandleQuestCompleted(completedQuest);
+    }
+
     void HandleQuestCompleted(Quest q)
     {
         Debug.Log($"[UserAction] Quest completed event handled: {(q != null ? q.Id : "null")}.");
 
         phase = DialoguePhase.Completed;
+        PlayerPrefs.SetInt(SaveKeys.PENDING_QUEST_COMPLETION_DIALOGUE, 0);
+        PlayerPrefs.Save();
+        splashPanel.SetActive(false);
         robotDialoguePanel.SetActive(true);
         BringToFront(robotDialoguePanel);
         gamePanel.SetActive(false);

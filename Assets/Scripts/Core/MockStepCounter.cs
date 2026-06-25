@@ -7,6 +7,9 @@ public sealed class MockStepCounter : IStepCounter
     public event System.Action<int> OnRawCumulativeStepsChanged;
     public bool IsAvailable => true;
 
+    public bool HasCurrentTotalSteps => false;
+    public int CurrentTotalSteps => -1;
+
     int _steps;
     float _timer;
 
@@ -14,6 +17,9 @@ public sealed class MockStepCounter : IStepCounter
 
     public void Start()
     {
+        if (runner != null)
+            return;
+
         _steps = 0;
         _timer = 0f;
 
@@ -67,5 +73,6 @@ public sealed class MockStepCounter : IStepCounter
         }
 
         void Update() => Tick?.Invoke(Time.deltaTime);
+
     }
 }

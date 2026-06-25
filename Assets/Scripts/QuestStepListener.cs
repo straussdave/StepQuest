@@ -10,7 +10,7 @@ public class QuestStepListener : MonoBehaviour
     int _lastValue;
     int _latestTotalSteps;
     bool _hasSeenStepEvent;
-    bool _awaitingBaseline;
+    bool _loggedIncrementalFallback;
     QuestManager _questManager;
     bool _subscribedToQuest;
 
@@ -28,14 +28,13 @@ public class QuestStepListener : MonoBehaviour
 
     void OnEnable()
     {
-        _counter.Start();
+        TrySubscribeQuestManager();
+        ResumeCounterAndSync("OnEnable");
 
         if (_counter != null && !_counter.IsAvailable)
         {
             AnalyticsLogger.Instance?.LogStepSensorUnavailable();
         }
-
-        TrySubscribeQuestManager();
     }
 
     void OnDisable()
@@ -82,17 +81,34 @@ public class QuestStepListener : MonoBehaviour
 #endif
     }
 
+    void OnApplicationFocus(bool focus)
+    {
+        if (focus)
+            ResumeCounterAndSync("OnApplicationFocus");
+    }
+
+    void OnApplicationPause(bool paused)
+    {
+        if (!paused)
+            ResumeCounterAndSync("OnApplicationPause");
+    }
+
     void OnStepsChanged(int totalStepsFromSensor)
     {
-        _latestTotalSteps = totalStepsFromSensor;
-        _hasSeenStepEvent = true;
-
-        if (_awaitingBaseline)
+        if (_counter != null && _counter.HasCurrentTotalSteps)
         {
-            _lastValue = totalStepsFromSensor;
-            _awaitingBaseline = false;
+            Debug.Log($"[StepTracking] Ignoring compatibility step event because cumulative counter is active. sessionTotal={totalStepsFromSensor}.");
             return;
         }
+
+        if (!_loggedIncrementalFallback)
+        {
+            Debug.LogWarning("[StepTracking] Reliable cumulative catch-up unavailable. Using incremental step events only.");
+            _loggedIncrementalFallback = true;
+        }
+
+        _latestTotalSteps = totalStepsFromSensor;
+        _hasSeenStepEvent = true;
 
         if (totalStepsFromSensor < _lastValue)
         {
@@ -103,7 +119,7 @@ public class QuestStepListener : MonoBehaviour
         int delta = totalStepsFromSensor - _lastValue;
         _lastValue = totalStepsFromSensor;
 
-        Debug.Log($"[StepTracking] Sensor update: total={totalStepsFromSensor}, delta={delta}, awaitingBaseline={_awaitingBaseline}.");
+        Debug.Log($"[StepTracking] Incremental sensor update: total={totalStepsFromSensor}, delta={delta}.");
         if (QuestManager.Instance != null)
             QuestManager.Instance.AddSteps(delta);
     }
@@ -111,19 +127,25 @@ public class QuestStepListener : MonoBehaviour
     void OnRawCumulativeStepsChanged(int rawCumulativeSteps)
     {
         AnalyticsLogger.Instance?.LogStepCounterSnapshot(rawCumulativeSteps);
+        SyncFromAndroidTotal(rawCumulativeSteps, "RawCumulativeEvent");
     }
 
     void OnQuestSelected(Quest quest)
     {
-        if (_hasSeenStepEvent)
+        int currentSavedSteps = PlayerPrefs.GetInt(SaveKeys.ACTIVE_QUEST_STEPS, 0);
+        string trackingMode = PlayerPrefs.GetString(SaveKeys.STEP_TRACKING_MODE, "");
+
+        if (currentSavedSteps == 0 && trackingMode == "NeedsBaseline")
         {
-            _lastValue = _latestTotalSteps;
-            _awaitingBaseline = false;
+            int androidTotalSteps = (_counter != null && _counter.HasCurrentTotalSteps)
+                ? _counter.CurrentTotalSteps
+                : -1;
+
+            StepProgressSync.ResetForNewQuest(androidTotalSteps);
+            QuestManager.Instance?.SetCurrentStepsFromSave(0);
         }
-        else
-        {
-            _awaitingBaseline = true;
-        }
+
+        _lastValue = _hasSeenStepEvent ? _latestTotalSteps : 0;
     }
 
     void TrySubscribeQuestManager()
@@ -137,7 +159,7 @@ public class QuestStepListener : MonoBehaviour
         _subscribedToQuest = true;
 
         if (qm.GetCurrentQuest() != null)
-            OnQuestSelected(qm.GetCurrentQuest());
+            SyncCurrentTotalIfAvailable("QuestManagerSubscription");
     }
 
     void UnsubscribeQuestManager()
@@ -154,5 +176,52 @@ public class QuestStepListener : MonoBehaviour
         Debug.Log($"[DEBUG] Simulating {amount} steps.");
         if (QuestManager.Instance != null)
             QuestManager.Instance.AddSteps(amount);
+    }
+
+    void ResumeCounterAndSync(string reason)
+    {
+        if (_counter == null)
+            return;
+
+        Debug.Log($"[StepTracking] Resume/start sync. reason={reason}, hasCurrentTotal={_counter.HasCurrentTotalSteps}, currentTotal={_counter.CurrentTotalSteps}.");
+
+        _counter.Start();
+        SyncCurrentTotalIfAvailable(reason);
+    }
+
+    void SyncCurrentTotalIfAvailable(string reason)
+    {
+        if (_counter == null || !_counter.HasCurrentTotalSteps)
+        {
+            Debug.Log($"[StepTracking] No cumulative Android total available for sync. reason={reason}.");
+            return;
+        }
+
+        SyncFromAndroidTotal(_counter.CurrentTotalSteps, reason);
+    }
+
+    void SyncFromAndroidTotal(int rawCumulativeSteps, string reason)
+    {
+        var qm = QuestManager.Instance;
+        if (qm == null)
+        {
+            Debug.Log($"[StepTracking] Skipping cumulative sync because QuestManager is not ready. reason={reason}, androidTotal={rawCumulativeSteps}.");
+            return;
+        }
+
+        if (qm.GetCurrentQuest() == null || PlayerPrefs.GetInt(SaveKeys.ACTIVE_QUEST_IS_ACTIVE, 0) != 1)
+        {
+            Debug.Log($"[StepTracking] Skipping cumulative sync because no quest is active. reason={reason}, androidTotal={rawCumulativeSteps}.");
+            return;
+        }
+
+        if (qm.QuestDoneToday())
+        {
+            Debug.Log($"[StepTracking] Skipping cumulative sync because today's quest is already done. reason={reason}, androidTotal={rawCumulativeSteps}.");
+            return;
+        }
+
+        int syncedSteps = StepProgressSync.SyncFromAndroidTotal(rawCumulativeSteps);
+        qm.SetCurrentStepsFromSave(syncedSteps);
     }
 }

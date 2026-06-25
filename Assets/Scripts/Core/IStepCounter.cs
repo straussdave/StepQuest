@@ -10,5 +10,8 @@ namespace StepCounter
         bool IsAvailable { get; }
         void Start();
         void Stop();
+
+        bool HasCurrentTotalSteps { get; }
+        int CurrentTotalSteps { get; }
     }
 }
