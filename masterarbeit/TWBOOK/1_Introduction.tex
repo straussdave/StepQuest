@@ -1,46 +1,53 @@
 \chapter{Introduction}
 
 \section{Goal}
-The goal of StepQuest is to develop a Unity-based mobile game that motivates players to go
-for regular walks by linking real-world movement to in-game progress, quest completion,
-and unlockable content. The project follows a theory-informed exergame approach, emphasizing that
-successful activity-based games must balance exercise goals with enjoyable gameplay and sustainable
-player engagement \cite{10.1145/1321261.1321313,Kubota2022Pilot}.
+
+The goal of this thesis is to design, implement, and evaluate \textit{StepQuest}, a Unity-based mobile exergame that encourages players to integrate regular walking into their everyday routines. The game links real-world step counts to in-game progress by using walking as the central resource for completing daily quests, unlocking content, and advancing through a short narrative structure. Instead of treating physical activity as an external task, StepQuest aims to embed walking directly into the core gameplay loop.
+
+The project addresses the broader problem of insufficient physical activity by exploring how mobile game mechanics can support motivation for low-threshold, everyday movement. Walking was chosen as the target activity because it is accessible, requires no special equipment, and can be performed by a wide range of users in everyday contexts. By focusing on step-based progress, the prototype attempts to create a simple connection between real-world behavior and virtual rewards.
+
+A central goal of StepQuest is to investigate how game design elements such as daily quests, progression, feedback, unlockable content, and narrative framing can be used to support sustained engagement. The design is informed by exergame and gamification research, which suggests that activity-based games need to balance health-related goals with enjoyable and meaningful gameplay experiences \cite{10.1145/1321261.1321313,Kubota2022Pilot,Yang2022GamifiedAppsPA}. In addition, the project draws on motivational and behavior-change frameworks such as Octalysis and the Behavior Change Wheel to justify the selected mechanics and their intended effects on player motivation \cite{octalysis,key}.
+
+The thesis does not aim to prove the long-term effectiveness of StepQuest as a clinical health intervention. Instead, it evaluates the prototype as an exploratory, theory-informed mobile game and examines whether its design can create motivating experiences around walking. The evaluation focuses on user experience, engagement, motivation, and indications of walking-related behavior during the test period. In this way, the project contributes practical design insights into how mobile exergames can be structured to make everyday physical activity more engaging.
 
 \section{Background}
-Physical inactivity is a significant public health concern and is addressed as a global priority in health
-promotion strategies \cite{world2019global}. In response, digital interventions, including mobile games that
-integrate movement, have gained attention because they can combine entertainment with behavior change
-mechanisms in everyday contexts. Exergame research suggests that effectiveness depends not only on
-including physical activity, but also on how the game is designed: players need clear goals, meaningful
-feedback, appropriate difficulty and progression, and experiences that remain engaging over time
-\cite{10.1145/1321261.1321313}.
 
-StepQuest builds on these insights by using walking (step counts) as the core resource for progress and
-daily quest-based gameplay. This approach aligns with findings from theory-based exergames: when game
-elements are explicitly analyzed through a behavioral lens, designers can better justify which mechanics
-should motivate activity and which are expected to drive retention \cite{Kubota2022Pilot}. However, there is
-also a risk in relying too strongly on a single gamification model. For example, reflection on the Octalysis
-framework highlights that while it is useful for ideation and qualitative evaluation, applying it rigorously
-requires careful interpretation and may introduce subjectivity if used without clear operationalization
-\cite{Weber2022Reflection}.
+Insufficient physical activity is a persistent public health problem and remains a relevant challenge for digital health and human-computer interaction research. The World Health Organization identifies physical inactivity as a major risk factor for non-communicable diseases and recommends that adults perform at least 150 to 300 minutes of moderate-intensity aerobic physical activity per week \cite{Bull2020WHOActivityGuidelines,WHO2024PhysicalActivity}. However, recent global data show that a large share of the adult population does not meet these recommendations. Strain et al. report that the global age-standardised prevalence of insufficient physical activity among adults reached 31.3\% in 2022, corresponding to approximately 1.8 billion adults worldwide \cite{Strain2024InactivityTrends}. This indicates that the problem is not limited to a lack of knowledge about the benefits of physical activity, but also concerns the difficulty of translating such knowledge into regular behavior.
 
-All design and development decisions in StepQuest are therefore informed by existing research on
-gamification and behavior change. As a primary design framework, the project leans on the Octalysis
-gamification model to structure motivational mechanics such as progression, ownership, social influence,
-and scarcity-driven rewards \cite{octalysis,key}. In addition, StepQuest considers the Behavior Change Wheel
-as a complementary perspective to ensure that the implemented mechanics do not only feel motivating, but
-also plausibly support real-world walking behavior (e.g., by supporting capability, opportunity, and
-motivation). % Consider adding a canonical BCW citation here in your BibTeX.
+The issue is also relevant in an Austrian context. According to Statistik Austria, only a minority of adults in Austria meet both the aerobic and muscle-strengthening recommendations defined by the WHO \cite{StatistikAustria2025PhysicalActivity}. This highlights the need for approaches that lower the barrier to physical activity and can be integrated into everyday routines. Walking is a suitable target activity in this context because it is low-threshold, does not require special equipment, and can be performed in many everyday situations. Research shows that walking interventions can improve several health-related outcomes, including aerobic fitness, blood pressure, and measures related to body composition \cite{Murtagh2015WalkingCVD}. Walking-based approaches are therefore well suited for interventions that aim to increase daily movement without requiring users to adopt a demanding sport routine. For a mobile intervention, walking also has the advantage that it can be measured through step counts, making it possible to connect real-world behavior directly to digital feedback and progress.
 
-\section{Research Questions and Hypothesis}
-\textbf{Research Questions:}
+Mobile technologies offer a promising platform for such interventions because smartphones are already part of many users' everyday lives and can measure physical activity with built-in sensors. Systematic reviews suggest that smartphone applications and activity trackers can increase physical activity, although the observed effects are often modest and may be stronger in the short term than in the long term \cite{Romeo2019SmartphoneAppsPA,Laranjo2021AppsTrackers}. This is an important limitation: simply providing tracking or numeric goals may not be enough to create sustained engagement. Digital physical activity interventions therefore need to address not only measurement and feedback, but also motivation and perceived meaning.
+
+Games provide one possible way to address this challenge. By linking physical activity to goals, feedback, rewards, progression, and narrative context, mobile exergames can make movement part of an interactive experience rather than presenting it only as a health-related obligation. Previous research on gamified smartphone applications indicates that gamification can have positive effects on physical activity, but also shows that the effectiveness of such systems depends on the concrete design of the implemented game elements \cite{Yang2022GamifiedAppsPA}. Similarly, large-scale examples such as \textit{Pokémon Go} demonstrate that location-based and movement-based games can temporarily increase real-world activity, while also showing that novelty effects and declining engagement remain important challenges \cite{Althoff2016PokemonGo,Wang2021PokemonGoReview}.
+
+This creates the research gap addressed by StepQuest. There is a need for mobile exergame prototypes that do not only count steps, but deliberately structure walking around motivational game mechanics such as daily quests, progression, unlockable content, and narrative feedback. StepQuest explores how these elements can be combined in a Unity-based mobile game to support regular walking and sustained engagement during everyday use. The importance of this research therefore lies in examining how a low-threshold activity such as walking can be connected to game design in a way that is motivating, technically feasible, and suitable for evaluation in a real-world prototype setting.
+
+\section{Research Questions and Hypotheses}
+
+The evaluation focuses on whether StepQuest can provide a motivating and engaging game experience around walking and whether indications of changed walking behavior can be observed during the test period.
+
+Based on this objective, the thesis addresses the following research questions:
+
 \begin{itemize}
-  \item \textbf{RQ1:} Does playing StepQuest increase the frequency and duration of walks compared to a control group?
-  \item \textbf{RQ2:} How does player engagement with StepQuest evolve over time, and what factors influence sustained use?
+	\item \textbf{RQ1:} Can changes in walking behavior and motivation be observed during the use of StepQuest?
+	
+	\item \textbf{RQ2:} How do users perceive the motivational and engagement-related design elements of StepQuest, such as daily quests, progression, feedback, unlockable content, and narrative framing?
+	
+	\item \textbf{RQ3:} Which aspects of the StepQuest prototype support or limit sustained use during the evaluation period?
 \end{itemize}
-\textbf{Hypothesis:}
-Targeted use of motivational strategies in a mobile game can increase motivation to engage in regular
-walking \cite{key,octalysis}. Based on exergame design literature, StepQuest further assumes that engagement
-and adherence are more likely when progression and feedback are structured in a way that supports
-long-term play rather than short-lived novelty effects \cite{10.1145/1321261.1321313,Kubota2022Pilot}.
+
+These research questions reflect the exploratory nature of the project. StepQuest is evaluated as a theory-informed mobile exergame prototype, with a focus on user experience, motivation, engagement, and walking-related behavior during everyday use. The evaluation therefore combines user feedback with usage-related data collected during the test period.
+
+The following hypotheses guide the evaluation:
+
+\begin{itemize}
+	\item \textbf{H1:} Users will report increased motivation to go for walks while using StepQuest compared to before using the prototype.
+	
+	\item \textbf{H2:} Users will perceive the step-based quest system as a meaningful connection between real-world walking and in-game progress.
+	
+	\item \textbf{H3:} Game elements such as daily quests, progress feedback, unlockables and narrative progression will be perceived as supportive for engagement with the prototype.
+	
+	\item \textbf{H4:} Technical or design limitations, such as step tracking reliability, repetition, or limited content variety, will negatively affect sustained engagement.
+\end{itemize}
+
+The hypotheses are based on previous research suggesting that physical activity games and gamified mobile applications can support motivation and activity when they provide clear goals, feedback, progression, and meaningful rewards \cite{10.1145/1321261.1321313,Kubota2022Pilot,Yang2022GamifiedAppsPA}. At the same time, research on mobile physical activity interventions and movement-based games indicates that long-term engagement is difficult to maintain and that novelty effects can reduce continued use over time \cite{Romeo2019SmartphoneAppsPA,Wang2021PokemonGoReview}. Therefore, the evaluation of StepQuest considers both the motivational potential of its design and the practical limitations that may affect real-world use.

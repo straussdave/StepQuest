@@ -1,71 +1,60 @@
 \chapter{Methodology}
 
+This chapter describes the methodological approach used for the design, implementation, and evaluation of StepQuest. The project follows a design-oriented research approach in which a functional prototype was developed based on existing exergame, gamification, and behavior change literature. The prototype was then evaluated with users in a real-world test setting to examine motivation, engagement, usability, and indications of walking-related behavior during use.
+
+The methodology consists of four main parts. First, the design rationale and framework selection are explained. This includes the motivation for using walking as the target activity and the selection of Octalysis and the Behaviour Change Wheel as guiding frameworks. Second, the prototype development process is described, including the main gameplay systems and technical implementation. Third, the user testing procedure is presented. Finally, the data collection methods are explained, including questionnaire data, gameplay-related metrics, and qualitative feedback.
+
+\section{Research Method Selection}
+
+The aim of this thesis is to design, implement, and evaluate a functional software artifact. The methodological structure of this thesis follows the Design Science Research Methodology described by Peffers et al. \cite{Peffers2007DSRM}. This process consists of six steps: problem identification and motivation, definition of the objectives for a solution, design and development, demonstration, evaluation, and communication. These steps fit the structure of StepQuest: the problem is insufficient physical activity and the difficulty of sustaining walking motivation; the objective is to design a mobile exergame that connects walking to game progress; the artifact is the implemented Unity prototype; the demonstration takes place through real-world use by participants; the evaluation is based on questionnaires, usage data, and qualitative feedback; and the results are communicated through the analysis and discussion of the thesis.
+
+Prototyping was chosen because the central concept of StepQuest cannot be fully examined on a theoretical level alone. The project combines step tracking, quest progression, unlockable content, narrative feedback, and mobile interaction. These elements need to be implemented in an interactive system before their feasibility and user experience can be meaningfully assessed. In design science research, the creation and evaluation of an artifact is considered a way to generate knowledge about a problem and a possible solution \cite{Hevner2004DesignScience,Peffers2007DSRM}. For StepQuest, the prototype serves as this artifact: it translates the theoretical design assumptions into a concrete mobile game that can be tested by users.
+
+The prototype also makes it possible to examine technical and practical constraints that would not be visible in a purely conceptual design. These include the reliability of step tracking on Android devices, the clarity of the quest flow, the usability of the interface, and the suitability of the daily quest structure for real-world use. Since StepQuest is intended to be used outside a laboratory setting, the prototype needed to be functional enough for participants to install and use it during their normal routines.
+
+User testing was selected as the second main method because the success of StepQuest depends strongly on user perception and interaction. The prototype aims to motivate walking through game mechanics such as daily quests, progress feedback, unlockable content, and narrative framing. Whether these mechanics are understandable, motivating, or frustrating cannot be determined only from the implemented features. It requires feedback from users who interact with the prototype. User testing is therefore appropriate for identifying usability issues, evaluating perceived engagement, and collecting qualitative feedback on the strengths and limitations of the design \cite{Nielsen1994UsabilityEngineering,Lazar2017HCIResearchMethods}.
+
 \section{Design Rationale and Framework Selection}
-Before implementation, StepQuest was designed around established principles from exergame research and
-behavior change theory. Exergame design literature emphasizes that successful activity-based games must
-balance exercise-related goals with enjoyable, safe, and sustainable gameplay (e.g., appropriate feedback,
-progression, and minimizing elements that interfere with physical activity) \cite{10.1145/1321261.1321313,Kubota2022Pilot}.
 
-For motivational design, StepQuest uses the Octalysis framework to structure and evaluate game mechanics
-according to different motivational drivers \cite{octalysis,key}. Because Octalysis can be interpretive and may
-introduce subjectivity if used without clear operationalization, the framework is applied primarily as an ideation
-and qualitative evaluation tool rather than as a strict measurement instrument \cite{Weber2022Reflection}.
+Before implementation, StepQuest was designed around established principles from exergame research and behavior change theory. Exergame design literature emphasizes that successful activity-based games must balance exercise-related goals with enjoyable, safe, and sustainable gameplay. In particular, activity-based games should provide clear goals, meaningful feedback, appropriate progression, and avoid mechanics that interfere with the physical activity itself \cite{10.1145/1321261.1321313,Kubota2022Pilot}. For StepQuest, this meant that walking should not be treated as an isolated health task, but as a core part of the game loop.
 
-To complement this, StepQuest also considers the Behaviour Change Wheel (BCW). The BCW links behavior
-change intervention functions (e.g., education, incentivisation, persuasion) to determinants of behavior through
-the COM-B model (capability, opportunity, motivation), supporting a more explicit justification of how selected
-mechanics may influence real-world walking behavior \cite{bcw2011}.
+The design goal was to create a low-threshold mobile exergame that encourages regular walking through daily quests, step-based progress, unlockable content, and narrative framing. Walking was selected as the target activity because it is accessible, requires no special equipment, and can be integrated into everyday routines. From a technical perspective, walking also allows progress to be measured through step counts, which makes it suitable for implementation on Android smartphones using built-in motion sensors.
 
-\subsection{Key Pre-development Design Decisions}
-The following design decisions were defined before starting development:
+For motivational design, StepQuest uses the Octalysis framework to structure game mechanics according to different motivational drivers \cite{octalysis,key}. Octalysis describes user motivation through eight core drives, such as Epic Meaning and Calling, Development and Accomplishment, Ownership and Possession, Scarcity and Impatience, Unpredictability and Curiosity, and Social Influence and Relatedness. This perspective is suitable for StepQuest because the game aims to make walking more engaging by connecting physical activity to meaningful in-game goals and rewards. The framework was chosen because it helps translate abstract motivational concepts into concrete design decisions, such as daily quests, step-based progress feedback, unlockable ship parts, and narrative progression.
 
-\begin{itemize}
-  \item \textbf{Low-attention walking experience:} No dialogue or reading-heavy interaction during walks, because
-  players are expected to keep attention on the environment while walking. This follows the general exergame
-  design principle that gameplay should not undermine safety or the physical activity experience \cite{10.1145/1321261.1321313}.
-  \item \textbf{Quest-centered content architecture:} Quest-related dialogue options and narrative snippets are stored
-  directly on quest ScriptableObjects to keep content modular and easy to iterate without refactoring the core game logic.
-  \item \textbf{Daily choice structure:} Players select one quest target per day from a small set of options, supporting
-  a clear “daily loop” and reducing complexity in the prototype.
-\end{itemize}
+To complement this game-centered perspective, StepQuest also considers the Behaviour Change Wheel (BCW). The BCW links behavior change intervention functions, such as education, incentivisation, persuasion, and enablement, to determinants of behavior through the COM-B model: capability, opportunity, and motivation \cite{bcw2011}. In the context of StepQuest, the BCW is used to justify how selected mechanics may plausibly support real-world walking behavior. This combination allows the design to be discussed from both a game design perspective and a behavior change perspective.
 
-\subsection{Octalysis and BCW Mapping in StepQuest}
-StepQuest applies Octalysis as a structured checklist of motivational drivers \cite{octalysis,key}, and maps selected
-drivers to BCW intervention functions to make the intended behavior-change mechanisms explicit \cite{bcw2011}:
+\subsection{Intended Octalysis and BCW Mapping}
 
-\begin{itemize}
-  \item \textbf{Epic Meaning \& Calling:} Narrative framing (escape the planet by collecting ship parts). \\
-  \textit{BCW link:} Persuasion and Education (positive framing and meaning).
-  \item \textbf{Development \& Accomplishment:} Progress bars, achievements/badges. \\
-  \textit{BCW link:} Incentivisation (rewards) and Reinforcement.
-  \item \textbf{Creativity \& Feedback:} Optional goal choice (e.g., step target or time-based target). \\
-  \textit{BCW link:} Training (supporting capability through self-set goals) and Enablement.
-  \item \textbf{Ownership \& Possession:} Collectible ship parts as a visible collection. \\
-  \textit{BCW link:} Incentivisation (collection as reward) and Enablement (progress visibility).
-  \item \textbf{Social Influence \& Relatedness (optional):} Low-effort social sharing (“brag button”). \\
-  \textit{BCW link:} Modelling (social comparison / exemplars). \\
-  \textit{Note:} May be omitted due to prototype scope constraints.
-  \item \textbf{Scarcity \& Impatience:} One ship part per day (appointment-like dynamics). \\
-  \textit{BCW link:} Incentivisation (time-limited opportunity), but requires fairness/clarity to avoid frustration.
-  \item \textbf{Unpredictability \& Curiosity:} Occasional surprise rewards or short quizzes at the end of a walk. \\
-  \textit{BCW link:} Education (knowledge prompts) and Incentivisation (bonus rewards).
-  \item \textbf{Loss \& Avoidance (used cautiously):} Soft “missed chance” framing rather than punishment. \\
-  \textit{BCW link:} Coercion in a mild form (avoid overuse to prevent negative affect).
-\end{itemize}
+Octalysis organizes user motivation into eight core drives, each representing a different reason why a person may engage with a system. \textit{Epic Meaning and Calling} refers to acting in support of a larger purpose. \textit{Development and Accomplishment} concerns progress, mastery, and completing challenges. \textit{Empowerment of Creativity and Feedback} describes motivation through meaningful choices, experimentation, and responses to player actions. \textit{Ownership and Possession} arises from collecting, creating, or improving something that feels personally valuable. \textit{Social Influence and Relatedness} includes social comparison, cooperation, recognition, and a sense of connection to others. \textit{Scarcity and Impatience} is based on limited access to opportunities or rewards. \textit{Unpredictability and Curiosity} motivates users through uncertainty and the desire to discover what happens next. Finally, \textit{Loss and Avoidance} concerns the motivation to prevent the loss of progress, rewards, or opportunities \cite{octalysis,key}.
 
-\section{Prototype Development}
-The project is developed in Unity targeting Android. Android was chosen as a platform due to its wide
-availability and ease of deployment for testing purposes. The game prototype includes core mechanics such as step
-tracking, questing, and a simple user interface. The development process follows the waterfall model, due to the nature
-of the project as a prototype with a defined scope.
+Before development, the proposed mechanics of StepQuest were mapped to the eight core drives of the Octalysis framework and to relevant intervention functions of the Behaviour Change Wheel (BCW) \cite{octalysis,key,bcw2011}. The purpose of this mapping was to translate general motivational and behavior-change concepts into concrete design ideas for the prototype.
 
-\section{User Testing}
-User testing will be conducted with a small group of participants.
-Participants will be asked to install the APK on their Android devices and use the app over a period of two weeks.
-After the testing period, participants will be surveyed regarding their experience, motivation levels, and feedback on
-the app.
+\textit{Epic Meaning and Calling} was addressed through a narrative setting in which the player is stranded on an unfamiliar planet and must recover missing ship parts and information. Daily walking challenges were therefore intended to contribute to a larger in-game objective rather than functioning only as isolated step targets. From a BCW perspective, this narrative framing was associated primarily with \textit{Persuasion}, as it aimed to present walking within a positive and meaningful context. Short health-related information was additionally associated with \textit{Education}.
 
-\section{Data Collection}
-After deployment, data on user engagement and step counts will be collected. For this,
-a logging system will be implemented to track relevant metrics. They will be exported after the tester is done playing
-via a debug menu option.
+\textit{Development and Accomplishment} was intended to be supported through clear step goals, progress feedback, quest completion, and visible long-term progression. Within the BCW, these rewards were associated with \textit{Incentivisation}, since successful walking behavior would result in in-game progress and unlockable content.
+
+\textit{Empowerment of Creativity and Feedback} was considered through the possibility of allowing players to choose between walking goals with different step requirements. This was intended to provide a degree of autonomy and allow players to select a task that suited their current situation. Immediate step feedback would show how real-world movement affected the game state. From a behavior-change perspective, goal selection and feedback were expected to support self-regulation and enablement.
+
+\textit{Ownership and Possession} was addressed through collectible ship parts and story modules. These items were intended to remain permanently available in a collection and to create a persistent representation of previous accomplishments. Frequent interaction during walking was avoided because continuous smartphone use could distract from the physical activity itself.
+
+Possible mechanics related to \textit{Social Influence and Relatedness} included achievement sharing, trophy displays, and cooperative walking tasks. These ideas were associated with the BCW intervention function \textit{Modelling}, since other users could provide social comparison or examples of the desired behavior.
+
+\textit{Scarcity and Impatience} was considered through a daily limitation on quest completion. Restricting players to one reward per day was intended to create a regular progression rhythm and encourage repeated use rather than allowing all content to be completed in a single session.
+
+Possible mechanics for \textit{Unpredictability and Curiosity} included random discoveries, mystery rewards, and short questions related to health or the game's narrative. Health-related questions could additionally contribute to the BCW intervention function \textit{Education}.
+
+Finally, \textit{Loss and Avoidance} was considered through time-limited opportunities, such as rewards that would expire after a defined period. Such mechanics could correspond to the BCW intervention function \textit{Coercion}, although the intended implementation was deliberately mild in order to avoid making missed activity feel punitive.
+
+The mapping provided an initial design space rather than a requirement to implement every proposed mechanic. The final selection was determined during prototype development based on feasibility, complexity, safety, and compatibility with the intended walking experience.
+
+\section{User Study}
+
+A user study was conducted to investigate how participants interacted with StepQuest during everyday use. The study focused on perceived walking motivation, engagement with the prototype, usability, and the relationship between real-world walking and in-game progression. Questionnaire responses were combined with usage data recorded by the prototype.
+
+The study was exploratory and did not include a control group. Consequently, it was not designed to establish that StepQuest caused changes in participants' physical activity. Instead, it examined participants' experiences with the prototype and indications of changes in walking behavior and motivation during the study period.
+\subsection{Participants and Testing Procedure}
+
+\subsection{Data Collection}
+
+\subsection{Data Analysis}

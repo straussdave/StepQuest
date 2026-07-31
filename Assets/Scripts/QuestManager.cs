@@ -134,12 +134,6 @@ public class QuestManager : MonoBehaviour
             CompleteQuest(ignoreDoneToday: !IsPartUnlocked(quest.Id));
     }
 
-    public void RepairOrResetActiveQuest()
-    {
-        RepairOrRebaseActiveQuest();
-    }
-
-    // Hook this to a UI Button when support needs to recover a stuck active quest.
     public void RepairOrRebaseActiveQuest()
     {
         Quest quest = GetCurrentQuest();

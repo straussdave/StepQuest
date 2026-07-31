@@ -23,7 +23,7 @@ public class SaveSystem
         PlayerPrefs.SetString(SaveKeys.STEP_TRACKING_MODE, "Inactive");
         PlayerPrefs.SetInt(SaveKeys.QUEST_DONE_TODAY, 0);
         PlayerPrefs.SetString(SaveKeys.UNLOCKED_KEY, "");
-        PlayerPrefs.SetString(SaveKeys.NEXT_DAY_TEXT_KEY, "");
+        PlayerPrefs.DeleteKey(SaveKeys.NEXT_DAY_TEXT_KEY);
         PlayerPrefs.SetInt(SaveKeys.START_DAY_KEY, 0);
         PlayerPrefs.SetInt(SaveKeys.LAST_QUEST_DAY_KEY, 0);
         PlayerPrefs.SetString(SaveKeys.LAST_UNLOCKED_PART_ID, "");

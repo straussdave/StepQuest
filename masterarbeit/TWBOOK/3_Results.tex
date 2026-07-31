@@ -1,26 +1,158 @@
 \chapter{Results}
-\section{Status}
 
-At the current stage, the core gameplay loop is playable end-to-end. The player is greeted by an
-in-game companion character (dialogue screen) and proceeds into a daily mission selection flow.
-Missions are presented as ship parts with clearly communicated step goals (e.g., 2500--3000 steps).
-A day counter is shown in the main UI (``Sol 8''), and the build includes entry points for a settings screen
-as well as a collection view.
+\section{Prototype Outcome}
 
-\begin{itemize}
-  \item \textbf{Dialogue onboarding flow:} A character-driven dialogue screen introduces the interaction and
-  transitions into the daily choice (``What part would you like to retrieve today?'').
-  \item \textbf{Daily mission selection implemented:} The player can choose from multiple available parts
-  (e.g., Wing, Cockpit), each associated with a step target.
-  \item \textbf{Prototype progression structure:} The chosen mission corresponds to a collectible ship part,
-  supporting a clear short-term goal for walking and a longer-term collection objective.
-  \item \textbf{Collection/inspection screen:} A dedicated view exists to inspect the ship/collection state
-  (currently represented visually as a ship preview and a back-navigation flow).
-  \item \textbf{General UX structure in place:} Consistent UI theme, navigation (e.g., back button), and
-  a dedicated \textit{Collection} button from the main screen.
-\end{itemize}
-\textbf{Open work:}
-While the loop is functional, the prototype is not feature-complete. Remaining work includes completing
-content breadth, refining balancing, adding excitement features such as sounds and animations
-and finalizing support features needed for the evaluation phase 
-(e.g., robust data export/logging, and polish for settings and collection feedback).
+The development process resulted in a functional Android prototype that implements the central StepQuest gameplay loop. Players can select a walking quest, accumulate progress through real-world steps, complete the quest after reaching the required step target, and unlock ship parts or story-related content. The prototype also preserves progress between sessions, restricts players to one completed quest per day, and records usage-related information for the user study via logging.
+
+\subsection{Technical Overview}
+
+StepQuest was implemented using the Unity game engine and C\#. Unity was used for the game logic, user interface, asset management, persistence, and Android build process. The final application was distributed as an Android Package Kit (APK), allowing participants to install the prototype directly on compatible Android smartphones without publication through an application store.
+
+Android was the primary target platform because it provides access to built-in step-counting sensors and allows applications to be distributed directly for testing. The prototype uses the Android sensor system to obtain physical activity data and connects these data to the Unity-based quest system.
+
+Table~\ref{tab:technologies} summarizes the main technologies used in the development of the prototype.
+
+\begin{table}[h]
+	\centering
+	\caption{Main technologies used in the StepQuest prototype}
+	\label{tab:technologies}
+	\begin{tabular}{p{0.30\textwidth} p{0.58\textwidth}}
+		\hline
+		\textbf{Technology} & \textbf{Purpose} \\
+		\hline
+		Git & Version Control \\
+		Unity & Game engine, interface implementation, scene and asset management, and Android builds \\
+		C\# & Implementation of the gameplay logic, quest system, persistence, and logging \\
+		Android Sensor API & Access to step counter and step detector sensors \\
+		Local device storage & Persistence of active quests, unlocked content, and daily progress \\
+		APK distribution & Direct installation of the prototype on participants' Android devices \\
+		\hline
+	\end{tabular}
+\end{table}
+\subsection{Software Architecture}
+
+The prototype was divided into separate systems for step tracking, quest management, persistence, user interface control, content unlocking, and data logging. This separation reduced dependencies between the physical activity sensor and the gameplay logic. For example, the quest system receives step updates through a common step-counter interface rather than directly accessing the Android sensor implementation.
+
+The step-counter interface has separate implementations for Android devices and the Unity editor. On Android, sensor data are obtained from the device's native step sensors. During development in the Unity editor, a mock implementation allows steps to be added manually. This made it possible to test the complete quest flow without performing physical walks during each development iteration.
+
+The central quest state is managed by a dedicated quest manager. This component stores the currently active quest, the number of accumulated steps, and the unlocked content. It also notifies interface components when a quest is selected, progress changes, or a quest is completed.
+
+Quest content is represented through Unity ScriptableObjects. Each quest definition contains configuration data such as a unique identifier, step requirement, displayed text, quest type, and corresponding unlockable content. Separating this information from the gameplay code made it possible to add and modify quests without changing the underlying quest logic.
+\subsection{Step Tracking}
+
+Real-world walking progress is measured using the motion sensors available on Android devices. The prototype first attempts to use the Android \texttt{TYPE\_STEP\_COUNTER} sensor. This sensor reports the cumulative number of steps recorded since the device was last restarted. When a quest or tracking session begins, StepQuest stores the current cumulative value as a baseline. Subsequent progress is calculated as the difference between the current sensor value and this baseline.
+
+If the cumulative step counter is unavailable, the prototype can use the \texttt{TYPE\_STEP\_DETECTOR} sensor as a fallback. In this case, individual step events are counted within the current session. Access to the sensors requires the Android physical activity recognition permission, which is requested by the application on the first startup.
+
+The measured steps are forwarded to the quest system and used to update the active quest. The user interface displays the current number of steps relative to the quest target. Once the required value is reached, the quest becomes eligible for completion.
+
+Because sensor availability and behavior can differ between Android devices, step tracking represented an important technical constraint of the prototype. The implementation was designed to support the two common Android step sensor types, but reliable tracking still depended on the hardware and operating-system behavior of the participants' devices.
+\subsection{Quest and Progression System}
+
+The central gameplay loop is implemented through a daily quest system. At the beginning of a quest, the player selects one of the available tasks. Each task defines a required number of steps and an associated reward. During the tutorial phase, the repair-droid quest is mandatory because it establishes the narrative and unlocks the remaining quest structure.
+
+After the introductory quest, the player is presented with a selection of available quests. The prototype distinguishes between ship-part quests and story-related quests. Completing a ship-part quest unlocks a visual component of the damaged spacecraft, while completing a story quest unlocks an information module that contributes to the narrative.
+
+Quest progress is shown through a numerical step display and a progress bar. When the step target is reached, the quest can be completed and the corresponding content is added to the player's collection. The collected ship parts remain visible and gradually reconstruct the spacecraft, providing a persistent representation of long-term progress.
+
+The prototype restricts players to one completed quest per calendar day. The date of the most recently completed quest is stored locally and compared with the current date. Once a quest has been completed, no additional quest can be finished until the following day. This system distributes progression across multiple days and prevents the complete game from being finished in a single session.
+\subsection{Persistence and Data Logging}
+
+The prototype stores relevant game state locally on the Android device. Persisted data include the active quest, current quest progress, unlocked content, the date of the most recently completed quest, and the starting date of the playthrough. This allows users to close and reopen the application without losing their progress.
+
+A logging system was implemented to collect usage-related information during the user study. Logged events include quest-related interactions, step progress, quest completion, unlocked content, and relevant application state changes. The logs are stored locally and can be exported through a debug interface after the testing period.
+
+Local storage was selected because the prototype did not require user accounts, a remote server, or synchronization between devices. This reduced technical complexity and avoided transferring participant data to an external backend. However, it also meant that the recorded logs had to be exported individually from each participant's device.
+\subsection{User Interface}
+
+The final prototype uses a portrait-oriented mobile interface divided into three primary areas: the home screen, the narrative modules screen, and the ship collection screen. Navigation is provided through a tab-based bar at the bottom of the display.
+
+The home screen presents the current quest, step requirement, and progress. It also contains the dialogue and narrative elements used before and after quest completion. The collection screen shows recovered ship parts, where the user can interact with his ship by rotating it to view from all sides. The narrative modules screen shows the unlocked modules, which provide further explanation of the worlds setting via a text based pop up. Locked content is visually distinguished from unlocked content so that players can see both their current progress and the remaining rewards.
+
+Interaction during walking was intentionally minimized. Players can select a quest before beginning a walk and then carry the smartphone in a pocket while steps are recorded. The interface is mainly used before and after the physical activity rather than requiring continuous attention during movement.
+
+The resulting prototype therefore implements the main functional requirements needed for the user study: physical step tracking, daily walking goals, progress feedback, quest completion, content collection, narrative progression, persistence, and usage logging.
+
+\subsection{Implemented Octalysis and BCW Elements}
+
+The final StepQuest prototype implemented selected elements from the intended Octalysis and BCW mapping. The strongest representation was found in \textit{Epic Meaning and Calling}, \textit{Development and Accomplishment}, \textit{Ownership and Possession}, and \textit{Scarcity and Impatience}. Other core drives were implemented only partially or were excluded from the prototype.
+
+\subsubsection{Epic Meaning and Calling}
+
+The final prototype embedded the walking quests in a narrative about a stranded pilot recovering missing ship parts and information. The onboarding sequence introduced the setting and explained the overall objective. Walking therefore contributed to progress within the story rather than only increasing a step number on screen.
+
+This mechanic represented the BCW intervention function \textit{Persuasion}, as the narrative gave walking a more positive and purposeful framing. Short health-related messages at the beginning of each day also introduced a limited educational element.
+
+\subsubsection{Development and Accomplishment}
+
+Each quest in the final prototype contained a defined step target. Progress toward this target was displayed through a progress bar, and completing the quest unlocked a ship part or story module. This created both short-term progress through individual quest completion and long-term progress through the reconstruction of the ship and advancement of the narrative.
+
+The resulting rewards represented \textit{Incentivisation} within the BCW. However, initially considered elements such as points, badges, and leaderboards were not included. Progress was instead communicated through quest completion and unlockable content.
+
+\subsubsection{Empowerment of Creativity and Feedback}
+
+Players could select between available quests with different step requirements, although the introductory repair-droid quest was mandatory. This provided a limited degree of choice while maintaining the intended narrative sequence.
+
+Feedback was implemented through the continuously updated step counter, progress bar, completion messages, and unlocked rewards. The creativity component remained limited because players could not create their own goals or solve quests in substantially different ways.
+
+\subsubsection{Ownership and Possession}
+
+Ownership was represented through permanently unlocked ship parts and story modules. Completed quests expanded the player's collection, while recovered ship parts became visible on the reconstructed ship. The collection therefore served as a persistent representation of previously completed walking activity.
+
+The prototype did not require interaction during the walk itself. Players could begin a quest, carry the smartphone in their pocket, and return to the interface later to review progress and rewards.
+
+\subsubsection{Social Influence and Relatedness}
+
+Social features were not implemented. The final prototype did not include achievement sharing, leaderboards, multiplayer functionality, or cooperative quests. These features were excluded because they would have required additional systems for accounts, networking, privacy, and moderation that exceeded the scope of the prototype. Additionally, other non player characters would not have fit the narrative setting of the abandoned region.
+
+\subsubsection{Scarcity and Impatience}
+
+The final prototype allowed only one quest to be completed per day. This prevented participants from unlocking all content in a single session and created a progression structure distributed across multiple days.
+
+The limitation was displayed as a fixed rule rather than as an unexpected restriction. No limited-time bonus periods or variable reward schedules were implemented.
+
+\subsubsection{Unpredictability and Curiosity}
+
+Random rewards, mystery boxes, and quiz challenges were not implemented. Introducing such events during walks could have required notifications or smartphone interaction that conflicted with the goal of allowing the phone to remain in the player's pocket.
+
+Curiosity was instead supported indirectly through the gradual unlocking of story modules and the reveal of additional narrative information. This represented only a limited implementation of the corresponding Octalysis core drive.
+
+\subsubsection{Loss and Avoidance}
+
+The final prototype did not remove progress, expire previously earned rewards, or punish players for missing a day. Although players could complete only one quest per day, an unfinished or missed day did not result in the loss of collected content.
+
+This decision kept the motivational design focused on positive progression and rewards rather than pressure or punishment. Consequently, the BCW intervention function \textit{Coercion} was not represented in the implemented prototype.
+
+Overall, the final implementation focused on a smaller group of mutually supporting mechanics. Narrative purpose, visible progress, collectible rewards, player choice, and daily limitations formed the central motivational structure. Social systems, random events, and loss-based mechanics were excluded to keep the prototype technically manageable and compatible with a low-interaction walking experience.
+
+\section{User Study Results}
+\subsection{Participant Characteristics}
+\subsection{Usage and Engagement Results}
+\subsection{Questionnaire Results}
+\subsection{Qualitative Feedback}
+
+%\section{Status}
+
+%At the current stage, the core gameplay loop is playable end-to-end. The player is greeted by an
+%in-game companion character (dialogue screen) and proceeds into a daily mission selection flow.
+%Missions are presented as ship parts with clearly communicated step goals (e.g., 2500--3000 steps).
+%A day counter is shown in the main UI (``Sol 8''), and the build includes entry points for a settings screen
+%as well as a collection view.
+
+%\begin{itemize}
+  %\item \textbf{Dialogue onboarding flow:} A character-driven dialogue screen introduces the interaction and
+  %transitions into the daily choice (``What part would you like to retrieve today?'').
+  %\item \textbf{Daily mission selection implemented:} The player can choose from multiple available parts
+  %(e.g., Wing, Cockpit), each associated with a step target.
+  %\item \textbf{Prototype progression structure:} The chosen mission corresponds to a collectible ship part,
+  %supporting a clear short-term goal for walking and a longer-term collection objective.
+  %\item \textbf{Collection/inspection screen:} A dedicated view exists to inspect the ship/collection state
+  %(currently represented visually as a ship preview and a back-navigation flow).
+  %\item \textbf{General UX structure in place:} Consistent UI theme, navigation (e.g., back button), and
+  %a dedicated \textit{Collection} button from the main screen.
+%\end{itemize}
+%\textbf{Open work:}
+%While the loop is functional, the prototype is not feature-complete. Remaining work includes completing
+%content breadth, refining balancing, adding excitement features such as sounds and animations
+%and finalizing support features needed for the evaluation phase 
+%(e.g., robust data export/logging, and polish for settings and collection feedback).

@@ -129,14 +129,15 @@ public class GameFlowController : MonoBehaviour
             _questManager = QuestManager.Instance;
         }
 
-        string msg = PlayerPrefs.GetString(
-            SaveKeys.NEXT_DAY_TEXT_KEY,
-            "Impact detected. Systems offline. " +
-            "For a moment, there is only silence - then a faint beeping breaks through the debris. " +
-            "The triple-redundant airbags absorbed most of the crash, and you are still alive. " +
-            "Your repair droid may still be intact beneath the sand. Recover it, " +
-            "and you may still have a chance to leave this place."
-        );
+        string msg = PlayerPrefs.GetString(SaveKeys.NEXT_DAY_TEXT_KEY, "");
+        if (string.IsNullOrWhiteSpace(msg))
+        {
+            msg = "Impact detected. Systems offline. " +
+                "For a moment, there is only silence - then a faint beeping breaks through the debris. " +
+                "The triple-redundant airbags absorbed most of the crash, and you are still alive. " +
+                "Your repair droid may still be intact beneath the sand. Recover it, " +
+                "and you may still have a chance to leave this place.";
+        }
 
         WriteMessage(msg);
     }
