@@ -2,11 +2,11 @@
 
 \section{Prototype Outcome}
 
-The development process resulted in a functional Android prototype that implements the central StepQuest gameplay loop. Players can select a walking quest, accumulate progress through real-world steps, complete the quest after reaching the required step target, and unlock ship parts or story-related content. The prototype also preserves progress between sessions, restricts players to one completed quest per day, and records usage-related information for the user study via logging.
+The development process resulted in a functional Android prototype that implements the central \textit{StepQuest} gameplay loop. Players can select a walking quest, accumulate progress through real-world steps, complete the quest after reaching the required step target, and unlock ship parts or story-related content. The prototype also preserves progress between sessions, restricts players to one completed quest per day, and records usage-related information for the user study via logging.
 
 \subsection{Technical Overview}
 
-StepQuest was implemented using the Unity game engine and C\#. Unity was used for the game logic, user interface, asset management, persistence, and Android build process. The final application was distributed as an Android Package Kit (APK), allowing participants to install the prototype directly on compatible Android smartphones without publication through an application store.
+\textit{StepQuest} was implemented using the Unity game engine and C\#. Unity was used for the game logic, user interface, asset management, persistence, and Android build process. The final application was distributed as an Android Package Kit (APK), allowing participants to install the prototype directly on compatible Android smartphones without publication through an application store.
 
 Android was the primary target platform because it provides access to built-in step-counting sensors and allows applications to be distributed directly for testing. The prototype uses the Android sensor system to obtain physical activity data and connects these data to the Unity-based quest system.
 
@@ -14,7 +14,7 @@ Table~\ref{tab:technologies} summarizes the main technologies used in the develo
 
 \begin{table}[h]
 	\centering
-	\caption{Main technologies used in the StepQuest prototype}
+	\caption{Main technologies used in the \textit{StepQuest} prototype}
 	\label{tab:technologies}
 	\begin{tabular}{p{0.30\textwidth} p{0.58\textwidth}}
 		\hline
@@ -40,7 +40,7 @@ The central quest state is managed by a dedicated quest manager. This component 
 Quest content is represented through Unity ScriptableObjects. Each quest definition contains configuration data such as a unique identifier, step requirement, displayed text, quest type, and corresponding unlockable content. Separating this information from the gameplay code made it possible to add and modify quests without changing the underlying quest logic.
 \subsection{Step Tracking}
 
-Real-world walking progress is measured using the motion sensors available on Android devices. The prototype first attempts to use the Android \texttt{TYPE\_STEP\_COUNTER} sensor. This sensor reports the cumulative number of steps recorded since the device was last restarted. When a quest or tracking session begins, StepQuest stores the current cumulative value as a baseline. Subsequent progress is calculated as the difference between the current sensor value and this baseline.
+Real-world walking progress is measured using the motion sensors available on Android devices. The prototype first attempts to use the Android \texttt{TYPE\_STEP\_COUNTER} sensor. This sensor reports the cumulative number of steps recorded since the device was last restarted. When a quest or tracking session begins, \textit{StepQuest} stores the current cumulative value as a baseline. Subsequent progress is calculated as the difference between the current sensor value and this baseline.
 
 If the cumulative step counter is unavailable, the prototype can use the \texttt{TYPE\_STEP\_DETECTOR} sensor as a fallback. In this case, individual step events are counted within the current session. Access to the sensors requires the Android physical activity recognition permission, which is requested by the application on the first startup.
 
@@ -75,7 +75,7 @@ The resulting prototype therefore implements the main functional requirements ne
 
 \subsection{Implemented Octalysis and BCW Elements}
 
-The final StepQuest prototype implemented selected elements from the intended Octalysis and BCW mapping. The strongest representation was found in \textit{Epic Meaning and Calling}, \textit{Development and Accomplishment}, \textit{Ownership and Possession}, and \textit{Scarcity and Impatience}. Other core drives were implemented only partially or were excluded from the prototype.
+The final \textit{StepQuest} prototype implemented selected elements from the intended Octalysis and BCW mapping. The strongest representation was found in \textit{Epic Meaning and Calling}, \textit{Development and Accomplishment}, \textit{Ownership and Possession}, and \textit{Scarcity and Impatience}. Other core drives were implemented only partially or were excluded from the prototype.
 
 \subsubsection{Epic Meaning and Calling}
 
