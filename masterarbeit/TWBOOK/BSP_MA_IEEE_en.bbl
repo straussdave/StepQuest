@@ -155,8 +155,8 @@
       \strng{authornamehash}{4ffb6a4c2c846956a43d5c0ad7dc126a}
       \strng{authorfullhash}{fc8009a6e4183ab340d3d32e65d69e4d}
       \strng{authorfullhashraw}{fc8009a6e4183ab340d3d32e65d69e4d}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{American Journal of Preventive Medicine}
@@ -187,8 +187,8 @@
       \strng{authorfullhash}{910f3b76aa4aa7a4e48e910838260fe6}
       \strng{authorfullhashraw}{910f3b76aa4aa7a4e48e910838260fe6}
       \field{extraname}{1}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{https://yukaichou.com/gamification-examples/octalysis-gamification-framework/}
@@ -216,12 +216,54 @@
       \strng{authorfullhash}{6b9a3659329ca993fe9cab8977705444}
       \strng{authorfullhashraw}{6b9a3659329ca993fe9cab8977705444}
       \field{extraname}{2}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Actionable Gamification: Beyond Points, Badges, and Leaderboards}
       \field{year}{2015}
+    \endentry
+    \entry{bcw2011}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=64ee05d60f413a4b7b295229bfddd5dc}{%
+           family={Michie},
+           familyi={M\bibinitperiod},
+           given={Susan},
+           giveni={S\bibinitperiod}}}%
+        {{hash=f43473f0a291823ba4bb560c2fa58c40}{%
+           family={Stralen},
+           familyi={S\bibinitperiod},
+           given={Maartje\bibnamedelima M.},
+           giveni={M\bibinitperiod\bibinitdelim M\bibinitperiod},
+           prefix={van},
+           prefixi={v\bibinitperiod}}}%
+        {{hash=9d2787872d7eadcedce1aeb8e7af9eb0}{%
+           family={West},
+           familyi={W\bibinitperiod},
+           given={Robert},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{09cf760d52d9253bbd23cc70212e9408}
+      \strng{fullhash}{aafe6bbd084097b93694b3800ace0176}
+      \strng{fullhashraw}{aafe6bbd084097b93694b3800ace0176}
+      \strng{bibnamehash}{aafe6bbd084097b93694b3800ace0176}
+      \strng{authorbibnamehash}{aafe6bbd084097b93694b3800ace0176}
+      \strng{authornamehash}{09cf760d52d9253bbd23cc70212e9408}
+      \strng{authorfullhash}{aafe6bbd084097b93694b3800ace0176}
+      \strng{authorfullhashraw}{aafe6bbd084097b93694b3800ace0176}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Implementation Science}
+      \field{title}{The Behaviour Change Wheel: A New Method for Characterising and Designing Behaviour Change Interventions}
+      \field{volume}{6}
+      \field{year}{2011}
+      \field{pages}{42}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1186/1748-5908-6-42
+      \endverb
     \endentry
     \entry{Bull2020WHOActivityGuidelines}{article}{}{}
       \true{moreauthor}
@@ -251,8 +293,8 @@
       \strng{authornamehash}{8a741888b2e8e3444e30fcf717508cf0}
       \strng{authorfullhash}{273b63efbb13b0f195d26af48dbf413e}
       \strng{authorfullhashraw}{273b63efbb13b0f195d26af48dbf413e}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{British Journal of Sports Medicine}
@@ -280,8 +322,8 @@
       \strng{authornamehash}{531217507bec092b6ec36c0f78f46736}
       \strng{authorfullhash}{531217507bec092b6ec36c0f78f46736}
       \strng{authorfullhashraw}{531217507bec092b6ec36c0f78f46736}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Fact sheet, 26 June 2024}
@@ -316,8 +358,8 @@
       \strng{authornamehash}{ca6a45b941026a3f518adc8966643df0}
       \strng{authorfullhash}{2102ca80af913d1a944a344cc4bb2aff}
       \strng{authorfullhashraw}{2102ca80af913d1a944a344cc4bb2aff}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{The Lancet Global Health}
@@ -338,8 +380,8 @@
       \strng{authornamehash}{f30606ec06a818f8b562d7845c7112f9}
       \strng{authorfullhash}{f30606ec06a818f8b562d7845c7112f9}
       \strng{authorfullhashraw}{f30606ec06a818f8b562d7845c7112f9}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Health determinants statistics, last updated 1 July 2025}
@@ -387,8 +429,8 @@
       \strng{authornamehash}{e3a990a404eda4c972df8eac2d8e86fd}
       \strng{authorfullhash}{dc279b39e66baaafdacb78d2a100c0ad}
       \strng{authorfullhashraw}{dc279b39e66baaafdacb78d2a100c0ad}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Preventive Medicine}
@@ -399,72 +441,6 @@
       \range{pages}{10}
       \verb{doi}
       \verb 10.1016/j.ypmed.2014.12.041
-      \endverb
-    \endentry
-    \entry{Romeo2019SmartphoneAppsPA}{article}{}{}
-      \name{author}{8}{}{%
-        {{hash=83e14ab91bf3463c545562023aa295eb}{%
-           family={Romeo},
-           familyi={R\bibinitperiod},
-           given={Andrea},
-           giveni={A\bibinitperiod}}}%
-        {{hash=86424ad9f2af4400f035ac2882a40f81}{%
-           family={Edney},
-           familyi={E\bibinitperiod},
-           given={Sarah},
-           giveni={S\bibinitperiod}}}%
-        {{hash=9eafd6b9fd95a10e566cfa84f3d5e92e}{%
-           family={Plotnikoff},
-           familyi={P\bibinitperiod},
-           given={Ronald},
-           giveni={R\bibinitperiod}}}%
-        {{hash=38d09864ea3b72cf14309f955f7dcb53}{%
-           family={Curtis},
-           familyi={C\bibinitperiod},
-           given={Rachel},
-           giveni={R\bibinitperiod}}}%
-        {{hash=8a0b478aa1f9d7796c574efa78a6a03c}{%
-           family={Ryan},
-           familyi={R\bibinitperiod},
-           given={Joseph},
-           giveni={J\bibinitperiod}}}%
-        {{hash=96b92d1eb13c77875576368aef706db5}{%
-           family={Sanders},
-           familyi={S\bibinitperiod},
-           given={Ian},
-           giveni={I\bibinitperiod}}}%
-        {{hash=5c7f8c564e3677cb364ee2c790e5c11c}{%
-           family={Crozier},
-           familyi={C\bibinitperiod},
-           given={Alyce},
-           giveni={A\bibinitperiod}}}%
-        {{hash=5547fcd394efea1e700de3dbb98abee0}{%
-           family={Maher},
-           familyi={M\bibinitperiod},
-           given={Carol},
-           giveni={C\bibinitperiod}}}%
-      }
-      \strng{namehash}{6219db07d9324068f58468f08adbcffa}
-      \strng{fullhash}{516abba5b1d2fda2bbe8a02385ac2286}
-      \strng{fullhashraw}{516abba5b1d2fda2bbe8a02385ac2286}
-      \strng{bibnamehash}{6219db07d9324068f58468f08adbcffa}
-      \strng{authorbibnamehash}{6219db07d9324068f58468f08adbcffa}
-      \strng{authornamehash}{6219db07d9324068f58468f08adbcffa}
-      \strng{authorfullhash}{516abba5b1d2fda2bbe8a02385ac2286}
-      \strng{authorfullhashraw}{516abba5b1d2fda2bbe8a02385ac2286}
-      \field{sortinit}{7}
-      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Journal of Medical Internet Research}
-      \field{number}{3}
-      \field{title}{Can Smartphone Apps Increase Physical Activity? Systematic Review and Meta-Analysis}
-      \field{volume}{21}
-      \field{year}{2019}
-      \field{pages}{e12053}
-      \range{pages}{-1}
-      \verb{doi}
-      \verb 10.2196/12053
       \endverb
     \endentry
     \entry{Laranjo2021AppsTrackers}{article}{}{}
@@ -553,8 +529,8 @@
       \strng{authornamehash}{764dd47486567ff19b60711a4690c4d7}
       \strng{authorfullhash}{2385c0d78d1a446feb0c365c8ee2c4ce}
       \strng{authorfullhashraw}{2385c0d78d1a446feb0c365c8ee2c4ce}
-      \field{sortinit}{7}
-      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{British Journal of Sports Medicine}
@@ -566,6 +542,72 @@
       \range{pages}{11}
       \verb{doi}
       \verb 10.1136/bjsports-2020-102892
+      \endverb
+    \endentry
+    \entry{Romeo2019SmartphoneAppsPA}{article}{}{}
+      \name{author}{8}{}{%
+        {{hash=83e14ab91bf3463c545562023aa295eb}{%
+           family={Romeo},
+           familyi={R\bibinitperiod},
+           given={Andrea},
+           giveni={A\bibinitperiod}}}%
+        {{hash=86424ad9f2af4400f035ac2882a40f81}{%
+           family={Edney},
+           familyi={E\bibinitperiod},
+           given={Sarah},
+           giveni={S\bibinitperiod}}}%
+        {{hash=9eafd6b9fd95a10e566cfa84f3d5e92e}{%
+           family={Plotnikoff},
+           familyi={P\bibinitperiod},
+           given={Ronald},
+           giveni={R\bibinitperiod}}}%
+        {{hash=38d09864ea3b72cf14309f955f7dcb53}{%
+           family={Curtis},
+           familyi={C\bibinitperiod},
+           given={Rachel},
+           giveni={R\bibinitperiod}}}%
+        {{hash=8a0b478aa1f9d7796c574efa78a6a03c}{%
+           family={Ryan},
+           familyi={R\bibinitperiod},
+           given={Joseph},
+           giveni={J\bibinitperiod}}}%
+        {{hash=96b92d1eb13c77875576368aef706db5}{%
+           family={Sanders},
+           familyi={S\bibinitperiod},
+           given={Ian},
+           giveni={I\bibinitperiod}}}%
+        {{hash=5c7f8c564e3677cb364ee2c790e5c11c}{%
+           family={Crozier},
+           familyi={C\bibinitperiod},
+           given={Alyce},
+           giveni={A\bibinitperiod}}}%
+        {{hash=5547fcd394efea1e700de3dbb98abee0}{%
+           family={Maher},
+           familyi={M\bibinitperiod},
+           given={Carol},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{6219db07d9324068f58468f08adbcffa}
+      \strng{fullhash}{516abba5b1d2fda2bbe8a02385ac2286}
+      \strng{fullhashraw}{516abba5b1d2fda2bbe8a02385ac2286}
+      \strng{bibnamehash}{6219db07d9324068f58468f08adbcffa}
+      \strng{authorbibnamehash}{6219db07d9324068f58468f08adbcffa}
+      \strng{authornamehash}{6219db07d9324068f58468f08adbcffa}
+      \strng{authorfullhash}{516abba5b1d2fda2bbe8a02385ac2286}
+      \strng{authorfullhashraw}{516abba5b1d2fda2bbe8a02385ac2286}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Medical Internet Research}
+      \field{number}{3}
+      \field{title}{Can Smartphone Apps Increase Physical Activity? Systematic Review and Meta-Analysis}
+      \field{volume}{21}
+      \field{year}{2019}
+      \field{pages}{e12053}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.2196/12053
       \endverb
     \endentry
     \entry{Althoff2016PokemonGo}{article}{}{}
@@ -594,8 +636,8 @@
       \strng{authornamehash}{72bce7703a2d159e17ad21926eb22c07}
       \strng{authorfullhash}{f9310d196cd11c0997dbe4ba754ef411}
       \strng{authorfullhashraw}{f9310d196cd11c0997dbe4ba754ef411}
-      \field{sortinit}{9}
-      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Journal of Medical Internet Research}
@@ -625,8 +667,8 @@
       \strng{authornamehash}{0afe22b8cf442edb1798d54f023ee77b}
       \strng{authorfullhash}{0afe22b8cf442edb1798d54f023ee77b}
       \strng{authorfullhashraw}{0afe22b8cf442edb1798d54f023ee77b}
-      \field{sortinit}{9}
-      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Entertainment Computing}
@@ -638,49 +680,6 @@
       \verb{doi}
       \verb 10.1016/j.entcom.2021.100411
       \endverb
-    \endentry
-    \entry{Hevner2004DesignScience}{article}{}{}
-      \name{author}{4}{}{%
-        {{hash=e054261c7f1739e1ba1db0a45e385c1b}{%
-           family={Hevner},
-           familyi={H\bibinitperiod},
-           given={Alan\bibnamedelima R.},
-           giveni={A\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
-        {{hash=5aec260b5b1381edc4b8ff6755f2d543}{%
-           family={March},
-           familyi={M\bibinitperiod},
-           given={Salvatore\bibnamedelima T.},
-           giveni={S\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
-        {{hash=c518c214dc9e77148493e9ea47f505ab}{%
-           family={Park},
-           familyi={P\bibinitperiod},
-           given={Jinsoo},
-           giveni={J\bibinitperiod}}}%
-        {{hash=65565df90d4793da7a2f20e5e1b07345}{%
-           family={Ram},
-           familyi={R\bibinitperiod},
-           given={Sudha},
-           giveni={S\bibinitperiod}}}%
-      }
-      \strng{namehash}{77b3350005135e016e7a83431f326d8f}
-      \strng{fullhash}{b163bef761d9a2c79a3d232595321775}
-      \strng{fullhashraw}{b163bef761d9a2c79a3d232595321775}
-      \strng{bibnamehash}{b163bef761d9a2c79a3d232595321775}
-      \strng{authorbibnamehash}{b163bef761d9a2c79a3d232595321775}
-      \strng{authornamehash}{77b3350005135e016e7a83431f326d8f}
-      \strng{authorfullhash}{b163bef761d9a2c79a3d232595321775}
-      \strng{authorfullhashraw}{b163bef761d9a2c79a3d232595321775}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{MIS Quarterly}
-      \field{number}{1}
-      \field{title}{Design Science in Information Systems Research}
-      \field{volume}{28}
-      \field{year}{2004}
-      \field{pages}{75\bibrangedash 105}
-      \range{pages}{31}
     \endentry
     \entry{Peffers2007DSRM}{article}{}{}
       \name{author}{4}{}{%
@@ -727,6 +726,49 @@
       \verb{doi}
       \verb 10.2753/MIS0742-1222240302
       \endverb
+    \endentry
+    \entry{Hevner2004DesignScience}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=e054261c7f1739e1ba1db0a45e385c1b}{%
+           family={Hevner},
+           familyi={H\bibinitperiod},
+           given={Alan\bibnamedelima R.},
+           giveni={A\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=5aec260b5b1381edc4b8ff6755f2d543}{%
+           family={March},
+           familyi={M\bibinitperiod},
+           given={Salvatore\bibnamedelima T.},
+           giveni={S\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+        {{hash=c518c214dc9e77148493e9ea47f505ab}{%
+           family={Park},
+           familyi={P\bibinitperiod},
+           given={Jinsoo},
+           giveni={J\bibinitperiod}}}%
+        {{hash=65565df90d4793da7a2f20e5e1b07345}{%
+           family={Ram},
+           familyi={R\bibinitperiod},
+           given={Sudha},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{77b3350005135e016e7a83431f326d8f}
+      \strng{fullhash}{b163bef761d9a2c79a3d232595321775}
+      \strng{fullhashraw}{b163bef761d9a2c79a3d232595321775}
+      \strng{bibnamehash}{b163bef761d9a2c79a3d232595321775}
+      \strng{authorbibnamehash}{b163bef761d9a2c79a3d232595321775}
+      \strng{authornamehash}{77b3350005135e016e7a83431f326d8f}
+      \strng{authorfullhash}{b163bef761d9a2c79a3d232595321775}
+      \strng{authorfullhashraw}{b163bef761d9a2c79a3d232595321775}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{MIS Quarterly}
+      \field{number}{1}
+      \field{title}{Design Science in Information Systems Research}
+      \field{volume}{28}
+      \field{year}{2004}
+      \field{pages}{75\bibrangedash 105}
+      \range{pages}{31}
     \endentry
     \entry{Nielsen1994UsabilityEngineering}{book}{}{}
       \name{author}{1}{}{%
@@ -791,46 +833,226 @@
       \field{title}{Research Methods in Human-Computer Interaction}
       \field{year}{2017}
     \endentry
-    \entry{bcw2011}{article}{}{}
-      \name{author}{3}{}{%
-        {{hash=64ee05d60f413a4b7b295229bfddd5dc}{%
-           family={Michie},
+    \entry{Craig2003IPAQ}{article}{}{}
+      \name{author}{11}{}{%
+        {{hash=8063f1f39563d7a06ac829af554ce4b9}{%
+           family={Craig},
+           familyi={C\bibinitperiod},
+           given={Cora\bibnamedelima L.},
+           giveni={C\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+        {{hash=9750724e112fe9c462e4cff0d9820b8a}{%
+           family={Marshall},
            familyi={M\bibinitperiod},
-           given={Susan},
-           giveni={S\bibinitperiod}}}%
-        {{hash=f43473f0a291823ba4bb560c2fa58c40}{%
-           family={Stralen},
+           given={Alison\bibnamedelima L.},
+           giveni={A\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+        {{hash=486cfc96d90216105df2e95f18dfe11c}{%
+           family={Sjöström},
            familyi={S\bibinitperiod},
-           given={Maartje\bibnamedelima M.},
-           giveni={M\bibinitperiod\bibinitdelim M\bibinitperiod},
-           prefix={van},
-           prefixi={v\bibinitperiod}}}%
-        {{hash=9d2787872d7eadcedce1aeb8e7af9eb0}{%
-           family={West},
-           familyi={W\bibinitperiod},
-           given={Robert},
-           giveni={R\bibinitperiod}}}%
+           given={Michael},
+           giveni={M\bibinitperiod}}}%
+        {{hash=ac4712e10410ad2416a89fb02de57f41}{%
+           family={Bauman},
+           familyi={B\bibinitperiod},
+           given={Adrian\bibnamedelima E.},
+           giveni={A\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+        {{hash=afbfb5ee86e4afa31d5c45fa6f87850f}{%
+           family={Booth},
+           familyi={B\bibinitperiod},
+           given={Michael\bibnamedelima L.},
+           giveni={M\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+        {{hash=43fd64520a95a42b86918133605baed1}{%
+           family={Ainsworth},
+           familyi={A\bibinitperiod},
+           given={Barbara\bibnamedelima E.},
+           giveni={B\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+        {{hash=86e9e68a022972f84dbf4fc2dd8327d8}{%
+           family={Pratt},
+           familyi={P\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod}}}%
+        {{hash=9d542febc001366806d553be5764275d}{%
+           family={Ekelund},
+           familyi={E\bibinitperiod},
+           given={Ulf},
+           giveni={U\bibinitperiod}}}%
+        {{hash=7c272792ae6a21e058d327e695ce1a88}{%
+           family={Yngve},
+           familyi={Y\bibinitperiod},
+           given={Agneta},
+           giveni={A\bibinitperiod}}}%
+        {{hash=738881b0082cbffd10eb3cb2e7c56167}{%
+           family={Sallis},
+           familyi={S\bibinitperiod},
+           given={James\bibnamedelima F.},
+           giveni={J\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+        {{hash=263ee698ab9261a26ee594c574f3cabc}{%
+           family={Oja},
+           familyi={O\bibinitperiod},
+           given={Pekka},
+           giveni={P\bibinitperiod}}}%
       }
-      \strng{namehash}{09cf760d52d9253bbd23cc70212e9408}
-      \strng{fullhash}{aafe6bbd084097b93694b3800ace0176}
-      \strng{fullhashraw}{aafe6bbd084097b93694b3800ace0176}
-      \strng{bibnamehash}{aafe6bbd084097b93694b3800ace0176}
-      \strng{authorbibnamehash}{aafe6bbd084097b93694b3800ace0176}
-      \strng{authornamehash}{09cf760d52d9253bbd23cc70212e9408}
-      \strng{authorfullhash}{aafe6bbd084097b93694b3800ace0176}
-      \strng{authorfullhashraw}{aafe6bbd084097b93694b3800ace0176}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \strng{namehash}{d04b0ff09f9d812539e3fd536c5d98a3}
+      \strng{fullhash}{bbeef942c6f4aa86647bc329fd1d0cb2}
+      \strng{fullhashraw}{bbeef942c6f4aa86647bc329fd1d0cb2}
+      \strng{bibnamehash}{d04b0ff09f9d812539e3fd536c5d98a3}
+      \strng{authorbibnamehash}{d04b0ff09f9d812539e3fd536c5d98a3}
+      \strng{authornamehash}{d04b0ff09f9d812539e3fd536c5d98a3}
+      \strng{authorfullhash}{bbeef942c6f4aa86647bc329fd1d0cb2}
+      \strng{authorfullhashraw}{bbeef942c6f4aa86647bc329fd1d0cb2}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{Implementation Science}
-      \field{title}{The Behaviour Change Wheel: A New Method for Characterising and Designing Behaviour Change Interventions}
-      \field{volume}{6}
+      \field{journaltitle}{Medicine \& Science in Sports \& Exercise}
+      \field{number}{8}
+      \field{title}{International Physical Activity Questionnaire: 12-Country Reliability and Validity}
+      \field{volume}{35}
+      \field{year}{2003}
+      \field{pages}{1381\bibrangedash 1395}
+      \range{pages}{15}
+      \verb{doi}
+      \verb 10.1249/01.MSS.0000078924.61453.FB
+      \endverb
+    \endentry
+    \entry{Lee2011IPAQValidity}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=1acabf59c036ffd8333c96038cacee79}{%
+           family={Lee},
+           familyi={L\bibinitperiod},
+           given={Paul\bibnamedelima H.},
+           giveni={P\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+        {{hash=236ee16b292bc5e3a30b38e9fc175cc4}{%
+           family={Macfarlane},
+           familyi={M\bibinitperiod},
+           given={Duncan\bibnamedelima J.},
+           giveni={D\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=177df5524dbd81e05623317ec161edce}{%
+           family={Lam},
+           familyi={L\bibinitperiod},
+           given={Thomas\bibnamedelima H.},
+           giveni={T\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+        {{hash=28a52a8cc3449b8b56d2358001e8df9a}{%
+           family={Stewart},
+           familyi={S\bibinitperiod},
+           given={Sunita\bibnamedelima M.},
+           giveni={S\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \strng{namehash}{0aacbeeb8998edab642536c212f1f8bf}
+      \strng{fullhash}{0ffcf8fbd4521aab3ce5b8dcab2688bf}
+      \strng{fullhashraw}{0ffcf8fbd4521aab3ce5b8dcab2688bf}
+      \strng{bibnamehash}{0ffcf8fbd4521aab3ce5b8dcab2688bf}
+      \strng{authorbibnamehash}{0ffcf8fbd4521aab3ce5b8dcab2688bf}
+      \strng{authornamehash}{0aacbeeb8998edab642536c212f1f8bf}
+      \strng{authorfullhash}{0ffcf8fbd4521aab3ce5b8dcab2688bf}
+      \strng{authorfullhashraw}{0ffcf8fbd4521aab3ce5b8dcab2688bf}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{International Journal of Behavioral Nutrition and Physical Activity}
+      \field{title}{Validity of the International Physical Activity Questionnaire Short Form (IPAQ-SF): A Systematic Review}
+      \field{volume}{8}
       \field{year}{2011}
-      \field{pages}{42}
+      \field{pages}{115}
       \range{pages}{1}
       \verb{doi}
-      \verb 10.1186/1748-5908-6-42
+      \verb 10.1186/1479-5868-8-115
+      \endverb
+    \endentry
+    \entry{AndroidStepCounterSensor}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=8b36e9207c24c76e6719268e49201d94}{%
+           family={{Google}},
+           familyi={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{8b36e9207c24c76e6719268e49201d94}
+      \strng{fullhash}{8b36e9207c24c76e6719268e49201d94}
+      \strng{fullhashraw}{8b36e9207c24c76e6719268e49201d94}
+      \strng{bibnamehash}{8b36e9207c24c76e6719268e49201d94}
+      \strng{authorbibnamehash}{8b36e9207c24c76e6719268e49201d94}
+      \strng{authornamehash}{8b36e9207c24c76e6719268e49201d94}
+      \strng{authorfullhash}{8b36e9207c24c76e6719268e49201d94}
+      \strng{authorfullhashraw}{8b36e9207c24c76e6719268e49201d94}
+      \field{extraname}{1}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{TYPE STEP COUNTER -- Android API Reference}
+      \field{urlday}{28}
+      \field{urlmonth}{8}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://developer.android.com/reference/android/hardware/Sensor#TYPE_STEP_COUNTER
+      \endverb
+      \verb{url}
+      \verb https://developer.android.com/reference/android/hardware/Sensor#TYPE_STEP_COUNTER
+      \endverb
+    \endentry
+    \entry{AndroidStepDetectorSensor}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=8b36e9207c24c76e6719268e49201d94}{%
+           family={{Google}},
+           familyi={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{8b36e9207c24c76e6719268e49201d94}
+      \strng{fullhash}{8b36e9207c24c76e6719268e49201d94}
+      \strng{fullhashraw}{8b36e9207c24c76e6719268e49201d94}
+      \strng{bibnamehash}{8b36e9207c24c76e6719268e49201d94}
+      \strng{authorbibnamehash}{8b36e9207c24c76e6719268e49201d94}
+      \strng{authornamehash}{8b36e9207c24c76e6719268e49201d94}
+      \strng{authorfullhash}{8b36e9207c24c76e6719268e49201d94}
+      \strng{authorfullhashraw}{8b36e9207c24c76e6719268e49201d94}
+      \field{extraname}{2}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{TYPE STEP DETECTOR -- Android API Reference}
+      \field{urlday}{28}
+      \field{urlmonth}{8}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://developer.android.com/reference/android/hardware/Sensor#TYPE_STEP_DETECTOR
+      \endverb
+      \verb{url}
+      \verb https://developer.android.com/reference/android/hardware/Sensor#TYPE_STEP_DETECTOR
+      \endverb
+    \endentry
+    \entry{AndroidMotionSensors}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=8b36e9207c24c76e6719268e49201d94}{%
+           family={{Google}},
+           familyi={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{8b36e9207c24c76e6719268e49201d94}
+      \strng{fullhash}{8b36e9207c24c76e6719268e49201d94}
+      \strng{fullhashraw}{8b36e9207c24c76e6719268e49201d94}
+      \strng{bibnamehash}{8b36e9207c24c76e6719268e49201d94}
+      \strng{authorbibnamehash}{8b36e9207c24c76e6719268e49201d94}
+      \strng{authornamehash}{8b36e9207c24c76e6719268e49201d94}
+      \strng{authorfullhash}{8b36e9207c24c76e6719268e49201d94}
+      \strng{authorfullhashraw}{8b36e9207c24c76e6719268e49201d94}
+      \field{extraname}{3}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Motion sensors -- Android API Reference}
+      \field{urlday}{28}
+      \field{urlmonth}{8}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://developer.android.com/develop/sensors-and-location/sensors/sensors_motion
+      \endverb
+      \verb{url}
+      \verb https://developer.android.com/develop/sensors-and-location/sensors/sensors_motion
       \endverb
     \endentry
   \enddatalist

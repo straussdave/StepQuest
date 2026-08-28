@@ -1,52 +1,51 @@
 \babel@toc {english}{}\relax 
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Goal}{1}{section.1.1}%
-\contentsline {section}{\numberline {1.2}Background}{1}{section.1.2}%
+\contentsline {section}{\numberline {1.2}Background}{2}{section.1.2}%
 \contentsline {section}{\numberline {1.3}Research Questions and Hypotheses}{3}{section.1.3}%
-\contentsline {chapter}{\numberline {2}Methodology}{5}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Research Method Selection}{5}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Design Rationale and Framework Selection}{6}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}Intended Octalysis and BCW Mapping}{7}{subsection.2.2.1}%
-\contentsline {section}{\numberline {2.3}User Study}{8}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}Participants and Testing Procedure}{9}{subsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.3.2}Data Collection}{9}{subsection.2.3.2}%
-\contentsline {subsection}{\numberline {2.3.3}Data Analysis}{9}{subsection.2.3.3}%
-\contentsline {chapter}{\numberline {3}Results}{10}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Prototype Outcome}{10}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}Technical Overview}{10}{subsection.3.1.1}%
-\contentsline {subsection}{\numberline {3.1.2}Software Architecture}{10}{subsection.3.1.2}%
-\contentsline {subsection}{\numberline {3.1.3}Step Tracking}{11}{subsection.3.1.3}%
-\contentsline {subsection}{\numberline {3.1.4}Quest and Progression System}{12}{subsection.3.1.4}%
-\contentsline {subsection}{\numberline {3.1.5}Persistence and Data Logging}{12}{subsection.3.1.5}%
-\contentsline {subsection}{\numberline {3.1.6}User Interface}{13}{subsection.3.1.6}%
-\contentsline {subsection}{\numberline {3.1.7}Implemented Octalysis and BCW Elements}{13}{subsection.3.1.7}%
-\contentsline {subsubsection}{\nonumberline Epic Meaning and Calling}{13}{subsubsection*.4}%
-\contentsline {subsubsection}{\nonumberline Development and Accomplishment}{13}{subsubsection*.5}%
-\contentsline {subsubsection}{\nonumberline Empowerment of Creativity and Feedback}{14}{subsubsection*.6}%
-\contentsline {subsubsection}{\nonumberline Ownership and Possession}{14}{subsubsection*.7}%
-\contentsline {subsubsection}{\nonumberline Social Influence and Relatedness}{14}{subsubsection*.8}%
-\contentsline {subsubsection}{\nonumberline Scarcity and Impatience}{14}{subsubsection*.9}%
-\contentsline {subsubsection}{\nonumberline Unpredictability and Curiosity}{15}{subsubsection*.10}%
-\contentsline {subsubsection}{\nonumberline Loss and Avoidance}{15}{subsubsection*.11}%
-\contentsline {section}{\numberline {3.2}User Study Results}{15}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Participant Characteristics}{15}{subsection.3.2.1}%
-\contentsline {subsection}{\numberline {3.2.2}Usage and Engagement Results}{15}{subsection.3.2.2}%
-\contentsline {subsection}{\numberline {3.2.3}Questionnaire Results}{15}{subsection.3.2.3}%
-\contentsline {subsection}{\numberline {3.2.4}Qualitative Feedback}{15}{subsection.3.2.4}%
-\contentsline {chapter}{\numberline {4}Discussion}{16}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Interpretation of the Main Findings}{16}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Walking Motivation and Engagement}{16}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Research Questions and Hypotheses}{16}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Limitations and Future Work}{16}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}Limitations}{16}{subsection.4.4.1}%
-\contentsline {subsection}{\numberline {4.4.2}Future Work}{16}{subsection.4.4.2}%
-\contentsline {chapter}{\numberline {A}Software Artifacts}{17}{chapter.A}%
-\contentsline {section}{\numberline {A.1}Source Code Repository}{17}{section.A.1}%
-\contentsline {section}{\numberline {A.2}Android Application Package}{17}{section.A.2}%
+\contentsline {chapter}{\numberline {2}Methodology}{4}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Research Method Selection}{4}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Design Rationale and Framework Selection}{5}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Design Requirements for StepQuest}{6}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Behaviour Change Wheel}{6}{subsection.2.2.2}%
+\contentsline {subsubsection}{\nonumberline Target Behaviour and COM-B Analysis}{7}{subsubsection*.4}%
+\contentsline {subsubsection}{\nonumberline Derived Intervention Functions}{7}{subsubsection*.5}%
+\contentsline {subsection}{\numberline {2.2.3}Octalysis}{8}{subsection.2.2.3}%
+\contentsline {subsubsection}{\nonumberline Motivational Core Drives}{8}{subsubsection*.6}%
+\contentsline {subsubsection}{\nonumberline Mapping to Game Mechanics}{8}{subsubsection*.7}%
+\contentsline {subsection}{\numberline {2.2.4}Combined Design Rationale}{9}{subsection.2.2.4}%
+\contentsline {section}{\numberline {2.3}User Study}{10}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Participants and Testing Procedure}{10}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Data Collection}{11}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}Data Analysis}{12}{subsection.2.3.3}%
+\contentsline {chapter}{\numberline {3}Results}{13}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Prototype Outcome}{13}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Technical Overview}{13}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Software Architecture}{13}{subsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.1.3}Step Tracking}{14}{subsection.3.1.3}%
+\contentsline {subsection}{\numberline {3.1.4}Quest and Progression System}{15}{subsection.3.1.4}%
+\contentsline {subsection}{\numberline {3.1.5}Persistence and Data Logging}{16}{subsection.3.1.5}%
+\contentsline {subsection}{\numberline {3.1.6}User Interface}{16}{subsection.3.1.6}%
+\contentsline {subsection}{\numberline {3.1.7}Mapping of Implemented Game Mechanics to Octalysis and the BCW}{17}{subsection.3.1.7}%
+\contentsline {section}{\numberline {3.2}User Study Results}{19}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Participation and Sample Characteristics}{19}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Questionnaire Results}{19}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}Usage and Engagement Metrics}{20}{subsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.2.4}Qualitative Feedback}{20}{subsection.3.2.4}%
+\contentsline {chapter}{\numberline {4}Discussion}{22}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Interpretation of the Main Findings}{22}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Walking Motivation and Engagement}{22}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Research Questions and Hypotheses}{22}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Limitations and Future Work}{22}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Limitations}{22}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Future Work}{22}{subsection.4.4.2}%
+\contentsline {chapter}{\numberline {A}Software Artifacts}{23}{chapter.A}%
+\contentsline {section}{\numberline {A.1}Source Code Repository}{23}{section.A.1}%
+\contentsline {section}{\numberline {A.2}Android Application Package}{23}{section.A.2}%
 \def \@chapapp {\appendixname }
-\contentsline {chapter}{\nonumberline Bibliography}{18}{chapter*.12}%
-\contentsline {chapter}{\nonumberline List of Figures}{20}{chapter*.13}%
-\contentsline {chapter}{\nonumberline List of Tables}{21}{chapter*.14}%
-\contentsline {chapter}{Documentation table of AI-based tools}{22}{section*.15}%
-\contentsline {chapter}{List of Abbreviations}{23}{section*.17}%
+\contentsline {chapter}{\nonumberline Bibliography}{24}{chapter*.11}%
+\contentsline {chapter}{\nonumberline List of Figures}{26}{chapter*.12}%
+\contentsline {chapter}{\nonumberline List of Tables}{27}{chapter*.13}%
+\contentsline {chapter}{Documentation table of AI-based tools}{28}{section*.14}%
+\contentsline {chapter}{List of Abbreviations}{29}{section*.16}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
