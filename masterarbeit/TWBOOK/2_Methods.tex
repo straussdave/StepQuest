@@ -169,4 +169,19 @@ Pre- and post-questionnaire responses were not analyzed as paired observations b
 
 The exported usage logs were analyzed descriptively to identify patterns of interaction and continued use during the testing period. The recorded metrics were aggregated across anonymized log files and used to complement the questionnaire findings.
 
+During data cleaning, duplicated quest-completion events were identified in
+several log files. Consequently, the automatically generated
+\texttt{quest\_completions}, \texttt{story\_quests\_completed}, and
+\texttt{quest\_completion\_rate} summary metrics were not used for the
+analysis. A quest was instead counted as completed once for each unique
+quest identifier associated with a \texttt{part\_unlocked} event. Events
+recorded after July 31, 2026 were excluded from the study-period analysis.
+
+Step-related summary metrics were also excluded from between-participant
+comparisons because the recorded values were not consistent across devices
+and did not reliably represent all walking that contributed to quest
+progression. The log analysis therefore focused primarily on active days,
+application sessions, quest progression, and selected interactions with
+unlocked content.
+
 Open-text questionnaire responses were reviewed and grouped according to recurring topics. The purpose of this qualitative analysis was to identify common positive aspects, sources of frustration, technical problems, and suggestions for future development rather than to conduct a formal large-scale thematic analysis.

@@ -33,7 +33,14 @@ Table~\ref{tab:technologies} summarizes the main technologies used in the develo
 \end{table}
 \subsection{Software Architecture}
 
-The prototype was divided into separate systems for step tracking, quest management, persistence, user interface control, content unlocking, and data logging. This separation reduced dependencies between the physical activity sensor and the gameplay logic. For example, the quest system receives step updates through a common step-counter interface rather than directly accessing the Android sensor implementation.
+The prototype was divided into separate systems for step tracking, quest management, persistence, user interface control, content unlocking, and data logging. A high level overview is depicted in Figure~\ref{fig:software_architecture} This separation reduced dependencies between the physical activity sensor and the gameplay logic. For example, the quest system receives step updates through a common step-counter interface rather than directly accessing the Android sensor implementation.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\textwidth]{PICs/stepQuestArchitecture.png}
+	\caption{High-level software architecture of \textit{StepQuest}.}
+	\label{fig:software_architecture}
+\end{figure}
 
 The step-counter interface has separate implementations for Android devices and the Unity editor. On Android, sensor data are obtained from the device's native step sensors. During development in the Unity editor, a mock implementation allows steps to be added manually. This made it possible to test the complete quest flow without performing physical walks during each development iteration.
 
@@ -158,7 +165,7 @@ Initial attitudes toward walking and gamification were generally positive. Eight
 
 \subsection{Questionnaire Results}
 
-Seven complete post-questionnaires were available for analysis. Table~\ref{tab:post_questionnaire_results} summarizes the response distributions for the closed Likert-scale items.
+Seven complete post-questionnaires were available for analysis. Table~\ref{tab:post_questionnaire_results} summarizes the response distributions for the closed Likert-scale items, while Figure~\ref{fig:post_questionnaire_results} represents the same data in more detail as a stacked horizontal bar chart.
 
 \begin{table}[h]
 	\centering
@@ -166,22 +173,29 @@ Seven complete post-questionnaires were available for analysis. Table~\ref{tab:p
 	\label{tab:post_questionnaire_results}
 	\begin{tabular}{p{0.48\textwidth} c c c c}
 		\hline
-		\textbf{Item} & \textbf{Disagree} & \textbf{Neutral} & \textbf{Agree} & \textbf{Median} \\
+		\textbf{Item} & \textbf{Disagree} & \textbf{Neutral} & \textbf{Agree} \\
 		\hline
-		More motivated to walk & 4 & 0 & 3 & 2 \\
-		Walking felt more meaningful or rewarding & 0 & 3 & 4 & 4 \\
-		Daily quests encouraged more walking & 2 & 2 & 3 & 3 \\
-		Wanted to continue the story and recover parts & 1 & 0 & 6 & 5 \\
-		Connection between steps and game progress was clear & 0 & 0 & 7 & 5 \\
-		Application was easy to understand & 0 & 0 & 7 & 5 \\
-		Always knew what to do next & 0 & 0 & 7 & 5 \\
-		Step-progress feedback was clear and useful & 1 & 0 & 6 & 5 \\
-		Technical issues made the application harder to use & 3 & 1 & 3 & 3 \\
-		Would use a more complete version again & 1 & 0 & 6 & 5 \\
-		Would recommend the concept & 0 & 0 & 7 & 5 \\
+		More motivated to walk & 4 & 0 & 3  \\
+		Walking felt more meaningful or rewarding & 0 & 3 & 4  \\
+		Daily quests encouraged more walking & 2 & 2 & 3  \\
+		Wanted to continue the story and recover parts & 1 & 0 & 6  \\
+		Connection between steps and game progress was clear & 0 & 0 & 7  \\
+		Application was easy to understand & 0 & 0 & 7  \\
+		Always knew what to do next & 0 & 0 & 7  \\
+		Step-progress feedback was clear and useful & 1 & 0 & 6  \\
+		Technical issues made the application harder to use & 3 & 1 & 3  \\
+		Would use a more complete version again & 1 & 0 & 6 & \\
+		Would recommend the concept & 0 & 0 & 7  \\
 		\hline
 	\end{tabular}
 \end{table}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\textwidth]{PICs/postQuestionnaire.png}
+	\caption{Distribution of responses to the post-questionnaire Likert-scale items ($n=7$).}
+	\label{fig:post_questionnaire_results}
+\end{figure}
 
 Responses concerning walking motivation were mixed. Three of seven participants agreed that they felt more motivated to walk after using \textit{StepQuest}, while four disagreed. Four participants agreed that the game made walking feel more meaningful or rewarding, while the remaining three selected the neutral response. Three participants agreed that the daily quests encouraged them to go outside or walk more than usual, two were neutral, and two disagreed.
 
@@ -195,9 +209,33 @@ When asked which element of \textit{StepQuest} was most motivating, three partic
 
 \subsection{Usage and Engagement Metrics}
 
-% This subsection should be completed using the exported StepQuest log files.
-% Possible results include active days, completed quests, quest completion
-% patterns, step-related metrics, and changes in engagement over time.
+Table~\ref{tab:usage_engagement_metrics} summarizes the cleaned usage metrics for the nine available log files. Quest completion was determined using unique quest unlock events rather than the automatically generated completion count, as duplicated completion events were identified in several logs.
+
+\begin{table}[h]
+	\centering
+	\caption{Descriptive usage and engagement metrics derived from the cleaned application logs ($n=9$)}
+	\label{tab:usage_engagement_metrics}
+	\begin{tabular}{lrrrr}
+		\hline
+		\textbf{Participant} & \textbf{Active Days} & \textbf{Sessions} & \textbf{Quests Completed} & \textbf{Story Quests} \\
+		\hline
+		P01 & 15 & 25 & 12 & 4 \\
+		P02 & 27 & 32 & 12 & 4 \\
+		P03 & 21 & 50 & 12 & 4 \\
+		P04 & 18 & 69 & 12 & 4 \\
+		P05 & 22 & 34 & 5  & 2 \\
+		P06 & 5  & 5  & 2  & 0 \\
+		P07 & 6  & 4  & 2  & 1 \\
+		P08 & 5  & 5  & 2  & 1 \\
+		P09 & 8  & 12 & 2  & 2 \\
+		\hline
+		\textbf{Median} & \textbf{15} & \textbf{25} & \textbf{5} & \textbf{2} \\
+		\textbf{Range} & \textbf{5--27} & \textbf{4--69} & \textbf{2--12} & \textbf{0--4} \\
+		\hline
+	\end{tabular}
+\end{table}
+
+Participants used the prototype on a median of 15 distinct days and recorded a median of 25 application sessions. The median number of uniquely completed quests was five, while four participants completed all twelve available quests. Considerable variation was observed across participants, particularly in the number of active days and completed quests.
 
 \subsection{Qualitative Feedback}
 
@@ -206,29 +244,3 @@ The open-text responses largely supported the positive ratings of narrative prog
 The most frequently reported negative experiences concerned technical issues with step tracking and progress registration. Participants described delayed or unreliable step updates and, particularly during earlier versions of the prototype, problems with progress when the application was not kept open. Feedback also identified the restriction to one quest per day as a source of frustration for some participants.
 
 Suggestions for future development included improving the reliability of the step counter, increasing the amount and difficulty of available content, adding additional game systems such as leaderboards, and providing more flexibility in daily progression. One participant suggested linking walking distance to exploration of an in-game map. Several responses therefore indicated interest in expanding the prototype beyond the relatively limited progression system implemented for the study.
-
-%\section{Status}
-
-%At the current stage, the core gameplay loop is playable end-to-end. The player is greeted by an
-%in-game companion character (dialogue screen) and proceeds into a daily mission selection flow.
-%Missions are presented as ship parts with clearly communicated step goals (e.g., 2500--3000 steps).
-%A day counter is shown in the main UI (``Sol 8''), and the build includes entry points for a settings screen
-%as well as a collection view.
-
-%\begin{itemize}
-  %\item \textbf{Dialogue onboarding flow:} A character-driven dialogue screen introduces the interaction and
-  %transitions into the daily choice (``What part would you like to retrieve today?'').
-  %\item \textbf{Daily mission selection implemented:} The player can choose from multiple available parts
-  %(e.g., Wing, Cockpit), each associated with a step target.
-  %\item \textbf{Prototype progression structure:} The chosen mission corresponds to a collectible ship part,
-  %supporting a clear short-term goal for walking and a longer-term collection objective.
-  %\item \textbf{Collection/inspection screen:} A dedicated view exists to inspect the ship/collection state
-  %(currently represented visually as a ship preview and a back-navigation flow).
-  %\item \textbf{General UX structure in place:} Consistent UI theme, navigation (e.g., back button), and
-  %a dedicated \textit{Collection} button from the main screen.
-%\end{itemize}
-%\textbf{Open work:}
-%While the loop is functional, the prototype is not feature-complete. Remaining work includes completing
-%content breadth, refining balancing, adding excitement features such as sounds and animations
-%and finalizing support features needed for the evaluation phase 
-%(e.g., robust data export/logging, and polish for settings and collection feedback).

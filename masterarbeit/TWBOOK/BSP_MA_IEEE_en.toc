@@ -25,27 +25,26 @@
 \contentsline {subsection}{\numberline {3.1.3}Step Tracking}{14}{subsection.3.1.3}%
 \contentsline {subsection}{\numberline {3.1.4}Quest and Progression System}{15}{subsection.3.1.4}%
 \contentsline {subsection}{\numberline {3.1.5}Persistence and Data Logging}{16}{subsection.3.1.5}%
-\contentsline {subsection}{\numberline {3.1.6}User Interface}{16}{subsection.3.1.6}%
-\contentsline {subsection}{\numberline {3.1.7}Mapping of Implemented Game Mechanics to Octalysis and the BCW}{17}{subsection.3.1.7}%
+\contentsline {subsection}{\numberline {3.1.6}User Interface}{17}{subsection.3.1.6}%
+\contentsline {subsection}{\numberline {3.1.7}Mapping of Implemented Game Mechanics to Octalysis and the BCW}{18}{subsection.3.1.7}%
 \contentsline {section}{\numberline {3.2}User Study Results}{19}{section.3.2}%
 \contentsline {subsection}{\numberline {3.2.1}Participation and Sample Characteristics}{19}{subsection.3.2.1}%
-\contentsline {subsection}{\numberline {3.2.2}Questionnaire Results}{19}{subsection.3.2.2}%
-\contentsline {subsection}{\numberline {3.2.3}Usage and Engagement Metrics}{20}{subsection.3.2.3}%
-\contentsline {subsection}{\numberline {3.2.4}Qualitative Feedback}{20}{subsection.3.2.4}%
-\contentsline {chapter}{\numberline {4}Discussion}{22}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Interpretation of the Main Findings}{22}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Walking Motivation and Engagement}{22}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Research Questions and Hypotheses}{22}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Limitations and Future Work}{22}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}Limitations}{22}{subsection.4.4.1}%
-\contentsline {subsection}{\numberline {4.4.2}Future Work}{22}{subsection.4.4.2}%
-\contentsline {chapter}{\numberline {A}Software Artifacts}{23}{chapter.A}%
-\contentsline {section}{\numberline {A.1}Source Code Repository}{23}{section.A.1}%
-\contentsline {section}{\numberline {A.2}Android Application Package}{23}{section.A.2}%
+\contentsline {subsection}{\numberline {3.2.2}Questionnaire Results}{20}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}Usage and Engagement Metrics}{21}{subsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.2.4}Qualitative Feedback}{22}{subsection.3.2.4}%
+\contentsline {chapter}{\numberline {4}Discussion}{23}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Interpretation of the Main Findings}{23}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Research Questions and Hypotheses}{25}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Limitations and Future Work}{26}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Limitations}{26}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Future Work}{27}{subsection.4.3.2}%
+\contentsline {chapter}{\numberline {A}Software Artifacts}{28}{chapter.A}%
+\contentsline {section}{\numberline {A.1}Source Code Repository}{28}{section.A.1}%
+\contentsline {section}{\numberline {A.2}Android Application Package}{28}{section.A.2}%
 \def \@chapapp {\appendixname }
-\contentsline {chapter}{\nonumberline Bibliography}{24}{chapter*.11}%
-\contentsline {chapter}{\nonumberline List of Figures}{26}{chapter*.12}%
-\contentsline {chapter}{\nonumberline List of Tables}{27}{chapter*.13}%
-\contentsline {chapter}{Documentation table of AI-based tools}{28}{section*.14}%
-\contentsline {chapter}{List of Abbreviations}{29}{section*.16}%
+\contentsline {chapter}{\nonumberline Bibliography}{29}{chapter*.14}%
+\contentsline {chapter}{\nonumberline List of Figures}{31}{chapter*.15}%
+\contentsline {chapter}{\nonumberline List of Tables}{32}{chapter*.16}%
+\contentsline {chapter}{Documentation table of AI-based tools}{33}{section*.17}%
+\contentsline {chapter}{List of Abbreviations}{34}{section*.19}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
